@@ -1,2 +1,2 @@
-# products-using-api
+# product-page-reactjs
 Created with CodeSandbox
