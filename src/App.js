@@ -11,7 +11,6 @@ import "./css/styles.scss";
 const API_URL = "https://testament-store.herokuapp.com/";
 
 const url = new URL(window.location.href);
-const collectionId = url.searchParams.get("id") || 1;
 
 export default function App() {
   const [products, setProducts] = useState([]);
