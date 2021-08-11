@@ -29,10 +29,23 @@ export default function ProductContent({ product }) {
               </span>
             </div>
           ) : (
-            <div class="product-price">
-              <span class="price-item">{moneyFormat(product.price)}</span>
+            <div className="product-price">
+              <span className="price-item">{moneyFormat(product.price)}</span>
             </div>
           )}
+          <div className="product-color pt-3 text-center d-flex justify-content-center align-items-center">
+            {typeof product.color != "undefined" &&
+              product.color.length > 0 &&
+              product.color.map((color) => (
+                <span className="color-icn">
+                  <span
+                    style={{
+                      backgroundImage: "url(" + URL + color.thumb + ")",
+                    }}
+                  ></span>
+                </span>
+              ))}
+          </div>
         </div>
       </div>
     </div>
