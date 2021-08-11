@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import Header from "./components/Header";
-import CollectionsPage from "./components/CollectionsPageContent";
+import CollectionsPageContent from "./components/CollectionsPageContent";
+import CollectionsList from "./components/CollectionsList";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -23,11 +24,11 @@ export default function App() {
       .then((response) => {
         response.json().then((data) => {
           setProducts(data);
-          console.log(data);
         });
       })
       .catch((error) => console.log(error));
   }, [sortCondition]);
+
   useEffect(() => {
     fetch(API_URL + "collections")
       .then((response) =>
@@ -42,10 +43,12 @@ export default function App() {
     <>
       <Header collections={collections} />
       <main>
-        {currentCollection === {} && (
-          <CollectionsPageContent currentCollection={currentCollection} />
-        )}
+        <CollectionsPageContent
+          products={products}
+          currentCollection={currentCollection}
+        />
       </main>
+      <CollectionsList collections={collections} />
     </>
   );
 }

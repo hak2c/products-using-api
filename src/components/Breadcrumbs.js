@@ -1,8 +1,10 @@
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ location }) {
   return (
-    <section class="ot-breadcrumb">
-      <div class="row">
-        <div class="col-12"></div>
+    <section className="ot-breadcrumb">
+      <div className="row">
+        <div className="col-12">
+          <a href="index.html">Home</a> &gt; {location}
+        </div>
       </div>
     </section>
   );

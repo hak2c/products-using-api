@@ -1,7 +1,6 @@
 import TopHeader from "./header/TopHeader";
-import MobileLogo from "./header/MobileLogo";
 import PrimaryMenu from "./header/PrimaryMenu";
-import SlideMobileMenu from "./header/SlideMobileMenu";
+import MobileMenu from "./header/MobileMenu";
 
 import logo from "../images/logo.jpg";
 
@@ -14,9 +13,8 @@ export default function Header({ collections }) {
           <img src={logo} alt="" />
         </a>
       </div>
-      <MobileLogo />
+      <MobileMenu collections={collections} />
       <PrimaryMenu collections={collections} />
-      <SlideMobileMenu collections={collections} />
     </>
   );
 }

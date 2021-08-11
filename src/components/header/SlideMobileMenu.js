@@ -1,16 +1,35 @@
+import { Collapse } from "bootstrap";
+
 import arrowDownIcn from "../../images/icons/arrow-down-mobile.png";
 import fbSrc from "../../images/icons/facebook-subc.png";
 import instagramSrc from "../../images/icons/instagram-subc.png";
 import twitterSrc from "../../images/icons/twitter-subc.png";
 import linkedinSrc from "../../images/icons/linkedin-subc.png";
 
-export default function SlideMobileMenu({ collections }) {
+import { useState, useEffect } from "react";
+
+export default function SlideMobileMenu({
+  collections,
+  showMenu,
+  setShowMenu,
+}) {
+  let [toggleSubMenu, setToggleSubMenu] = useState(false);
+  useEffect(() => {
+    let collapseSubMenu = document.getElementById("sub-menu-1");
+    let bsCollapseSubMenu = new Collapse(collapseSubMenu, { toggle: false });
+    toggleSubMenu ? bsCollapseSubMenu.show() : bsCollapseSubMenu.hide();
+  });
+  const animateClass = showMenu
+    ? " animate__fadeInLeft"
+    : " animate__fadeOutLeft";
   return (
     <aside className="animate__animated" id="slideout-mobile-navigation">
       <div className="slideout-mobile-overlay"></div>
-      <div className="animate__animated slideout-mobile-content">
+      <div
+        className={"animate__animated slideout-mobile-content" + animateClass}
+      >
         <div className="close-navigation">
-          <div className="icon-close"></div>
+          <div className="icon-close" onClick={() => setShowMenu(false)}></div>
         </div>
         <div className="mobile-menu">
           <ul className="nav flex-column justify-content-center">
@@ -21,10 +40,7 @@ export default function SlideMobileMenu({ collections }) {
               <a href="#">Shop</a>
               <div
                 className="d-inline-block arrow"
-                data-toggle="collapse"
-                data-target="#sub-menu-1"
-                aria-expanded="true"
-                aria-controls="sub-menu-1"
+                onClick={() => setToggleSubMenu(!toggleSubMenu)}
               >
                 <img src={arrowDownIcn} alt="" />
               </div>

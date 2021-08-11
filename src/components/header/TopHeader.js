@@ -1,11 +1,20 @@
+import { Collapse } from "bootstrap";
+
 import fbSrc from "../../images/icons/facebook.png";
 import instagramSrc from "../../images/icons/instagram.png";
 import twitterSrc from "../../images/icons/twitter.png";
 import linkedinSrc from "../../images/icons/linkedin.png";
 import searchIcn from "../../images/icons/search.png";
 import cartSrc from "../../images/icons/cart.png";
+import { useState, useEffect } from "react";
 
 export default function TopHeader() {
+  let [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    let myCollapse = document.getElementById("search-form-1");
+    let bsCollapse = new Collapse(myCollapse, { toggle: false });
+    toggle ? bsCollapse.show() : bsCollapse.hide();
+  });
   return (
     <div className="top-header">
       <div className="container">
@@ -36,10 +45,7 @@ export default function TopHeader() {
             >
               <span className="search-icon">
                 <img
-                  data-toggle="collapse"
-                  data-target="#search-form-1"
-                  aria-expanded="true"
-                  aria-controls="search-form-1"
+                  onClick={() => setToggle((toggle) => !toggle)}
                   src={searchIcn}
                   alt=""
                 />
@@ -60,6 +66,7 @@ export default function TopHeader() {
                   />
                 </div>
               </form>
+
               <span className="cart">
                 <img className="mr-1" src={cartSrc} alt="" />
                 <span className="cart-count">0</span>
