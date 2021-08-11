@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import CollectionsPageContent from "./components/CollectionsPageContent";
 import CollectionsList from "./components/CollectionsList";
+import Footer from "./components/Footer";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -17,10 +18,22 @@ export default function App() {
   const [collections, setCollections] = useState([]);
   const [currentCollection, setCurrentCollection] = useState({});
 
-  const [sortCondition, setSortCondition] = useState("");
+  const [sortCondition, setSortCondition] = useState("featured");
 
   useEffect(() => {
-    fetch(API_URL + "products?collectionId=" + collectionId)
+    let condition =
+      sortCondition === "featured"
+        ? ""
+        : sortCondition === "title-ascending"
+        ? "&_sort=title&_order=asc"
+        : sortCondition === "title-descending"
+        ? "&_sort=title&_order=desc"
+        : sortCondition === "price-ascending"
+        ? "&_sort=price&_order=asc"
+        : sortCondition === "price-descending"
+        ? "&_sort=price&_order=desc"
+        : "";
+    fetch(API_URL + "products?collectionId=" + collectionId + condition)
       .then((response) => {
         response.json().then((data) => {
           setProducts(data);
@@ -46,9 +59,14 @@ export default function App() {
         <CollectionsPageContent
           products={products}
           currentCollection={currentCollection}
+          sortCondition={sortCondition}
+          setSortCondition={setSortCondition}
         />
       </main>
       <CollectionsList collections={collections} />
+      <footer>
+        <Footer collections={collections} />
+      </footer>
     </>
   );
 }

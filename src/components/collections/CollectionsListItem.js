@@ -1,4 +1,5 @@
 const URL = "https://testament-store.herokuapp.com/";
+
 export default function CollectionsListItem({ collection }) {
   return (
     <div className="col-md-4 mb-5">
