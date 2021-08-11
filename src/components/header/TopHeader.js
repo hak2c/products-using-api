@@ -8,13 +8,23 @@ import searchIcn from "../../images/icons/search.png";
 import cartSrc from "../../images/icons/cart.png";
 import { useState, useEffect } from "react";
 
-export default function TopHeader() {
+export default function TopHeader({
+  searchKey,
+  setSearchkey,
+  setSubmitSearch,
+}) {
   let [toggle, setToggle] = useState(false);
+
+  function handleSubmitSearchForm() {
+    setSubmitSearch("searching");
+  }
+
   useEffect(() => {
     let myCollapse = document.getElementById("search-form-1");
     let bsCollapse = new Collapse(myCollapse, { toggle: false });
     toggle ? bsCollapse.show() : bsCollapse.hide();
   });
+
   return (
     <div className="top-header">
       <div className="container">
@@ -51,10 +61,9 @@ export default function TopHeader() {
                 />
               </span>
               <form
-                name="search"
-                action="search.html"
                 className="search-form form-inline"
                 id="search-form-1"
+                onSubmit={handleSubmitSearchForm}
               >
                 <div className="form-group">
                   <input
@@ -62,7 +71,8 @@ export default function TopHeader() {
                     id="search"
                     type="text"
                     placeholder="Search"
-                    name="key"
+                    onChange={(e) => setSearchkey(e.target.value)}
+                    value={searchKey}
                   />
                 </div>
               </form>

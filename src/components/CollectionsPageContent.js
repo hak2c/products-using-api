@@ -12,11 +12,15 @@ export default function CollectionsPageContent({
 }) {
   return (
     <>
-      <div className="collection-image"></div>
+      <div className="collection-image">
+        {typeof currentCollection.images != "undefined" && (
+          <img src={URL + currentCollection.images[0]} alt="" />
+        )}
+      </div>
       <div className="container">
         <Breadcrumbs location={"Collection"} />
         <div className="page-title">
-          <h3></h3>
+          <h3>{currentCollection.title}</h3>
         </div>
         <div className="row">
           <LeftSidebar

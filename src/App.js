@@ -17,10 +17,13 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [collections, setCollections] = useState([]);
   const [currentCollection, setCurrentCollection] = useState({});
+  const [searchKey, setSearchkey] = useState("");
+  const [submitSearch, setSubmitSearch] = useState(null);
 
   const [sortCondition, setSortCondition] = useState("featured");
 
   useEffect(() => {
+    // if (submitSearch === null) {
     let condition =
       sortCondition === "featured"
         ? ""
@@ -40,7 +43,19 @@ export default function App() {
         });
       })
       .catch((error) => console.log(error));
-  }, [sortCondition]);
+    // } else if (submitSearch === "searching") {
+    //   fetch(
+    //     API_URL + "products?title_like=" + searchKey + "&_sort=id&_order=desc"
+    //   )
+    //     .then((response) => {
+    //       response.json().then((data) => {
+    //         setProducts(data);
+    //         setSubmitSearch("done");
+    //       });
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
+  }, [sortCondition, submitSearch]);
 
   useEffect(() => {
     fetch(API_URL + "collections")
@@ -54,7 +69,12 @@ export default function App() {
   }, []);
   return (
     <>
-      <Header collections={collections} />
+      <Header
+        collections={collections}
+        searchKey={searchKey}
+        setSearchkey={setSearchkey}
+        setSubmitSearch={setSubmitSearch}
+      />
       <main>
         <CollectionsPageContent
           products={products}

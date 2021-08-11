@@ -37,7 +37,7 @@ export default function ProductContent({ product }) {
             {typeof product.color != "undefined" &&
               product.color.length > 0 &&
               product.color.map((color) => (
-                <span className="color-icn">
+                <span key={color.name} className="color-icn">
                   <span
                     style={{
                       backgroundImage: "url(" + URL + color.thumb + ")",

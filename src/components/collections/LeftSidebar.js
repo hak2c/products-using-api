@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 import bar from "../../images/icons/bar.png";
 
+const URL = "https://testament-store.herokuapp.com/";
+
 export default function LeftSidebar({
   currentCollection,
   sortCondition,
@@ -28,7 +30,9 @@ export default function LeftSidebar({
       </div>
       <div id="left-sidebar-content">
         <div className="sidebar-module collection-second-image">
-          <img src="" alt="" />
+          {typeof currentCollection.images != "undefined" && (
+            <img src={URL + currentCollection.images[1]} alt="" />
+          )}
         </div>
         <div className="sidebar-module sort-product">
           <select
