@@ -59,7 +59,7 @@ export default function TopHeader({
               <form
                 className="search-form form-inline"
                 id="search-form-1"
-                onKeyDown={(e) => handleSubmitSearchForm(e)}
+                onSubmit={(e) => handleSubmitSearchForm(e)}
               >
                 <div className="form-group">
                   <input

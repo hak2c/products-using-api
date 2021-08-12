@@ -75,15 +75,12 @@ export default function App() {
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
-    if (e.key === "Enter") {
-      setSubmitSearch(true);
-      setIsSearch(true);
-    }
+    setSubmitSearch(true);
+    setIsSearch(true);
   }
 
   function handleChangeSearchInput(e) {
     e.preventDefault();
-    console.log("xxx");
     setSearchkey(e.target.value);
   }
 

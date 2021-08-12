@@ -27,10 +27,8 @@ export default function SlideMobileMenu({
     : " animate__fadeOutLeft";
 
   function handleSearchForm(e) {
-    if (e.key === "Enter") {
-      handleSubmitSearchForm(e);
-      setShowMenu(false);
-    }
+    handleSubmitSearchForm(e);
+    setShowMenu(false);
   }
   return (
     <aside className="animate__animated" id="slideout-mobile-navigation">
@@ -77,7 +75,7 @@ export default function SlideMobileMenu({
           <div className="mobile-menu__search">
             <form
               name="search"
-              onKeyDown={(e) => handleSearchForm(e)}
+              onSubmit={(e) => handleSearchForm(e)}
               className="search-form form-inline"
             >
               <div className="form-group">
