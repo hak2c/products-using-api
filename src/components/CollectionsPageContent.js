@@ -12,11 +12,6 @@ export default function CollectionsPageContent({
 }) {
   return (
     <>
-      <div className="collection-image">
-        {typeof currentCollection.images != "undefined" && (
-          <img src={URL + currentCollection.images[0]} alt="" />
-        )}
-      </div>
       <div className="container">
         <Breadcrumbs location={"Collection"} />
         <div className="page-title">
@@ -34,3 +29,8 @@ export default function CollectionsPageContent({
     </>
   );
 }
+// <div className="collection-image">
+// {typeof currentCollection.images != "undefined" && (
+//   <img src={URL + currentCollection.images[0]} alt="" />
+// )}
+// </div>

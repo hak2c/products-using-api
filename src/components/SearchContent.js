@@ -22,7 +22,7 @@ export default function SearchContent({
             <div className="col-lg-4 col-md-6 mt-5 mx-auto">
               <form
                 name="search"
-                onKeyDown={(e) => handleSubmitSearchForm(e)}
+                onSubmit={(e) => handleSubmitSearchForm(e)}
                 className="search-form form-inline"
               >
                 <div className="form-group" style={{ width: "100%" }}>
