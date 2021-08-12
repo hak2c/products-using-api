@@ -10,14 +10,10 @@ import { useState, useEffect } from "react";
 
 export default function TopHeader({
   searchKey,
-  setSearchkey,
-  setSubmitSearch,
+  handleChangeSearchInput,
+  handleSubmitSearchForm,
 }) {
   let [toggle, setToggle] = useState(false);
-
-  function handleSubmitSearchForm() {
-    setSubmitSearch("searching");
-  }
 
   useEffect(() => {
     let myCollapse = document.getElementById("search-form-1");
@@ -63,7 +59,7 @@ export default function TopHeader({
               <form
                 className="search-form form-inline"
                 id="search-form-1"
-                onSubmit={handleSubmitSearchForm}
+                onKeyDown={(e) => handleSubmitSearchForm(e)}
               >
                 <div className="form-group">
                   <input
@@ -71,7 +67,7 @@ export default function TopHeader({
                     id="search"
                     type="text"
                     placeholder="Search"
-                    onChange={(e) => setSearchkey(e.target.value)}
+                    onChange={(e) => handleChangeSearchInput(e)}
                     value={searchKey}
                   />
                 </div>

@@ -12,6 +12,9 @@ export default function SlideMobileMenu({
   collections,
   showMenu,
   setShowMenu,
+  searchKey,
+  handleChangeSearchInput,
+  handleSubmitSearchForm,
 }) {
   let [toggleSubMenu, setToggleSubMenu] = useState(false);
   useEffect(() => {
@@ -22,6 +25,13 @@ export default function SlideMobileMenu({
   const animateClass = showMenu
     ? " animate__fadeInLeft"
     : " animate__fadeOutLeft";
+
+  function handleSearchForm(e) {
+    if (e.key === "Enter") {
+      handleSubmitSearchForm(e);
+      setShowMenu(false);
+    }
+  }
   return (
     <aside className="animate__animated" id="slideout-mobile-navigation">
       <div className="slideout-mobile-overlay"></div>
@@ -67,7 +77,7 @@ export default function SlideMobileMenu({
           <div className="mobile-menu__search">
             <form
               name="search"
-              action="search.html"
+              onKeyDown={(e) => handleSearchForm(e)}
               className="search-form form-inline"
             >
               <div className="form-group">
@@ -76,7 +86,8 @@ export default function SlideMobileMenu({
                   id="search"
                   type="text"
                   placeholder="Search"
-                  name="key"
+                  value={searchKey}
+                  onChange={(e) => handleChangeSearchInput(e)}
                 />
               </div>
             </form>

@@ -6,7 +6,12 @@ import logo from "../../images/logo.jpg";
 
 import { useState } from "react";
 
-export default function MobileMenu({ collections }) {
+export default function MobileMenu({
+  collections,
+  searchKey,
+  handleChangeSearchInput,
+  handleSubmitSearchForm,
+}) {
   let [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -36,6 +41,9 @@ export default function MobileMenu({ collections }) {
           collections={collections}
           showMenu={showMenu}
           setShowMenu={setShowMenu}
+          searchKey={searchKey}
+          handleChangeSearchInput={handleChangeSearchInput}
+          handleSubmitSearchForm={handleSubmitSearchForm}
         />
       )}
     </>

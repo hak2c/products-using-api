@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import CollectionsPageContent from "./components/CollectionsPageContent";
 import CollectionsList from "./components/CollectionsList";
 import Footer from "./components/Footer";
+import SearchContent from "./components/SearchContent";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -17,45 +18,49 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [collections, setCollections] = useState([]);
   const [currentCollection, setCurrentCollection] = useState({});
+
+  const [isSearch, setIsSearch] = useState(false);
   const [searchKey, setSearchkey] = useState("");
-  const [submitSearch, setSubmitSearch] = useState(null);
+  const [submitSearch, setSubmitSearch] = useState(false);
 
   const [sortCondition, setSortCondition] = useState("featured");
 
   useEffect(() => {
-    // if (submitSearch === null) {
-    let condition =
-      sortCondition === "featured"
-        ? ""
-        : sortCondition === "title-ascending"
-        ? "&_sort=title&_order=asc"
-        : sortCondition === "title-descending"
-        ? "&_sort=title&_order=desc"
-        : sortCondition === "price-ascending"
-        ? "&_sort=price&_order=asc"
-        : sortCondition === "price-descending"
-        ? "&_sort=price&_order=desc"
-        : "";
-    fetch(API_URL + "products?collectionId=" + collectionId + condition)
-      .then((response) => {
-        response.json().then((data) => {
-          setProducts(data);
-        });
-      })
-      .catch((error) => console.log(error));
-    // } else if (submitSearch === "searching") {
-    //   fetch(
-    //     API_URL + "products?title_like=" + searchKey + "&_sort=id&_order=desc"
-    //   )
-    //     .then((response) => {
-    //       response.json().then((data) => {
-    //         setProducts(data);
-    //         setSubmitSearch("done");
-    //       });
-    //     })
-    //     .catch((error) => console.log(error));
-    // }
-  }, [sortCondition, submitSearch]);
+    if (isSearch) {
+      if (submitSearch) {
+        fetch(
+          API_URL + "products?title_like=" + searchKey + "&_sort=id&_order=desc"
+        )
+          .then((response) => {
+            response.json().then((data) => {
+              setProducts(data);
+              setSubmitSearch(false);
+            });
+          })
+          .catch((error) => console.log(error));
+      }
+    } else {
+      let condition =
+        sortCondition === "featured"
+          ? ""
+          : sortCondition === "title-ascending"
+          ? "&_sort=title&_order=asc"
+          : sortCondition === "title-descending"
+          ? "&_sort=title&_order=desc"
+          : sortCondition === "price-ascending"
+          ? "&_sort=price&_order=asc"
+          : sortCondition === "price-descending"
+          ? "&_sort=price&_order=desc"
+          : "";
+      fetch(API_URL + "products?collectionId=" + collectionId + condition)
+        .then((response) => {
+          response.json().then((data) => {
+            setProducts(data);
+          });
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [sortCondition, isSearch, submitSearch]);
 
   useEffect(() => {
     fetch(API_URL + "collections")
@@ -67,21 +72,45 @@ export default function App() {
       )
       .catch((error) => console.log(error));
   }, []);
+
+  function handleSubmitSearchForm(e) {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      setSubmitSearch(true);
+      setIsSearch(true);
+    }
+  }
+
+  function handleChangeSearchInput(e) {
+    e.preventDefault();
+    console.log("xxx");
+    setSearchkey(e.target.value);
+  }
+
   return (
     <>
       <Header
         collections={collections}
         searchKey={searchKey}
-        setSearchkey={setSearchkey}
-        setSubmitSearch={setSubmitSearch}
+        handleChangeSearchInput={handleChangeSearchInput}
+        handleSubmitSearchForm={handleSubmitSearchForm}
       />
       <main>
-        <CollectionsPageContent
-          products={products}
-          currentCollection={currentCollection}
-          sortCondition={sortCondition}
-          setSortCondition={setSortCondition}
-        />
+        {!isSearch ? (
+          <CollectionsPageContent
+            products={products}
+            currentCollection={currentCollection}
+            sortCondition={sortCondition}
+            setSortCondition={setSortCondition}
+          />
+        ) : (
+          <SearchContent
+            products={products}
+            searchKey={searchKey}
+            handleChangeSearchInput={handleChangeSearchInput}
+            handleSubmitSearchForm={handleSubmitSearchForm}
+          />
+        )}
       </main>
       <CollectionsList collections={collections} />
       <footer>
