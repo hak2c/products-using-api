@@ -9,6 +9,9 @@ export default function LeftSidebar({
   currentCollection,
   sortCondition,
   setSortCondition,
+  searchProductKey,
+  handleSubmitProduct,
+  handleChangeSearchProductInput,
 }) {
   let [toggle, setToggle] = useState(false);
 
@@ -33,6 +36,17 @@ export default function LeftSidebar({
           {typeof currentCollection.images != "undefined" && (
             <img src={URL + currentCollection.images[1]} alt="" />
           )}
+        </div>
+        <div className="sidebar-module sort-product">
+          <div className="d-flex justify-content-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search"
+              value={searchProductKey}
+              onChange={(e) => handleChangeSearchProductInput(e)}
+            />
+          </div>
         </div>
         <div className="sidebar-module sort-product">
           <select

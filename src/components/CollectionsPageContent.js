@@ -9,21 +9,34 @@ export default function CollectionsPageContent({
   currentCollection,
   sortCondition,
   setSortCondition,
+  isSearch,
+  searchProductKey,
+  handleSubmitProduct,
+  handleChangeSearchProductInput,
 }) {
   return (
     <>
       <div className="container">
-        <Breadcrumbs location={"Collection"} />
+        <Breadcrumbs location={isSearch ? "Search" : "Collection"} />
         <div className="page-title">
-          <h3>{currentCollection.title}</h3>
+          <h3>{isSearch ? "Search Results" : currentCollection.title}</h3>
         </div>
         <div className="row">
           <LeftSidebar
             currentCollection={currentCollection}
             sortCondition={sortCondition}
             setSortCondition={setSortCondition}
+            searchProductKey={searchProductKey}
+            handleSubmitProduct={handleSubmitProduct}
+            handleChangeSearchProductInput={handleChangeSearchProductInput}
           />
-          <RightSidebar products={products} />
+          <RightSidebar
+            products={products}
+            isSearch={isSearch}
+            searchProductKey={searchProductKey}
+            handleSubmitProduct={handleSubmitProduct}
+            handleChangeSearchProductInput={handleChangeSearchProductInput}
+          />
         </div>
       </div>
     </>

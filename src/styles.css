@@ -2,3 +2,8 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.sidebar-module input.form-control {
+  height: 48px;
+  line-height: 46px;
+}

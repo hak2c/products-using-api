@@ -2,9 +2,9 @@ import { moneyFormat } from "../Utils";
 
 const URL = "https://testament-store.herokuapp.com/";
 
-export default function ProductContent({ product, colClass }) {
+export default function ProductContent({ product }) {
   return (
-    <div className={"product " + colClass + " pb-5"}>
+    <div className={"product col-6 col-md-4 pb-5"}>
       <div className="product-content">
         {!product.available && (
           <span className="icn sold-out-icn">Sold out</span>

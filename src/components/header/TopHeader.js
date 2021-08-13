@@ -21,6 +21,10 @@ export default function TopHeader({
     toggle ? bsCollapse.show() : bsCollapse.hide();
   });
 
+  function handleSearchForm(e) {
+    handleSubmitSearchForm(e);
+    setToggle((toggle) => !toggle);
+  }
   return (
     <div className="top-header">
       <div className="container">
@@ -59,7 +63,7 @@ export default function TopHeader({
               <form
                 className="search-form form-inline"
                 id="search-form-1"
-                onSubmit={(e) => handleSubmitSearchForm(e)}
+                onSubmit={(e) => handleSearchForm(e)}
               >
                 <div className="form-group">
                   <input
