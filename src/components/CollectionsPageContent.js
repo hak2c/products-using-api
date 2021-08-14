@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import axios from "axios";
-import { getJson } from "./Utils";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -61,7 +60,7 @@ export default function CollectionsPageContent() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [sortCondition, page]);
+  }, [sortCondition, page, collectionId]);
 
   useEffect(() => {
     axios
@@ -82,7 +81,7 @@ export default function CollectionsPageContent() {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [collectionId]);
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();

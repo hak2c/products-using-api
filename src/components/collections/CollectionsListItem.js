@@ -9,7 +9,9 @@ export default function CollectionsListItem({ collection }) {
         <div className="item-overlay"></div>
         <img src={URL + collection.thumb} alt={collection.title} />
         <h3 className="item-title position-absolute">
-          <Link to={"/collection/" + collection.id}>{collection.title}</Link>
+          <Link to={"/collection/" + collection.id + "/" + collection.slug}>
+            {collection.title}
+          </Link>
         </h3>
       </div>
     </div>

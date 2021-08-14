@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import CollectionsPageContent from "./components/CollectionsPageContent";
@@ -8,8 +7,6 @@ import SearchPage from "./components/SearchPage";
 
 import "./styles.css";
 import "./css/styles.scss";
-
-const API_URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function App() {
   return (
@@ -23,7 +20,7 @@ export default function App() {
         </Route>
         <Route path="/product/:productId" children={<ProductPage />} />
         <Route
-          path="/collection/:collectionId"
+          path="/collection/:collectionId/:slug"
           children={<CollectionsPageContent />}
         />
       </Switch>
