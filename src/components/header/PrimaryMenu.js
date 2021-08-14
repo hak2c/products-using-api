@@ -16,7 +16,9 @@ export default function PrimaryMenu({ collections }) {
             <ul>
               {collections.map((item) => (
                 <li key={item.id}>
-                  <Link to={"/collection/" + item.id}>{item.title}</Link>
+                  <Link to={"/collection/" + item.id + "/" + item.slug}>
+                    {item.title}
+                  </Link>
                 </li>
               ))}
             </ul>
