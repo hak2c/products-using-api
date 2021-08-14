@@ -7,3 +7,32 @@ export function moneyFormat(money) {
   }
   return "0";
 }
+
+export function getJson(options) {
+  const { method, url } = options;
+  let result = {};
+
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = "json";
+    xhr.open(method, url);
+    xhr.send();
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        result.products = xhr.response;
+        result.headers = xhr
+          .getAllResponseHeaders()
+          .split("\r\n")
+          .reduce((obj, item) => {
+            let [key, value] = item.split(": ");
+            obj[key] = value;
+            return obj;
+          }, {});
+        resolve(result);
+      } else {
+        reject(xhr.status + ":" + xhr.statusText);
+      }
+    };
+    xhr.onerror = () => reject("Something happen!");
+  });
+}
