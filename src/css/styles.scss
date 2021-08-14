@@ -1614,3 +1614,20 @@ footer {
     }
   }
 }
+.pagination {
+  justify-content: center;
+  .page-item {
+    .page-link {
+      padding: 0 15px;
+      height: 38px;
+      line-height: 38px;
+      color: #000000;
+    }
+    &.active {
+      .page-link {
+        color: #ffffff;
+        background-color: #000;
+      }
+    }
+  }
+}
