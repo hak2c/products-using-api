@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/search">
           <SearchPage />
         </Route>
-        <Route path="/product/:productId" children={<ProductPage />} />
+        <Route path="/product/:productId/:slug" children={<ProductPage />} />
         <Route
           path="/collection/:collectionId/:slug"
           children={<CollectionsPageContent />}

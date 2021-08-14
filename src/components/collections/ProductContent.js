@@ -14,12 +14,14 @@ export default function ProductContent({ product }) {
         {typeof product.compare_price != "undefined" && (
           <span className="icn sale-icn">Sale</span>
         )}
-        <Link to={"/product/" + product.id}>
+        <Link to={"/product/" + product.id + "/" + product.slug}>
           <img src={URL + product.images[0]} alt={product.title} />
         </Link>
         <div className="product-info text-center">
           <div className="product-title">
-            <Link to={"/product/" + product.id}>{product.title}</Link>
+            <Link to={"/product/" + product.id + "/" + product.slug}>
+              {product.title}
+            </Link>
           </div>
           {typeof product.compare_price != "undefined" ? (
             <div className="product-price">
