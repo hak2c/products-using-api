@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 export default function TopFooter({ collections }) {
   return (
     <div className="row top-footer">
@@ -21,7 +23,7 @@ export default function TopFooter({ collections }) {
           <ul className="footer-menu">
             {collections.map((item) => (
               <li key={item.id}>
-                <a href={"collections.html?id=" + item.id}>{item.title}</a>
+                <Link to={"/collection/" + item.id}>{item.title}</Link>
               </li>
             ))}
           </ul>

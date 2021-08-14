@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 import { moneyFormat } from "../Utils";
 
-const URL = "https://testament-store.herokuapp.com/";
+const URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function ProductContent({ product }) {
   return (
@@ -12,12 +14,12 @@ export default function ProductContent({ product }) {
         {typeof product.compare_price != "undefined" && (
           <span className="icn sale-icn">Sale</span>
         )}
-        <a href={"product.html?id=" + product.id}>
+        <Link to={"/product/" + product.id}>
           <img src={URL + product.images[0]} alt={product.title} />
-        </a>
+        </Link>
         <div className="product-info text-center">
           <div className="product-title">
-            <a href={"product.html?id=" + product.id}>{product.title}</a>
+            <Link to={"/product/" + product.id}>{product.title}</Link>
           </div>
           {typeof product.compare_price != "undefined" ? (
             <div className="product-price">

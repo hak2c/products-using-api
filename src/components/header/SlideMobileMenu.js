@@ -1,4 +1,5 @@
 import { Collapse } from "bootstrap";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import arrowDownIcn from "../../images/icons/arrow-down-mobile.png";
 import fbSrc from "../../images/icons/facebook-subc.png";
@@ -42,7 +43,7 @@ export default function SlideMobileMenu({
         <div className="mobile-menu">
           <ul className="nav flex-column justify-content-center">
             <li>
-              <a href="index.html">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="#">Shop</a>
@@ -57,7 +58,7 @@ export default function SlideMobileMenu({
               <ul>
                 {collections.map((item) => (
                   <li key={item.id}>
-                    <a href={"collections.html?id=" + item.id}>{item.title}</a>
+                    <Link to={"/collection/" + item.id}>{item.title}</Link>
                   </li>
                 ))}
               </ul>

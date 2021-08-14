@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 import arrowDownIcn from "../../images/icons/arrow-down.png";
 
 export default function PrimaryMenu({ collections }) {
@@ -5,7 +7,7 @@ export default function PrimaryMenu({ collections }) {
     <div className="primary-menu d-none d-lg-block">
       <ul className="nav justify-content-center">
         <li>
-          <a href="index.html">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <a href="#">Shop</a>
@@ -14,7 +16,7 @@ export default function PrimaryMenu({ collections }) {
             <ul>
               {collections.map((item) => (
                 <li key={item.id}>
-                  <a href={"collections.html?id=" + item.id}>{item.title}</a>
+                  <Link to={"/collection/" + item.id}>{item.title}</Link>
                 </li>
               ))}
             </ul>

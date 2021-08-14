@@ -1,4 +1,6 @@
-const URL = "https://testament-store.herokuapp.com/";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
+const URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function CollectionsListItem({ collection }) {
   return (
@@ -7,9 +9,7 @@ export default function CollectionsListItem({ collection }) {
         <div className="item-overlay"></div>
         <img src={URL + collection.thumb} alt={collection.title} />
         <h3 className="item-title position-absolute">
-          <a href={"collections.html?id=" + collection.id}>
-            {collection.title}
-          </a>
+          <Link to={"/collection/" + collection.id}>{collection.title}</Link>
         </h3>
       </div>
     </div>
