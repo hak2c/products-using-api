@@ -423,7 +423,7 @@ main {
     padding-bottom: 50px;
   }
 }
-.content-banner {
+.content__banner {
   .carousel-caption {
     top: 30%;
     left: 10%;
@@ -474,8 +474,8 @@ main {
     }
   }
 }
-.main-banner {
-  @extend .content-banner;
+.main__banner {
+  @extend .content__banner;
   .carousel-caption {
     @media screen and (max-width: 767px) {
       position: unset;
@@ -656,17 +656,17 @@ main {
   }
 }
 
-.explore-collections {
-  .explore-collections-content {
+.explore__collections {
+  .explore__collections--content {
     @media screen and (max-width: 767px) {
       overflow-x: scroll;
     }
-    .first-line {
+    .explore__collections--first-line {
       @media screen and (min-width: 768px) {
         width: 50%;
       }
     }
-    .second-line {
+    .explore__collections--second-line {
       @media screen and (min-width: 768px) {
         width: calc(100% / 3);
       }
@@ -727,9 +727,9 @@ main {
   }
 }
 
-.subcribe-email {
-  .subcribe-form {
-    #email-subcribe {
+.subcribe__email {
+  .subcribe__email--form {
+    #subcribe__email--subcribe {
       width: calc(100% - 120px);
       @media screen and (min-width: 992px) {
         width: calc(100% - 150px);
@@ -738,7 +738,7 @@ main {
         width: calc(100% - 180px);
       }
     }
-    #subcribe-email-button {
+    #subcribe__email--button {
       text-align: center;
       width: 120px;
       color: $form-button-color;
