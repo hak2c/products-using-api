@@ -25,9 +25,9 @@ export default function CollectionsPageContent() {
 
   const [sortCondition, setSortCondition] = useState("featured");
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const limit = LIMIT_PER_PAGE;
-  const totalPages = useRef(0);
 
   useEffect(() => {
     let condition =
@@ -53,8 +53,8 @@ export default function CollectionsPageContent() {
       )
       .then(function (response) {
         setProducts(response.data);
-        totalPages.current = Math.ceil(
-          Number(response.headers["x-total-count"]) / limit
+        setTotalPages(
+          Math.ceil(Number(response.headers["x-total-count"]) / limit)
         );
       })
       .catch(function (error) {
@@ -73,10 +73,12 @@ export default function CollectionsPageContent() {
       });
   }, []);
   useEffect(() => {
+    setPage(1);
     axios
       .get(API_URL + "collections?id=" + collectionId)
       .then(function (response) {
         setCurrentCollection(response.data[0]);
+        document.title = response.data[0].title;
       })
       .catch(function (error) {
         console.log(error);
@@ -121,7 +123,7 @@ export default function CollectionsPageContent() {
             <RightSidebar
               products={products}
               page={page}
-              totalPages={totalPages.current}
+              totalPages={totalPages}
               setPage={setPage}
             />
           </div>
