@@ -18,7 +18,7 @@ export default function Header({
         handleSubmitSearchForm={handleSubmitSearchForm}
       />
       <div className="logo d-none d-lg-block text-center">
-        <a href="index.html">
+        <a href="/">
           <img src={logo} alt="" />
         </a>
       </div>

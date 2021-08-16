@@ -24,7 +24,7 @@ export default function MobileMenu({
             </a>
           </div>
           <div className="col-8 text-center">
-            <a href="index.html">
+            <a href="/">
               <img src={logo} alt="" />
             </a>
           </div>
