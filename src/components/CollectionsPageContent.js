@@ -27,6 +27,8 @@ export default function CollectionsPageContent() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
+  const [spinner, setSpinner] = useState(true);
+
   const limit = LIMIT_PER_PAGE;
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export default function CollectionsPageContent() {
         setTotalPages(
           Math.ceil(Number(response.headers["x-total-count"]) / limit)
         );
+        setSpinner(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -125,6 +128,8 @@ export default function CollectionsPageContent() {
               page={page}
               totalPages={totalPages}
               setPage={setPage}
+              spinner={spinner}
+              setSpinner={setSpinner}
             />
           </div>
         </div>
