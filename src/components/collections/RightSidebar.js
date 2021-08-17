@@ -36,7 +36,7 @@ export default function RightSidebar({
             <ProductContent
               key={product.id}
               product={product}
-              setSpinner={setSpinner}
+              colClass="col-6 col-md-4 pb-5"
             />
           ))}
         </div>
