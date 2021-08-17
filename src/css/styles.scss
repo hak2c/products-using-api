@@ -972,9 +972,9 @@ footer {
 
 /* PRODUCT PAGE */
 
-.product-page {
-  .product-images {
-    .main-image {
+.product__page {
+  .product__images {
+    .product__images--main-images {
       width: 100%;
       @media screen and (min-width: 768px) {
         width: calc(100% - 78px);
@@ -1002,7 +1002,7 @@ footer {
         }
       }
     }
-    .nav-image {
+    .product__images--nav-images {
       width: 70px;
       @media screen and (min-width: 992px) {
         width: 80px;
@@ -1010,44 +1010,48 @@ footer {
       @media screen and (max-width: 767px) {
         display: none;
       }
-      .img-item {
-        height: 80px;
-        background-position: top center;
-        background-size: cover;
-        margin-bottom: 10px;
-        overflow: hidden;
-        cursor: pointer;
-      }
-      .slick-arrow {
-        position: absolute;
-        top: 10px;
-        background: transparent;
-        width: 15px;
-        height: 24px;
-        border: none;
-        cursor: pointer;
-        z-index: 2;
-        &:focus {
-          outline: none;
-        }
-        &.slick-prev {
-          left: 10px;
-        }
-        &.slick-next {
-          left: 40px;
-        }
-      }
-      &.slick-slider {
+      .slick-slider {
         position: unset;
+        .img-item {
+          height: 80px;
+          background-position: top center;
+          background-size: cover;
+          margin-bottom: 10px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .slick-arrow {
+          position: absolute;
+          top: 10px;
+          background: transparent;
+          width: 15px;
+          height: 24px;
+          border: none;
+          cursor: pointer;
+          z-index: 2;
+          &:focus {
+            outline: none;
+          }
+          &.slick-prev {
+            left: 10px;
+          }
+          &.slick-next {
+            left: 40px;
+          }
+          &::before,
+          &::after {
+            content: none;
+          }
+        }
       }
     }
   }
-  .product-information {
-    .product-information-content {
+  .product__information {
+    .product__information--content {
       background: #ffffff;
       padding: 20px 0;
       border: 7px double #ffffff;
-      .product-content-section {
+      .product__information--content-section {
         margin-bottom: 10px;
       }
       .product-title {

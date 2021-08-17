@@ -7,23 +7,35 @@ import Footer from "./Footer";
 import CollectionsList from "./CollectionsList";
 import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
+import ProductInformation from "./products/ProductInformation";
 
 const API_URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function ProductPage() {
-  let { productId } = useParams();
+  let { slug } = useParams();
 
   const [collections, setCollections] = useState([]);
   const [product, setProduct] = useState({});
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
 
+  const [spinner, setSpinner] = useState(true);
+
   useEffect(() => {
+    // const fetchData = async () => {
+    //   const result = await axios(
+    //     API_URL + "products?slug=" + slug + "&_expand=collection"
+    //   );
+    //   setProduct(result.data[0]);
+    //   document.title = result.data[0].title;
+    // };
+    // fetchData();
     axios
-      .get(API_URL + "products?id=" + productId + "&_expand=collection")
+      .get(API_URL + "products?slug=" + slug + "&_expand=collection")
       .then(function (response) {
         setProduct(response.data[0]);
         document.title = response.data[0].title;
+        setSpinner(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -59,16 +71,23 @@ export default function ProductPage() {
         handleSubmitSearchForm={handleSubmitSearchForm}
       />
       <main>
-        <div className="container">
-          <div className="row">
-            {typeof product.images != "undefined" && (
-              <ProductImages product={product} />
-            )}
+        <div className="container product__page">
+          {!spinner ? (
+            <div className="row">
+              {typeof product.images != "undefined" &&
+                product.images.length > 0 && (
+                  <ProductImages images={product.images} />
+                )}
 
-            <div className="col-lg-6 col-md-5 product-information">
-              <div className="product-information-content"></div>
+              <ProductInformation product={product} />
             </div>
-          </div>
+          ) : (
+            <div className="text-center" style={{ padding: "60px 0" }}>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
         </div>
       </main>
       <CollectionsList collections={collections} />

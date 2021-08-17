@@ -1,5 +1,5 @@
 export function moneyFormat(money) {
-  if (money != 0) {
+  if (typeof money !== "undefined") {
     let parts = money.toString().split("."),
       dollars = parts[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,"),
       cents = parts[1] ? "." + parts[1] : "";
@@ -18,7 +18,7 @@ export function getJson(options) {
     xhr.open(method, url);
     xhr.send();
     xhr.onload = () => {
-      if (xhr.status == 200) {
+      if (xhr.status === 200) {
         result.products = xhr.response;
         result.headers = xhr
           .getAllResponseHeaders()
