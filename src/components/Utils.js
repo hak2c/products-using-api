@@ -1,4 +1,4 @@
-export function moneyFormat(money) {
+export const moneyFormat = (money) => {
   if (typeof money !== "undefined") {
     let parts = money.toString().split("."),
       dollars = parts[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,"),
@@ -6,7 +6,7 @@ export function moneyFormat(money) {
     return "$" + dollars + cents;
   }
   return "0";
-}
+};
 
 export function getJson(options) {
   const { method, url } = options;
