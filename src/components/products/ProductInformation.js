@@ -1,4 +1,6 @@
 import { useState } from "react";
+import GetProductPrice from "./GetProductPrice";
+import GetProductVariant from "./GetProductVariant";
 
 import { moneyFormat } from "../Utils";
 
@@ -17,25 +19,12 @@ export default function ProductInformation({ product }) {
         <h1 className="product__information--content-section product-title">
           {product.title}
         </h1>
-        {typeof product.compare_price !== "undefined" ? (
-          <div className="product__information--content-section product-price d-flex justify-content-start align-items-center">
-            <span className="price-item price-item--sale">
-              {moneyFormat(product.price)}
-            </span>
-            <span className="price-item price-item--compare">
-              {moneyFormat(product.compare_price)}
-            </span>
-            <span className="price-badge price-badge--sale">Sale</span>
-          </div>
-        ) : (
-          <div className="product__information--content-section product-price">
-            <span className="price-item">{moneyFormat(product.price)}</span>
-          </div>
-        )}
+        <GetProductPrice product={product} />
         <form
           className="product__information--content-section add-product-form"
           id="add-product"
         >
+          <GetProductVariant product={product} />
           <div className="form-group variant-label">
             <label>Quantity</label>
           </div>

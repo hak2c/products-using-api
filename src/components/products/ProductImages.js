@@ -7,6 +7,34 @@ export default function ProductImages({ images }) {
   const [mainSlider, setMainSlider] = useState(null);
   const [navSlider, setNavSlider] = useState(null);
 
+  const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+    <button
+      {...props}
+      className={
+        "slick-prev slick-arrow" + (currentSlide === 0 ? " slick-disabled" : "")
+      }
+      aria-hidden="true"
+      aria-disabled={currentSlide === 0 ? true : false}
+      type="button"
+    >
+      <img src={URL + "images/icons/arrow-left.png"} />
+    </button>
+  );
+  const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+    <button
+      {...props}
+      className={
+        "slick-next slick-arrow" +
+        (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+      }
+      aria-hidden="true"
+      aria-disabled={currentSlide === slideCount - 1 ? true : false}
+      type="button"
+    >
+      <img src={URL + "images/icons/arrow-right.png"} />
+    </button>
+  );
+
   const mainImgOps = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -19,16 +47,8 @@ export default function ProductImages({ images }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          prevArrow: (
-            <button type="button" className="slick-prev">
-              <img src={URL + "images/icons/arrow-left.png"} />
-            </button>
-          ),
-          nextArrow: (
-            <button type="button" className="slick-next">
-              <img src={URL + "images/icons/arrow-right.png"} />
-            </button>
-          ),
+          prevArrow: <SlickArrowLeft />,
+          nextArrow: <SlickArrowRight />,
         },
       },
     ],
@@ -39,20 +59,13 @@ export default function ProductImages({ images }) {
     vertical: true,
     infinite: true,
     arrows: true,
-    prevArrow: (
-      <button type="button" className="slick-prev">
-        <img src={URL + "images/icons/arrow-left.png"} />
-      </button>
-    ),
-    nextArrow: (
-      <button type="button" className="slick-next">
-        <img src={URL + "images/icons/arrow-right.png"} />
-      </button>
-    ),
+    prevArrow: <SlickArrowLeft />,
+    nextArrow: <SlickArrowRight />,
     dots: false,
     centerMode: false,
     focusOnSelect: true,
   };
+
   return (
     <div className="col-lg-6 col-md-7 product__images">
       <div className="d-flex justify-content-between position-relative">
@@ -86,18 +99,3 @@ export default function ProductImages({ images }) {
     </div>
   );
 }
-/*<Slider {...mainImgOps}>
-{images.forEach((img, index) => {
-  <div className="img-item">
-    <img src={URL + img} />
-  </div>;
-})}
-</Slider>
-<Slider {...navImgOps}>
-            {images.forEach((img, index) => {
-              <div
-                classname="img-item"
-                style={{ backgroundImage: "url(" + URL + img + ")" }}
-              />;
-            })}
-          </Slider>*/

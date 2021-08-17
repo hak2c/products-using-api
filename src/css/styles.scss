@@ -167,6 +167,10 @@ input[type="submit"].form-control {
   overflow: hidden;
 }
 
+.form-group {
+  margin-bottom: 1rem;
+}
+
 .collapse {
   display: none !important;
 }
@@ -199,10 +203,10 @@ input[type="submit"].form-control {
 }
 
 @media (min-width: 768px) {
-  .pr-md-25 {
+  .pe-md-25 {
     padding-right: 2.5rem !important;
   }
-  .pl-md-25 {
+  .ps-md-25 {
     padding-left: 2.5rem !important;
   }
 }
@@ -984,7 +988,7 @@ footer {
       }
       .slick-arrow {
         position: absolute;
-        top: 10px;
+        top: 20px;
         background: transparent;
         width: 15px;
         height: 24px;
@@ -999,6 +1003,10 @@ footer {
         }
         &.slick-next {
           left: 40px;
+        }
+        &::before,
+        &::after {
+          content: none;
         }
       }
     }
@@ -1022,7 +1030,7 @@ footer {
         }
         .slick-arrow {
           position: absolute;
-          top: 10px;
+          top: 20px;
           background: transparent;
           width: 15px;
           height: 24px;

@@ -22,14 +22,6 @@ export default function ProductPage() {
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const result = await axios(
-    //     API_URL + "products?slug=" + slug + "&_expand=collection"
-    //   );
-    //   setProduct(result.data[0]);
-    //   document.title = result.data[0].title;
-    // };
-    // fetchData();
     axios
       .get(API_URL + "products?slug=" + slug + "&_expand=collection")
       .then(function (response) {
@@ -62,6 +54,7 @@ export default function ProductPage() {
     e.preventDefault();
     setSearchkey(e.target.value);
   }
+
   return (
     <>
       <Header
@@ -72,6 +65,10 @@ export default function ProductPage() {
       />
       <main>
         <div className="container product__page">
+          {typeof product.collection !== "undefined" && (
+            <Breadcrumbs location={product.title} />
+          )}
+
           {!spinner ? (
             <div className="row">
               {typeof product.images != "undefined" &&
