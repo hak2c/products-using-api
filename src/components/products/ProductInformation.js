@@ -2,10 +2,9 @@ import { useState } from "react";
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
 
-import { moneyFormat } from "../Utils";
-
 export default function ProductInformation({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const [sizeValue, setSizeValue] = useState("");
 
   function handleChangeQuantityInput(e) {
     let value = Number(e.target.value);
@@ -32,6 +31,9 @@ export default function ProductInformation({ product }) {
             <a
               className="quantity-control quantity-control-down"
               field="quantity"
+              onClick={() => {
+                if (quantity > 0) setQuantity(quantity - 1);
+              }}
             >
               &#45;
             </a>
@@ -46,6 +48,7 @@ export default function ProductInformation({ product }) {
             <a
               className="quantity-control quantity-control-up"
               field="quantity"
+              onClick={() => setQuantity(quantity + 1)}
             >
               &#43;
             </a>

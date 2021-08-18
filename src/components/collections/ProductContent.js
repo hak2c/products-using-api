@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { moneyFormat } from "../Utils";
-
-const URL = "https://fake-server-products-api.herokuapp.com/";
+import { moneyFormat, API_URL } from "../Utils";
 
 export default function ProductContent({ product, colClass }) {
   return (
@@ -11,17 +9,17 @@ export default function ProductContent({ product, colClass }) {
         {!product.available && (
           <span className="icn sold-out-icn">Sold out</span>
         )}
-        {typeof product.compare_price != "undefined" && (
+        {typeof product.compare_price !== "undefined" && (
           <span className="icn sale-icn">Sale</span>
         )}
         <Link to={"/product/" + product.slug}>
-          <img src={URL + product.images[0]} alt={product.title} />
+          <img src={API_URL + product.images[0]} alt={product.title} />
         </Link>
         <div className="product-info text-center">
           <div className="product-title">
             <Link to={"/product/" + product.slug}>{product.title}</Link>
           </div>
-          {typeof product.compare_price != "undefined" ? (
+          {typeof product.compare_price !== "undefined" ? (
             <div className="product-price">
               <span className="price-item price-item--sale">
                 {moneyFormat(product.price)}
@@ -36,13 +34,13 @@ export default function ProductContent({ product, colClass }) {
             </div>
           )}
           <div className="product-color pt-3 text-center d-flex justify-content-center align-items-center">
-            {typeof product.color != "undefined" &&
+            {typeof product.color !== "undefined" &&
               product.color.length > 0 &&
               product.color.map((color) => (
                 <span key={color.name} className="color-icn">
                   <span
                     style={{
-                      backgroundImage: "url(" + URL + color.thumb + ")",
+                      backgroundImage: "url(" + API_URL + color.thumb + ")",
                     }}
                   ></span>
                 </span>

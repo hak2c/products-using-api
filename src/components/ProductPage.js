@@ -2,14 +2,14 @@ import { BrowserRouter as Router, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { API_URL } from "./Utils";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import CollectionsList from "./CollectionsList";
 import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
 import ProductInformation from "./products/ProductInformation";
-
-const API_URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function ProductPage() {
   let { slug } = useParams();
@@ -18,6 +18,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
+  const [productsInCart, setProductsInCart] = useState(0);
 
   const [spinner, setSpinner] = useState(true);
 
@@ -44,6 +45,16 @@ export default function ProductPage() {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    let prodCart = localStorage.getItem(CART_KEY);
+    if (prodCart == null || prodCart == "") {
+      localStorage.setItem(CART_KEY, "[]");
+      prodCart = "[]";
+    }
+    prodCart = JSON.parse(prodCart);
+    setProductsInCart(prodCart.length);
+  }, [productsInCart]);
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();

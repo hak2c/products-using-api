@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
+import { API_URL } from "./Utils";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import MainBanner from "./home/MainBanner";
@@ -9,8 +11,6 @@ import NewestArrivals from "./home/NewestArrivals";
 import ContentBanner from "./home/ContentBanner";
 import ExploreCollections from "./home/ExploreCollections";
 import SubcribeEmail from "./home/SubcribeEmail";
-
-const API_URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function HomePage() {
   const [collections, setCollections] = useState([]);

@@ -1,3 +1,6 @@
+export const CART_KEY = "testament_cart";
+export const API_URL = "https://fake-server-products-api.herokuapp.com/";
+
 export const moneyFormat = (money) => {
   if (typeof money !== "undefined") {
     let parts = money.toString().split("."),

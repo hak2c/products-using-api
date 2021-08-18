@@ -1,9 +1,8 @@
 import { Collapse } from "bootstrap";
 import { useState, useEffect } from "react";
+import { API_URL } from "../Utils";
 
 import bar from "../../images/icons/bar.png";
-
-const URL = "https://fake-server-products-api.herokuapp.com/";
 
 export default function LeftSidebar({
   currentCollection,
@@ -31,7 +30,7 @@ export default function LeftSidebar({
       <div id="left-sidebar-content">
         <div className="sidebar-module collection-second-image">
           {typeof currentCollection.images != "undefined" && (
-            <img src={URL + currentCollection.images[1]} alt="" />
+            <img src={API_URL + currentCollection.images[1]} alt="" />
           )}
         </div>
         <div className="sidebar-module sort-product">

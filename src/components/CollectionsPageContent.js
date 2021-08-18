@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import axios from "axios";
+
+import { API_URL } from "./Utils";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -9,7 +11,6 @@ import LeftSidebar from "./collections/LeftSidebar";
 import RightSidebar from "./collections/RightSidebar";
 import CollectionsList from "./CollectionsList";
 
-const API_URL = "https://fake-server-products-api.herokuapp.com/";
 const LIMIT_PER_PAGE = 3;
 // <img src={URL + currentCollection.images[0]} alt="" />
 export default function CollectionsPageContent() {

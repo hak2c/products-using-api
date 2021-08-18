@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Slider from "react-slick";
 
-const URL = "https://fake-server-products-api.herokuapp.com/";
+import { API_URL } from "../Utils";
 
 export default function ProductImages({ images }) {
   const [mainSlider, setMainSlider] = useState(null);
@@ -17,7 +17,7 @@ export default function ProductImages({ images }) {
       aria-disabled={currentSlide === 0 ? true : false}
       type="button"
     >
-      <img src={URL + "images/icons/arrow-left.png"} />
+      <img src={API_URL + "images/icons/arrow-left.png"} />
     </button>
   );
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
@@ -31,7 +31,7 @@ export default function ProductImages({ images }) {
       aria-disabled={currentSlide === slideCount - 1 ? true : false}
       type="button"
     >
-      <img src={URL + "images/icons/arrow-right.png"} />
+      <img src={API_URL + "images/icons/arrow-right.png"} />
     </button>
   );
 
@@ -77,7 +77,7 @@ export default function ProductImages({ images }) {
           >
             {images.map((img, index) => (
               <div key={index} className="img-item">
-                <img src={URL + img} />
+                <img src={API_URL + img} />
               </div>
             ))}
           </Slider>
@@ -90,7 +90,7 @@ export default function ProductImages({ images }) {
           >
             {images.map((img, index) => (
               <div key={index} className="img-item">
-                <img src={URL + img} />
+                <img src={API_URL + img} />
               </div>
             ))}
           </Slider>

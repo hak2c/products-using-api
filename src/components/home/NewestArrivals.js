@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Slider from "react-slick";
 
+import { API_URL } from "../Utils";
+
 import ProductContent from "../collections/ProductContent";
 
-const API_URL = "https://fake-server-products-api.herokuapp.com/";
 const LIMIT_PRODUCTS = 8;
 
 export default function NewestArrivals() {
