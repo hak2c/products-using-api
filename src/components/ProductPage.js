@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-import { API_URL } from "./Utils";
+import { API_URL, CART_KEY } from "./Utils";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -11,6 +11,8 @@ import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
 import ProductInformation from "./products/ProductInformation";
 
+export const ProductState = createContext();
+
 export default function ProductPage() {
   let { slug } = useParams();
 
@@ -18,7 +20,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
-  const [productsInCart, setProductsInCart] = useState(0);
+  const [productsInCart, setProductsInCart] = useState(checkProductsInCart());
 
   const [spinner, setSpinner] = useState(true);
 
@@ -46,15 +48,15 @@ export default function ProductPage() {
       });
   }, []);
 
-  useEffect(() => {
+  function checkProductsInCart() {
     let prodCart = localStorage.getItem(CART_KEY);
     if (prodCart == null || prodCart == "") {
       localStorage.setItem(CART_KEY, "[]");
       prodCart = "[]";
     }
     prodCart = JSON.parse(prodCart);
-    setProductsInCart(prodCart.length);
-  }, [productsInCart]);
+    return prodCart;
+  }
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
@@ -67,13 +69,17 @@ export default function ProductPage() {
   }
 
   return (
-    <>
-      <Header
-        collections={collections}
-        searchKey={searchKey}
-        handleChangeSearchInput={handleChangeSearchInput}
-        handleSubmitSearchForm={handleSubmitSearchForm}
-      />
+    <ProductState.Provider
+      value={{
+        collections,
+        searchKey,
+        handleChangeSearchInput,
+        handleSubmitSearchForm,
+        productsInCart,
+        setProductsInCart,
+      }}
+    >
+      <Header />
       <main>
         <div className="container product__page">
           {typeof product.collection !== "undefined" && (
@@ -87,7 +93,7 @@ export default function ProductPage() {
                   <ProductImages images={product.images} />
                 )}
 
-              <ProductInformation product={product} />
+              <ProductInformation />
             </div>
           ) : (
             <div className="text-center" style={{ padding: "60px 0" }}>
@@ -102,7 +108,7 @@ export default function ProductPage() {
       <footer>
         <Footer collections={collections} />
       </footer>
-    </>
+    </ProductState.Provider>
   );
 }
 

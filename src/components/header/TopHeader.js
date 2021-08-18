@@ -1,4 +1,7 @@
 import { Collapse } from "bootstrap";
+import { useContext } from "react";
+
+import { HeaderState } from "../Header";
 
 import fbSrc from "../../images/icons/facebook.png";
 import instagramSrc from "../../images/icons/instagram.png";
@@ -8,11 +11,13 @@ import searchIcn from "../../images/icons/search.png";
 import cartSrc from "../../images/icons/cart.png";
 import { useState, useEffect } from "react";
 
-export default function TopHeader({
-  searchKey,
-  handleChangeSearchInput,
-  handleSubmitSearchForm,
-}) {
+export default function TopHeader() {
+  const {
+    searchKey,
+    handleChangeSearchInput,
+    handleSubmitSearchForm,
+    productsInCart,
+  } = useContext(HeaderState);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -79,7 +84,7 @@ export default function TopHeader({
 
               <span className="cart">
                 <img className="mr-1" src={cartSrc} alt="" />
-                <span className="cart-count">0</span>
+                <span className="cart-count">{productsInCart.length}</span>
               </span>
             </div>
           </div>

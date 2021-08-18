@@ -1,4 +1,8 @@
+import { useContext } from "react";
+
 import SlideMobileMenu from "./SlideMobileMenu";
+
+import { HeaderState } from "../Header";
 
 import cartSrc from "../../images/icons/cart-mobile.png";
 import mobileIcn from "../../images/icons/mobile-icon.png";
@@ -6,12 +10,14 @@ import logo from "../../images/logo.jpg";
 
 import { useState } from "react";
 
-export default function MobileMenu({
-  collections,
-  searchKey,
-  handleChangeSearchInput,
-  handleSubmitSearchForm,
-}) {
+export default function MobileMenu() {
+  const {
+    collections,
+    searchKey,
+    handleChangeSearchInput,
+    handleSubmitSearchForm,
+    productsInCart,
+  } = useContext(HeaderState);
   let [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -31,20 +37,13 @@ export default function MobileMenu({
           <div className="col-2">
             <span className="cart">
               <img className="mr-1" src={cartSrc} alt="" />
-              <span className="cart-count">0</span>
+              <span className="cart-count">{productsInCart.length}</span>
             </span>
           </div>
         </div>
       </div>
       {showMenu && (
-        <SlideMobileMenu
-          collections={collections}
-          showMenu={showMenu}
-          setShowMenu={setShowMenu}
-          searchKey={searchKey}
-          handleChangeSearchInput={handleChangeSearchInput}
-          handleSubmitSearchForm={handleSubmitSearchForm}
-        />
+        <SlideMobileMenu showMenu={showMenu} setShowMenu={setShowMenu} />
       )}
     </>
   );
