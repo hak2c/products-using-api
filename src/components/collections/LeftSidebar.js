@@ -2,8 +2,7 @@ import { Collapse } from "bootstrap";
 import { useState, useEffect, useContext } from "react";
 import { API_URL } from "../Utils";
 import { CollectionState } from "../CollectionsPage";
-
-import bar from "../../images/icons/bar.png";
+import * as Unicons from "@iconscout/react-unicons";
 
 export default function LeftSidebar() {
   const { currentCollection, sortCondition, setSortCondition } =
@@ -23,7 +22,7 @@ export default function LeftSidebar() {
           className="d-block text-center mobile-refine"
           onClick={() => setToggle(!toggle)}
         >
-          <img src={bar} alt="" /> Refine
+          <Unicons.UilBars size="24" color="#000000" /> Refine
         </a>
       </div>
       <div id="left-sidebar-content">
