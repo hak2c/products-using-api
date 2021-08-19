@@ -1,14 +1,13 @@
 import { Collapse } from "bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_URL } from "../Utils";
+import { CollectionState } from "../CollectionsPage";
 
 import bar from "../../images/icons/bar.png";
 
-export default function LeftSidebar({
-  currentCollection,
-  sortCondition,
-  setSortCondition,
-}) {
+export default function LeftSidebar() {
+  const { currentCollection, sortCondition, setSortCondition } =
+    useContext(CollectionState);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {

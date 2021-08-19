@@ -1,5 +1,6 @@
 export const CART_KEY = "testament_cart";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
+export const LIMIT_PER_PAGE = 3;
 
 export const moneyFormat = (money) => {
   if (typeof money !== "undefined") {

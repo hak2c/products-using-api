@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { checkProductsInCart, API_URL } from "./components/Utils";
 
-import CollectionsPageContent from "./components/CollectionsPageContent";
+import CollectionsPage from "./components/CollectionsPage";
 import ProductPage from "./components/ProductPage";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
@@ -30,9 +30,6 @@ export default function App() {
         console.log(error);
       });
   }, []);
-  useEffect(() => {
-    setProductsInCart(checkProductsInCart());
-  }, [productsInCart]);
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
@@ -58,7 +55,7 @@ export default function App() {
           <Route path="/product/:slug" children={<ProductPage />} />
           <Route
             path="/collection/:collectionId/:slug"
-            children={<CollectionsPageContent />}
+            children={<CollectionsPage />}
           />
         </Switch>
       </Router>

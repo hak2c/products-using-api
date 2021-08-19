@@ -1,15 +1,13 @@
+import { useContext } from "react";
 import { Pagination } from "react-bootstrap";
+
+import { CollectionState } from "../CollectionsPage";
 
 import ProductContent from "./ProductContent";
 
-export default function RightSidebar({
-  products,
-  page,
-  totalPages,
-  setPage,
-  spinner,
-  setSpinner,
-}) {
+export default function RightSidebar() {
+  const { products, page, totalPages, setPage, spinner, setSpinner } =
+    useContext(CollectionState);
   let items = [];
   for (let number = 1; number <= totalPages; number++) {
     items.push(
