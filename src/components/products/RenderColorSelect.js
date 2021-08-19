@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { ProductState } from "../ProductPage";
 import { API_URL } from "../Utils";
 
-export default function RenderColorSelect({ product }) {
+export default function RenderColorSelect() {
+  const { product } = useContext(ProductState);
   let colorFirstChecked = false;
   let colorFirstCheckedForLabel = false;
   let colorLabel = "";

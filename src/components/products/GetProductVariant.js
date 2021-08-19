@@ -1,7 +1,11 @@
+import { ProductState } from "../ProductPage";
+
 import RenderSizeSelect from "./RenderSizeSelect";
 import RenderColorSelect from "./RenderColorSelect";
+import { useContext } from "react";
 
-export default function GetProductVariant({ product }) {
+export default function GetProductVariant() {
+  const { product } = useContext(ProductState);
   return (
     <>
       {product.size.length === 0 ? (
@@ -9,11 +13,9 @@ export default function GetProductVariant({ product }) {
           <label>Size:</label>One size
         </div>
       ) : (
-        <RenderSizeSelect product={product} />
+        <RenderSizeSelect />
       )}
-      {typeof product.color !== "undefined" && (
-        <RenderColorSelect product={product} />
-      )}
+      {typeof product.color !== "undefined" && <RenderColorSelect />}
     </>
   );
 }

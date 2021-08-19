@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, createContext } from "react";
 import axios from "axios";
 
 import { API_URL } from "./Utils";
@@ -12,13 +12,25 @@ import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
 import ProductInformation from "./products/ProductInformation";
 
+export const ProductState = createContext();
+
 export default function ProductPage() {
   const { collections, productsInCart } = useContext(AppState);
 
   let { slug } = useParams();
 
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [sizeValue, setSizeValue] = useState("");
+  const [colorValue, setColorValue] = useState("");
   const [spinner, setSpinner] = useState(true);
+
+  function handleChangeQuantityInput(e) {
+    let value = Number(e.target.value);
+    if (!isNaN(value) && value > 1) {
+      setQuantity(value);
+    }
+  }
 
   useEffect(() => {
     axios
@@ -34,7 +46,18 @@ export default function ProductPage() {
   }, []);
 
   return (
-    <>
+    <ProductState.Provider
+      value={{
+        product,
+        quantity,
+        sizeValue,
+        colorValue,
+        handleChangeQuantityInput,
+        setQuantity,
+        setSizeValue,
+        setColorValue,
+      }}
+    >
       <Header />
       <main>
         <div className="container product__page">
@@ -64,7 +87,7 @@ export default function ProductPage() {
       <footer>
         <Footer collections={collections} />
       </footer>
-    </>
+    </ProductState.Provider>
   );
 }
 

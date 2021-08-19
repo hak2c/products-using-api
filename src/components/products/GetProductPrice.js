@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { moneyFormat } from "../Utils";
 
-export default function GetProductPrice({ product }) {
+import { ProductState } from "../ProductPage";
+
+export default function GetProductPrice() {
+  const { product } = useContext(ProductState);
   return (
     <>
       {typeof product.compare_price !== "undefined" ? (

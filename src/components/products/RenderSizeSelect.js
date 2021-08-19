@@ -1,4 +1,8 @@
-export default function RenderSizeSelect({ product }) {
+import { useContext } from "react";
+import { ProductState } from "../ProductPage";
+
+export default function RenderSizeSelect() {
+  const { product } = useContext(ProductState);
   let sizeFirstChecked = false;
   let sizeFirstCheckedForLabel = false;
   let sizeLabel = "";
