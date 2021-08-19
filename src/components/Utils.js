@@ -52,7 +52,7 @@ export function checkProductsInCart() {
 }
 
 export function addProductToCart(addedProduct) {
-  let productsInCart = JSON.parse(localStorage.getItem(CART_KEY));
+  const productsInCart = JSON.parse(localStorage.getItem(CART_KEY));
   if (productsInCart.length == 0) {
     productsInCart.push(addedProduct);
     localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
@@ -60,17 +60,19 @@ export function addProductToCart(addedProduct) {
     let exist = false;
     for (let i = 0; i < productsInCart.length; i++) {
       if (
-        productsInCart[i].id == addedProduct.id &&
-        productsInCart[i].size == addedProduct.size &&
-        productsInCart[i].color == addedProduct.color
+        productsInCart[i].id === addedProduct.id &&
+        productsInCart[i].size === addedProduct.size &&
+        productsInCart[i].color === addedProduct.color
       ) {
         exist = true;
         productsInCart[i].qty += addedProduct.qty;
-        productsInCart[i].total =
-          productsInCart[i].qty * productsInCart[i].price;
+        productsInCart[i].total = (
+          productsInCart[i].qty * productsInCart[i].price
+        ).toFixed(2);
       }
     }
     if (!exist) productsInCart.push(addedProduct);
     localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   }
+  return productsInCart;
 }

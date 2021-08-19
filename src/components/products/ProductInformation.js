@@ -2,14 +2,37 @@ import { useContext } from "react";
 
 import { AppState } from "../../App";
 import { ProductState } from "../ProductPage";
+import { addProductToCart } from "../Utils";
 
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
 
 export default function ProductInformation() {
-  const { product, quantity, handleChangeQuantityInput, setQuantity } =
-    useContext(ProductState);
+  const {
+    product,
+    quantity,
+    handleChangeQuantityInput,
+    setQuantity,
+    sizeValue,
+    colorValue,
+    setAddProductToCartMessage,
+  } = useContext(ProductState);
   const { productsInCart, setProductsInCart } = useContext(AppState);
+
+  function handleAddProductToCart() {
+    const addedProduct = {
+      id: product.id,
+      image: product.images[0],
+      title: product.title,
+      size: sizeValue,
+      color: colorValue,
+      qty: quantity,
+      price: product.price,
+      total: (quantity * product.price).toFixed(2),
+    };
+    setProductsInCart(addProductToCart(addedProduct, productsInCart));
+    setAddProductToCartMessage(true);
+  }
 
   return (
     <div className="col-lg-6 col-md-5 product__information">
@@ -53,7 +76,9 @@ export default function ProductInformation() {
             </a>
           </div>
           <div className="add-to-cart mt-4">
-            <a className="addToCart d-block">Add To Cart</a>
+            <a className="addToCart d-block" onClick={handleAddProductToCart}>
+              Add To Cart
+            </a>
           </div>
           <p className="mt-4 text-center text-uppercase bold">Or</p>
           <div className="mt-4">

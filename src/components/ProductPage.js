@@ -11,6 +11,7 @@ import CollectionsList from "./CollectionsList";
 import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
 import ProductInformation from "./products/ProductInformation";
+import AddCartSuccessMessage from "./popup/AddCartSuccessMessage";
 
 export const ProductState = createContext();
 
@@ -24,6 +25,7 @@ export default function ProductPage() {
   const [sizeValue, setSizeValue] = useState("");
   const [colorValue, setColorValue] = useState("");
   const [spinner, setSpinner] = useState(true);
+  const [addProductToCartMessage, setAddProductToCartMessage] = useState(false);
 
   useEffect(() => {
     axios
@@ -60,10 +62,6 @@ export default function ProductPage() {
     }
   }
 
-  function handleChangeSizeValue(value) {
-    setSizeValue(value);
-  }
-
   return (
     <ProductState.Provider
       value={{
@@ -75,6 +73,7 @@ export default function ProductPage() {
         setQuantity,
         setSizeValue,
         setColorValue,
+        setAddProductToCartMessage,
       }}
     >
       <Header />
@@ -106,6 +105,7 @@ export default function ProductPage() {
       <footer>
         <Footer collections={collections} />
       </footer>
+      {addProductToCartMessage && <AddCartSuccessMessage />}
     </ProductState.Provider>
   );
 }
