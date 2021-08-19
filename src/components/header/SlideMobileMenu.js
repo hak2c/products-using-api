@@ -2,7 +2,7 @@ import { Collapse } from "bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useContext } from "react";
 
-import { ProductState } from "../ProductPage";
+import { AppState } from "../../App";
 
 import arrowDownIcn from "../../images/icons/arrow-down-mobile.png";
 import fbSrc from "../../images/icons/facebook-subc.png";
@@ -18,7 +18,7 @@ export default function SlideMobileMenu({ showMenu, setShowMenu }) {
     searchKey,
     handleChangeSearchInput,
     handleSubmitSearchForm,
-  } = useContext(ProductState);
+  } = useContext(AppState);
   let [toggleSubMenu, setToggleSubMenu] = useState(false);
   useEffect(() => {
     let collapseSubMenu = document.getElementById("sub-menu-1");

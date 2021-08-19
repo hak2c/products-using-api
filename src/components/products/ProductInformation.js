@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { AppState } from "../../App";
+
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
 
 export default function ProductInformation({ product }) {
+  const { productsInCart, setProductsInCart } = useContext(AppState);
   const [quantity, setQuantity] = useState(1);
   const [sizeValue, setSizeValue] = useState("");
 

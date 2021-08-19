@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-
-import { API_URL } from "./Utils";
+import { useContext } from "react";
+import { AppState } from "../App";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -13,41 +11,10 @@ import ExploreCollections from "./home/ExploreCollections";
 import SubcribeEmail from "./home/SubcribeEmail";
 
 export default function HomePage() {
-  const [collections, setCollections] = useState([]);
-
-  const [searchKey, setSearchkey] = useState("");
-  const [submitSearch, setSubmitSearch] = useState(false);
-  const [submitProductSearch, setSubmitProductSearch] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(API_URL + "collections")
-      .then(function (response) {
-        setCollections(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-
-  function handleSubmitSearchForm(e) {
-    e.preventDefault();
-    setSubmitSearch(true);
-  }
-
-  function handleChangeSearchInput(e) {
-    e.preventDefault();
-    setSearchkey(e.target.value);
-  }
-
+  const { collections } = useContext(AppState);
   return (
     <>
-      <Header
-        collections={collections}
-        searchKey={searchKey}
-        handleChangeSearchInput={handleChangeSearchInput}
-        handleSubmitSearchForm={handleSubmitSearchForm}
-      />
+      <Header />
       <main>
         <MainBanner />
         <ListCollections collections={collections} />

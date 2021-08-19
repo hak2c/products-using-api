@@ -39,3 +39,37 @@ export function getJson(options) {
     xhr.onerror = () => reject("Something happen!");
   });
 }
+
+export function checkProductsInCart() {
+  let prodCart = localStorage.getItem(CART_KEY);
+  if (prodCart == null || prodCart == "") {
+    localStorage.setItem(CART_KEY, "[]");
+    prodCart = "[]";
+  }
+  prodCart = JSON.parse(prodCart);
+  return prodCart;
+}
+
+export function addProductToCart(addedProduct) {
+  let productsInCart = JSON.parse(localStorage.getItem(CART_KEY));
+  if (productsInCart.length == 0) {
+    productsInCart.push(addedProduct);
+    localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
+  } else {
+    let exist = false;
+    for (let i = 0; i < productsInCart.length; i++) {
+      if (
+        productsInCart[i].id == addedProduct.id &&
+        productsInCart[i].size == addedProduct.size &&
+        productsInCart[i].color == addedProduct.color
+      ) {
+        exist = true;
+        productsInCart[i].qty += addedProduct.qty;
+        productsInCart[i].total =
+          productsInCart[i].qty * productsInCart[i].price;
+      }
+    }
+    if (!exist) productsInCart.push(addedProduct);
+    localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
+  }
+}

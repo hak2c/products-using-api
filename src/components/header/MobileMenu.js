@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import SlideMobileMenu from "./SlideMobileMenu";
 
-import { HeaderState } from "../Header";
+import { AppState } from "../../App";
 
 import cartSrc from "../../images/icons/cart-mobile.png";
 import mobileIcn from "../../images/icons/mobile-icon.png";
@@ -11,13 +11,7 @@ import logo from "../../images/logo.jpg";
 import { useState } from "react";
 
 export default function MobileMenu() {
-  const {
-    collections,
-    searchKey,
-    handleChangeSearchInput,
-    handleSubmitSearchForm,
-    productsInCart,
-  } = useContext(HeaderState);
+  const { productsInCart } = useContext(AppState);
   let [showMenu, setShowMenu] = useState(false);
 
   return (

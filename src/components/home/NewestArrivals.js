@@ -57,7 +57,7 @@ export default function NewestArrivals() {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 200000000,
+    autoplaySpeed: 2000,
     dots: false,
     infinite: true,
     arrows: true,

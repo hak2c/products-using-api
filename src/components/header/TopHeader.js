@@ -1,7 +1,7 @@
 import { Collapse } from "bootstrap";
 import { useContext } from "react";
 
-import { HeaderState } from "../Header";
+import { AppState } from "../../App";
 
 import fbSrc from "../../images/icons/facebook.png";
 import instagramSrc from "../../images/icons/instagram.png";
@@ -17,7 +17,7 @@ export default function TopHeader() {
     handleChangeSearchInput,
     handleSubmitSearchForm,
     productsInCart,
-  } = useContext(HeaderState);
+  } = useContext(AppState);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {

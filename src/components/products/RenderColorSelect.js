@@ -1,4 +1,4 @@
-const URL = "https://fake-server-products-api.herokuapp.com/";
+import { API_URL } from "../Utils";
 
 export default function RenderColorSelect({ product }) {
   let colorFirstChecked = false;
@@ -50,7 +50,7 @@ export default function RenderColorSelect({ product }) {
               >
                 <span
                   style={{
-                    backgroundImage: "url(" + URL + color.thumb + ")",
+                    backgroundImage: "url(" + API_URL + color.thumb + ")",
                   }}
                 ></span>
               </label>

@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import { ProductState } from "./ProductPage";
+import { useContext } from "react";
+import { AppState } from "../App";
 
 import TopHeader from "./header/TopHeader";
 import PrimaryMenu from "./header/PrimaryMenu";
@@ -7,26 +7,10 @@ import MobileMenu from "./header/MobileMenu";
 
 import logo from "../images/logo.jpg";
 
-export const HeaderState = createContext();
-
 export default function Header() {
-  const {
-    collections,
-    searchKey,
-    handleChangeSearchInput,
-    handleSubmitSearchForm,
-    productsInCart,
-  } = useContext(ProductState);
+  const { collections } = useContext(AppState);
   return (
-    <HeaderState.Provider
-      value={{
-        collections,
-        searchKey,
-        handleChangeSearchInput,
-        handleSubmitSearchForm,
-        productsInCart,
-      }}
-    >
+    <>
       <TopHeader />
       <div className="logo d-none d-lg-block text-center">
         <a href="/">
@@ -35,6 +19,6 @@ export default function Header() {
       </div>
       <MobileMenu />
       <PrimaryMenu collections={collections} />
-    </HeaderState.Provider>
+    </>
   );
 }
