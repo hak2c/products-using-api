@@ -25,13 +25,6 @@ export default function ProductPage() {
   const [colorValue, setColorValue] = useState("");
   const [spinner, setSpinner] = useState(true);
 
-  function handleChangeQuantityInput(e) {
-    let value = Number(e.target.value);
-    if (!isNaN(value) && value > 1) {
-      setQuantity(value);
-    }
-  }
-
   useEffect(() => {
     axios
       .get(API_URL + "products?slug=" + slug + "&_expand=collection")
@@ -39,11 +32,37 @@ export default function ProductPage() {
         setProduct(response.data[0]);
         document.title = response.data[0].title;
         setSpinner(false);
+        for (let i = 0; i < response.data[0].size.length; i++) {
+          if (response.data[0].size[i].available) {
+            setSizeValue(response.data[0].size[i].name);
+            break;
+          }
+        }
+        if (typeof response.data[0].color !== "undefined") {
+          for (let i = 0; i < response.data[0].color.length; i++) {
+            if (response.data[0].color[i].available) {
+              setColorValue(response.data[0].color[i].name);
+              break;
+            }
+          }
+        }
       })
+      .then(() => {})
       .catch(function (error) {
         console.log(error);
       });
   }, []);
+
+  function handleChangeQuantityInput(e) {
+    let value = Number(e.target.value);
+    if (!isNaN(value) && value > 1) {
+      setQuantity(value);
+    }
+  }
+
+  function handleChangeSizeValue(value) {
+    setSizeValue(value);
+  }
 
   return (
     <ProductState.Provider
