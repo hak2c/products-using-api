@@ -4,15 +4,11 @@ import closeIcn from "../../images/icons/close.png";
 import { useContext } from "react";
 
 export default function AddCartSuccessMessage() {
-  const { addProductToCartMessage, setAddProductToCartMessage } =
-    useContext(ProductState);
-  const animateClass = addProductToCartMessage
-    ? " animate__fadeInUp"
-    : " animate__fadeOutUp";
+  const { setAddProductToCartMessage } = useContext(ProductState);
   return (
-    <div className="raq-overlay animate__animated">
+    <div className="raq-overlay">
       <div className="raq-bg"></div>
-      <div className={"animate__animated raq-popup" + animateClass}>
+      <div className="raq-popup">
         <span
           className="close-raq-popup"
           onClick={() => setAddProductToCartMessage(false)}
