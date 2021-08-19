@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Slider from "react-slick";
+import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL } from "../Utils";
 
@@ -17,7 +18,7 @@ export default function ProductImages({ images }) {
       aria-disabled={currentSlide === 0 ? true : false}
       type="button"
     >
-      <img src={API_URL + "images/icons/arrow-left.png"} />
+      <Unicons.UilAngleLeft size="40" color="#A7A7A7" />
     </button>
   );
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
@@ -31,7 +32,7 @@ export default function ProductImages({ images }) {
       aria-disabled={currentSlide === slideCount - 1 ? true : false}
       type="button"
     >
-      <img src={API_URL + "images/icons/arrow-right.png"} />
+      <Unicons.UilAngleRight size="40" color="#A7A7A7" />
     </button>
   );
 

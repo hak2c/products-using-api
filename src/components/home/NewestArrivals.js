@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Slider from "react-slick";
+import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL } from "../Utils";
 
@@ -36,7 +37,7 @@ export default function NewestArrivals() {
       aria-disabled={currentSlide === 0 ? true : false}
       type="button"
     >
-      <img src={API_URL + "images/icons/arrow-left.png"} />
+      <Unicons.UilAngleLeft size="45" color="#A7A7A7" />
     </button>
   );
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
@@ -50,7 +51,7 @@ export default function NewestArrivals() {
       aria-disabled={currentSlide === slideCount - 1 ? true : false}
       type="button"
     >
-      <img src={API_URL + "images/icons/arrow-right.png"} />
+      <Unicons.UilAngleRight size="45" color="#A7A7A7" />
     </button>
   );
   let slickOpts = {

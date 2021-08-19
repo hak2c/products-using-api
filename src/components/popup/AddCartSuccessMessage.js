@@ -1,3 +1,5 @@
+import * as Unicons from "@iconscout/react-unicons";
+
 import { ProductState } from "../ProductPage";
 
 import closeIcn from "../../images/icons/close.png";
@@ -13,7 +15,7 @@ export default function AddCartSuccessMessage() {
           className="close-raq-popup"
           onClick={() => setAddProductToCartMessage(false)}
         >
-          <img src={closeIcn} alt="Close popup" />
+          <Unicons.UilTimes size="20" color="#000000" />
         </span>
         <div className="raq-popup-content">
           <div className="raq-message">Add product to cart successfully!</div>

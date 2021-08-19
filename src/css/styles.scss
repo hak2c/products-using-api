@@ -203,6 +203,13 @@ input[type="submit"].form-control {
   }
 }
 
+.slick-arrow::before,
+.slick-arrow::after,
+.slick-prev:before,
+.slick-next:before {
+  content: none;
+}
+
 @media (min-width: 768px) {
   .pe-md-25 {
     padding-right: 2.5rem !important;
@@ -1006,10 +1013,6 @@ footer {
         &.slick-next {
           left: 40px;
         }
-        &::before,
-        &::after {
-          content: none;
-        }
       }
     }
     .product__images--nav-images {
@@ -1034,8 +1037,8 @@ footer {
           position: absolute;
           top: 20px;
           background: transparent;
-          width: 15px;
-          height: 24px;
+          width: 40px;
+          height: 40px;
           border: none;
           cursor: pointer;
           z-index: 2;
@@ -1043,19 +1046,16 @@ footer {
             outline: none;
           }
           &.slick-prev {
-            left: 10px;
+            left: 0;
           }
           &.slick-next {
             left: 40px;
-          }
-          &::before,
-          &::after {
-            content: none;
           }
         }
       }
     }
   }
+
   .product__information {
     .product__information--content {
       background: #ffffff;
@@ -1275,10 +1275,10 @@ footer {
     z-index: 100;
     .close-raq-popup {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 10px;
-      height: 10px;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
       cursor: pointer;
     }
     .raq-popup-content {
