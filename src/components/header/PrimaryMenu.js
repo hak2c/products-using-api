@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
-
-import arrowDownIcn from "../../images/icons/arrow-down.png";
+import * as Unicons from "@iconscout/react-unicons";
 
 export default function PrimaryMenu({ collections }) {
   return (
@@ -11,7 +10,7 @@ export default function PrimaryMenu({ collections }) {
         </li>
         <li>
           <a href="#">Shop</a>
-          <img src={arrowDownIcn} alt="" />
+          <Unicons.UilAngleDown size="21" color="#ffffff" />
           <div className="sub-menu">
             <ul>
               {collections.map((item) => (

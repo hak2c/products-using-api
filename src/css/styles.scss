@@ -184,6 +184,7 @@ input[type="submit"].form-control {
   width: 20px;
   height: 20px;
   position: relative;
+  cursor: pointer;
   &:before {
     content: "";
     height: 20px;
@@ -287,13 +288,11 @@ input[type="submit"].form-control {
     & > li {
       padding: 0 20px;
       position: relative;
+      cursor: pointer;
       & > a {
         color: $nav-color;
         display: inline-block;
         line-height: 60px;
-      }
-      & > img {
-        margin-left: 10px;
       }
       .sub-menu {
         display: none;
@@ -321,6 +320,9 @@ input[type="submit"].form-control {
         }
         & > a {
           color: $dropdown-link-hover-color;
+        }
+        & > svg {
+          fill: $dropdown-link-hover-color;
         }
       }
     }
@@ -372,8 +374,8 @@ input[type="submit"].form-control {
             font-size: calc(16px - (16px * 0.15));
           }
           .arrow {
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
             height: 22px;
             border-radius: 3px;
             border-left: 1px solid #000000;
@@ -1241,20 +1243,7 @@ footer {
   top: 30%;
   width: auto;
   z-index: 9;
-  transform-origin: center center;
-  transform: translateX(50%) rotate(-90deg) translateY(-50%) translateX(-50%);
   .view_quote {
-    display: inline-block;
-    height: 40px;
-    background: $form-button-background-color;
-    color: $form-button-color;
-    line-height: 40px;
-    font-size: $text-size;
-    text-transform: uppercase;
-    padding: 0 15px;
-    &:hover {
-      background-color: $form-button-background-hover;
-    }
   }
 }
 

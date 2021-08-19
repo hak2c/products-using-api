@@ -1,16 +1,9 @@
 import { Collapse } from "bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import * as Unicons from "@iconscout/react-unicons";
 
 import { AppState } from "../../App";
-
-import arrowDownIcn from "../../images/icons/arrow-down-mobile.png";
-import fbSrc from "../../images/icons/facebook-subc.png";
-import instagramSrc from "../../images/icons/instagram-subc.png";
-import twitterSrc from "../../images/icons/twitter-subc.png";
-import linkedinSrc from "../../images/icons/linkedin-subc.png";
-
-import { useState, useEffect } from "react";
 
 export default function SlideMobileMenu({ showMenu, setShowMenu }) {
   const {
@@ -53,7 +46,7 @@ export default function SlideMobileMenu({ showMenu, setShowMenu }) {
                 className="d-inline-block arrow"
                 onClick={() => setToggleSubMenu(!toggleSubMenu)}
               >
-                <img src={arrowDownIcn} alt="" />
+                <Unicons.UilAngleDown size="21" color="#000000" />
               </div>
             </li>
             <li className="sub-menu" id="sub-menu-1">
@@ -97,16 +90,16 @@ export default function SlideMobileMenu({ showMenu, setShowMenu }) {
           </div>
           <div className="d-flex justify-content-center align-items-center mobile-menu__socials">
             <a href="#">
-              <img src={fbSrc} alt="facebook" />
+              <Unicons.UilFacebookF size="30" color="#000000" />
             </a>
             <a href="#">
-              <img src={instagramSrc} alt="instagram" />
+              <Unicons.UilInstagram size="30" color="#000000" />
             </a>
             <a href="#">
-              <img src={twitterSrc} alt="twitter" />
+              <Unicons.UilTwitter size="30" color="#000000" />
             </a>
             <a href="#">
-              <img src={linkedinSrc} alt="linkedin" />
+              <Unicons.UilLinkedinAlt size="30" color="#000000" />
             </a>
           </div>
           <div className="mobile-menu__featured-text text-center">

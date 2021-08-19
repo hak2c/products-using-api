@@ -1,14 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import * as Unicons from "@iconscout/react-unicons";
 
 import SlideMobileMenu from "./SlideMobileMenu";
 
 import { AppState } from "../../App";
-
-import cartSrc from "../../images/icons/cart-mobile.png";
-import mobileIcn from "../../images/icons/mobile-icon.png";
 import logo from "../../images/logo.jpg";
-
-import { useState } from "react";
 
 export default function MobileMenu() {
   const { productsInCart } = useContext(AppState);
@@ -20,7 +16,12 @@ export default function MobileMenu() {
         <div className="d-flex align-items-center h-100">
           <div className="col-2 text-center">
             <a className="text-center mobile-icon">
-              <img onClick={() => setShowMenu(true)} src={mobileIcn} alt="" />
+              <Unicons.UilBars
+                onClick={() => setShowMenu(true)}
+                size="24"
+                color="#b79e8c"
+                style={{ cursor: "pointer" }}
+              />
             </a>
           </div>
           <div className="col-8 text-center">
@@ -30,7 +31,12 @@ export default function MobileMenu() {
           </div>
           <div className="col-2">
             <span className="cart">
-              <img className="mr-1" src={cartSrc} alt="" />
+              <Unicons.UilShoppingCart
+                className="me-1"
+                size="16"
+                color="#b79e8c"
+                style={{ cursor: "pointer" }}
+              />
               <span className="cart-count">{productsInCart.length}</span>
             </span>
           </div>

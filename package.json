@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@iconscout/react-unicons": "^1.1.6",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",

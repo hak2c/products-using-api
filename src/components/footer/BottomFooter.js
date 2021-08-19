@@ -1,7 +1,4 @@
-import fbSrc from "../../images/icons/facebook.png";
-import instagramSrc from "../../images/icons/instagram.png";
-import twitterSrc from "../../images/icons/twitter.png";
-import linkedinSrc from "../../images/icons/linkedin.png";
+import * as Unicons from "@iconscout/react-unicons";
 
 import visa from "../../images/partners/visa.jpg";
 import mastercard from "../../images/partners/mastercard.jpg";
@@ -26,16 +23,16 @@ export default function BottomFooter() {
       <div className="col-md-6 footer-left">
         <div className="d-flex align-items-center bottom-socials">
           <a href="#">
-            <img src={fbSrc} alt="facebook" />
+            <Unicons.UilFacebookF size="16" color="#ffffff" />
           </a>
           <a href="#">
-            <img src={instagramSrc} alt="instagram" />
+            <Unicons.UilInstagram size="16" color="#ffffff" />
           </a>
           <a href="#">
-            <img src={twitterSrc} alt="twitter" />
+            <Unicons.UilTwitter size="16" color="#ffffff" />
           </a>
           <a href="#">
-            <img src={linkedinSrc} alt="linkedin" />
+            <Unicons.UilLinkedinAlt size="16" color="#ffffff" />
           </a>
         </div>
         <div className="copyright">

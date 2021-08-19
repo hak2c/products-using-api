@@ -1,14 +1,8 @@
 import { Collapse } from "bootstrap";
 import { useContext } from "react";
+import * as Unicons from "@iconscout/react-unicons";
 
 import { AppState } from "../../App";
-
-import fbSrc from "../../images/icons/facebook.png";
-import instagramSrc from "../../images/icons/instagram.png";
-import twitterSrc from "../../images/icons/twitter.png";
-import linkedinSrc from "../../images/icons/linkedin.png";
-import searchIcn from "../../images/icons/search.png";
-import cartSrc from "../../images/icons/cart.png";
 import { useState, useEffect } from "react";
 
 export default function TopHeader() {
@@ -37,16 +31,16 @@ export default function TopHeader() {
           <div className="d-none d-lg-block col-lg-4">
             <div className="d-flex align-items-center top-socials">
               <a href="#">
-                <img src={fbSrc} alt="facebook" />
+                <Unicons.UilFacebookF size="16" color="#ffffff" />
               </a>
               <a href="#">
-                <img src={instagramSrc} alt="instagram" />
+                <Unicons.UilInstagram size="16" color="#ffffff" />
               </a>
               <a href="#">
-                <img src={twitterSrc} alt="twitter" />
+                <Unicons.UilTwitter size="16" color="#ffffff" />
               </a>
               <a href="#">
-                <img src={linkedinSrc} alt="linkedin" />
+                <Unicons.UilLinkedinAlt size="16" color="#ffffff" />
               </a>
             </div>
           </div>
@@ -59,10 +53,11 @@ export default function TopHeader() {
               style={{ gap: "10px" }}
             >
               <span className="search-icon">
-                <img
+                <Unicons.UilSearch
+                  size="16"
+                  color="#ffffff"
                   onClick={() => setToggle((toggle) => !toggle)}
-                  src={searchIcn}
-                  alt=""
+                  style={{ cursor: "pointer" }}
                 />
               </span>
               <form
@@ -83,7 +78,12 @@ export default function TopHeader() {
               </form>
 
               <span className="cart">
-                <img className="mr-1" src={cartSrc} alt="" />
+                <Unicons.UilShoppingCart
+                  className="me-1"
+                  size="16"
+                  color="#ffffff"
+                  style={{ cursor: "pointer" }}
+                />
                 <span className="cart-count">{productsInCart.length}</span>
               </span>
             </div>
