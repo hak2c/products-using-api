@@ -2,7 +2,7 @@ import { BrowserRouter as Router, useParams } from "react-router-dom";
 import { useContext, useEffect, useState, createContext } from "react";
 import axios from "axios";
 
-import { API_URL } from "./Utils";
+import { API_URL, fetchData } from "./Utils";
 import { AppState } from "../App";
 
 import Header from "./Header";
@@ -28,31 +28,28 @@ export default function ProductPage() {
   const [addProductToCartMessage, setAddProductToCartMessage] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(API_URL + "products?slug=" + slug + "&_expand=collection")
-      .then(function (response) {
-        setProduct(response.data[0]);
-        document.title = response.data[0].title;
+    fetchData(API_URL + "products?slug=" + slug + "&_expand=collection").then(
+      (res) => {
+        const { data } = res;
+        setProduct(data[0]);
+        document.title = data[0].title;
         setSpinner(false);
-        for (let i = 0; i < response.data[0].size.length; i++) {
-          if (response.data[0].size[i].available) {
-            setSizeValue(response.data[0].size[i].name);
+        for (let i = 0; i < data[0].size.length; i++) {
+          if (data[0].size[i].available) {
+            setSizeValue(data[0].size[i].name);
             break;
           }
         }
-        if (typeof response.data[0].color !== "undefined") {
-          for (let i = 0; i < response.data[0].color.length; i++) {
-            if (response.data[0].color[i].available) {
-              setColorValue(response.data[0].color[i].name);
+        if (typeof data[0].color !== "undefined") {
+          for (let i = 0; i < data[0].color.length; i++) {
+            if (data[0].color[i].available) {
+              setColorValue(data[0].color[i].name);
               break;
             }
           }
         }
-      })
-      .then(() => {})
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   }, []);
 
   function handleChangeQuantityInput(e) {

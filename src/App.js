@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 import * as Unicons from "@iconscout/react-unicons";
 
 import {
   checkProductsInCart,
   checkProductsInQuote,
   API_URL,
+  fetchData,
 } from "./components/Utils";
 
 import CollectionsPage from "./components/CollectionsPage";
@@ -31,14 +31,10 @@ export default function App() {
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
   useEffect(() => {
-    axios
-      .get(API_URL + "collections")
-      .then(function (response) {
-        setCollections(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    fetchData(API_URL + "collections").then((res) => {
+      const { data } = res;
+      setCollections(data);
+    });
   }, []);
 
   function handleSubmitSearchForm(e) {

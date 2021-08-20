@@ -1,8 +1,7 @@
 import { useEffect, useState, useContext, createContext } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
-import axios from "axios";
 
-import { API_URL, LIMIT_PER_PAGE } from "./Utils";
+import { API_URL, LIMIT_PER_PAGE, fetchData } from "./Utils";
 import { AppState } from "../App";
 
 import Header from "./Header";
@@ -14,7 +13,6 @@ import CollectionsList from "./CollectionsList";
 
 export const CollectionState = createContext();
 
-// <img src={URL + currentCollection.images[0]} alt="" />
 export default function CollectionsPage() {
   const { collections, productsInCart } = useContext(AppState);
   let { collectionId } = useParams();
@@ -41,30 +39,24 @@ export default function CollectionsPage() {
         : sortCondition === "price-descending"
         ? "&_sort=price&_order=desc"
         : "";
-    axios
-      .get(
-        API_URL +
-          "products?collectionId=" +
-          collectionId +
-          "&_expand=collection" +
-          condition +
-          "&_limit=" +
-          limit +
-          "&_page=" +
-          page
-      )
-      .then(function (response) {
-        setProducts(response.data);
-        setCurrentCollection(response.data[0].collection);
-        document.title = response.data[0].collection.title;
-        setTotalPages(
-          Math.ceil(Number(response.headers["x-total-count"]) / limit)
-        );
-        setSpinner(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    fetchData(
+      API_URL +
+        "products?collectionId=" +
+        collectionId +
+        "&_expand=collection" +
+        condition +
+        "&_limit=" +
+        limit +
+        "&_page=" +
+        page
+    ).then((response) => {
+      const { data, total } = response;
+      setProducts(data);
+      setCurrentCollection(data[0].collection);
+      document.title = data[0].collection.title;
+      setTotalPages(Math.ceil(Number(total) / limit));
+      setSpinner(false);
+    });
   }, [sortCondition, page, collectionId]);
 
   useEffect(() => {

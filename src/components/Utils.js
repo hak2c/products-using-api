@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const CART_KEY = "testament_cart";
 export const STORAGE_KEY = "testament_quote";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
@@ -13,33 +15,15 @@ export const moneyFormat = (money) => {
   return "0";
 };
 
-export function getJson(options) {
-  const { method, url } = options;
-  let result = {};
-
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.responseType = "json";
-    xhr.open(method, url);
-    xhr.send();
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        result.products = xhr.response;
-        result.headers = xhr
-          .getAllResponseHeaders()
-          .split("\r\n")
-          .reduce((obj, item) => {
-            let [key, value] = item.split(": ");
-            obj[key] = value;
-            return obj;
-          }, {});
-        resolve(result);
-      } else {
-        reject(xhr.status + ":" + xhr.statusText);
-      }
-    };
-    xhr.onerror = () => reject("Something happen!");
-  });
+export async function fetchData(url) {
+  let response = await fetch(url);
+  if (response.status === 200) {
+    const data = await response.json();
+    const total = response.headers.get("X-Total-Count");
+    return { data, total };
+  } else {
+    return response.status + ":" + response.statusText;
+  }
 }
 
 export function checkProductsInCart() {

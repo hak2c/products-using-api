@@ -1,8 +1,6 @@
 import * as Unicons from "@iconscout/react-unicons";
 
 import { ProductState } from "../ProductPage";
-
-import closeIcn from "../../images/icons/close.png";
 import { useContext } from "react";
 
 export default function AddCartSuccessMessage() {
