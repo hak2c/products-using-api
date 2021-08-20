@@ -1,4 +1,5 @@
 export const CART_KEY = "testament_cart";
+export const STORAGE_KEY = "testament_quote";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
 export const LIMIT_PER_PAGE = 3;
 
@@ -47,15 +48,22 @@ export function checkProductsInCart() {
     localStorage.setItem(CART_KEY, "[]");
     prodCart = "[]";
   }
-  prodCart = JSON.parse(prodCart);
-  return prodCart;
+  return JSON.parse(prodCart);
+}
+
+export function checkProductsInQuote() {
+  let productsList = localStorage.getItem(STORAGE_KEY);
+  if (productsList == null || productsList == "") {
+    localStorage.setItem(STORAGE_KEY, "[]");
+    productsList = "[]";
+  }
+  return JSON.parse(productsList);
 }
 
 export function addProductToCart(addedProduct) {
   const productsInCart = JSON.parse(localStorage.getItem(CART_KEY));
   if (productsInCart.length == 0) {
     productsInCart.push(addedProduct);
-    localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   } else {
     let exist = false;
     for (let i = 0; i < productsInCart.length; i++) {
@@ -72,7 +80,7 @@ export function addProductToCart(addedProduct) {
       }
     }
     if (!exist) productsInCart.push(addedProduct);
-    localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   }
+  localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   return productsInCart;
 }

@@ -11,7 +11,7 @@ import CollectionsList from "./CollectionsList";
 import Breadcrumbs from "./Breadcrumbs";
 import ProductImages from "./products/ProductImages";
 import ProductInformation from "./products/ProductInformation";
-import AddCartSuccessMessage from "./popup/AddCartSuccessMessage";
+import AddCartSuccessMessage from "./cart/AddCartSuccessMessage";
 
 export const ProductState = createContext();
 
