@@ -33,7 +33,9 @@ export default function ProductInformation() {
     setProductsInCart(addProductToCart(addedProduct, productsInCart));
     setAddProductToCartMessage(true);
   }
-
+  function productDescription() {
+    return { __html: product.description };
+  }
   return (
     <div className="col-lg-6 col-md-5 product__information">
       <div className="product__information--content">
@@ -85,7 +87,10 @@ export default function ProductInformation() {
             <a className="addQuoteButton d-block">Request a Quote</a>
           </div>
         </form>
-        <div className="product__information--content-section product-description"></div>
+        <div
+          className="product__information--content-section product-description"
+          dangerouslySetInnerHTML={productDescription()}
+        />
       </div>
     </div>
   );

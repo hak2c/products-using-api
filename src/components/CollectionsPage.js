@@ -46,6 +46,7 @@ export default function CollectionsPage() {
         API_URL +
           "products?collectionId=" +
           collectionId +
+          "&_expand=collection" +
           condition +
           "&_limit=" +
           limit +
@@ -54,6 +55,8 @@ export default function CollectionsPage() {
       )
       .then(function (response) {
         setProducts(response.data);
+        setCurrentCollection(response.data[0].collection);
+        document.title = response.data[0].collection.title;
         setTotalPages(
           Math.ceil(Number(response.headers["x-total-count"]) / limit)
         );
@@ -66,15 +69,6 @@ export default function CollectionsPage() {
 
   useEffect(() => {
     setPage(1);
-    axios
-      .get(API_URL + "collections?id=" + collectionId)
-      .then(function (response) {
-        setCurrentCollection(response.data[0]);
-        document.title = response.data[0].title;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }, [collectionId]);
 
   return (
