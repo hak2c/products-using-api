@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
 import { AppState } from "../../App";
 import { ProductState } from "../ProductPage";
@@ -7,7 +7,7 @@ import { addProductToCart } from "../Utils";
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
 
-export default function ProductInformation() {
+function ProductInformation() {
   const {
     product,
     quantity,
@@ -78,13 +78,15 @@ export default function ProductInformation() {
             </a>
           </div>
           <div className="add-to-cart mt-4">
-            <a className="addToCart d-block" onClick={handleAddProductToCart}>
+            <a className="addToCart button" onClick={handleAddProductToCart}>
               Add To Cart
             </a>
           </div>
           <p className="mt-4 text-center text-uppercase bold">Or</p>
           <div className="mt-4">
-            <a className="addQuoteButton d-block">Request a Quote</a>
+            <a className="addQuoteButton button secondary-button">
+              Request a Quote
+            </a>
           </div>
         </form>
         <div
@@ -95,3 +97,5 @@ export default function ProductInformation() {
     </div>
   );
 }
+
+export default memo(ProductInformation);

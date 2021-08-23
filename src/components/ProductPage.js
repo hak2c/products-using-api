@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, useParams } from "react-router-dom";
-import { useContext, useEffect, useState, createContext } from "react";
-import axios from "axios";
+import { useContext, useEffect, useState, createContext, memo } from "react";
 
 import { API_URL, fetchData } from "./Utils";
 import { AppState } from "../App";
@@ -15,7 +14,7 @@ import AddCartSuccessMessage from "./cart/AddCartSuccessMessage";
 
 export const ProductState = createContext();
 
-export default function ProductPage() {
+function ProductPage() {
   const { collections, productsInCart } = useContext(AppState);
 
   let { slug } = useParams();
@@ -106,6 +105,8 @@ export default function ProductPage() {
     </ProductState.Provider>
   );
 }
+
+export default memo(ProductPage);
 
 // <Breadcrumbs
 // location={

@@ -1,19 +1,7 @@
-import axios from "axios";
-
 export const CART_KEY = "testament_cart";
 export const STORAGE_KEY = "testament_quote";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
 export const LIMIT_PER_PAGE = 3;
-
-export const moneyFormat = (money) => {
-  if (typeof money !== "undefined") {
-    let parts = money.toString().split("."),
-      dollars = parts[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,"),
-      cents = parts[1] ? "." + parts[1] : "";
-    return "$" + dollars + cents;
-  }
-  return "0";
-};
 
 export async function fetchData(url) {
   let response = await fetch(url);
@@ -68,3 +56,23 @@ export function addProductToCart(addedProduct) {
   localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   return productsInCart;
 }
+
+export function getTotalPrice(products) {
+  let total = 0;
+  products.forEach((item) => (total += Number(item.total)));
+  return total;
+}
+
+export function getTax(total) {
+  return Number((total * 0.1).toFixed(2));
+}
+
+export const moneyFormat = (money) => {
+  if (typeof money !== "undefined") {
+    let parts = money.toString().split("."),
+      dollars = parts[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,"),
+      cents = parts[1] ? "." + parts[1] : "";
+    return "$" + dollars + cents;
+  }
+  return "0";
+};

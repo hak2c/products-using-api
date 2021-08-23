@@ -28,6 +28,14 @@ $form-button-background-color: #b79e8c;
 $form-button-background-hover: #836957;
 $form-button-color: #ffffff;
 
+$main-button-background-color: #b79e8c;
+$main-button-background-hover: #836957;
+$main-button-color: #ffffff;
+
+$secondary-button-background-hover: #b79e8c;
+$secondary-button-background-color: #836957;
+$secondary-button-color: #ffffff;
+
 $free-shipping-background: #b79e8c;
 $free-shipping-text: #ffffff;
 
@@ -157,8 +165,34 @@ input[type="submit"].form-control {
   background: $form-button-background-color;
   color: $form-button-color;
   cursor: pointer;
+
   &:hover {
     background: $form-button-background-hover;
+  }
+}
+
+.button {
+  background-color: $main-button-background-color;
+  color: $main-button-color;
+  font-size: 16px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border: none;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  &.secondary-button {
+    background-color: $secondary-button-background-color;
+    color: $secondary-button-color;
+  }
+  &:hover {
+    background-color: $main-button-background-hover;
+    color: $main-button-color;
+  }
+  &.secondary-button:hover {
+    background-color: $secondary-button-background-hover;
   }
 }
 
@@ -429,6 +463,65 @@ input[type="submit"].form-control {
     }
   }
 }
+
+.ajax__cart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99;
+  .ajax__cart--overlay {
+    height: 100vh;
+    width: 100vw;
+    background: rgb(30, 30, 30);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0.8;
+  }
+  .ajax__cart--content {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 185px;
+    background: #ffffff;
+    z-index: 100;
+    overflow-y: scroll;
+    @media screen and (min-width: 768px) {
+      max-width: 350px;
+    }
+    .ajax__cart--header {
+      padding: 10px 15px;
+      & > div {
+        width: calc(100% / 3);
+      }
+      .ajax__cart--header-close {
+        padding: 15px 10px 15px 10px;
+        color: #000000;
+        line-height: 50px;
+        height: 50px;
+      }
+      h2 {
+        font-size: $h2-size;
+      }
+    }
+    .ajax__cart--content-inner {
+      padding: 0 15px;
+      .ajax__cart--form {
+        .ajax__cart--buttons {
+          .ajax__cart--view-cart {
+            border-radius: 3px;
+            &:hover {
+              background-color: $secondary-button-background-hover;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /* MAIN BANNER */
 main {
   padding-bottom: 30px;
@@ -755,7 +848,7 @@ main {
       text-align: center;
       width: 120px;
       color: $form-button-color;
-      background-color: $form-button-background-color;
+      background-color: $main-button-background-color;
       height: 50px;
       border: none;
       font-size: 16px;
@@ -766,7 +859,7 @@ main {
         width: 180px;
       }
       &:hover {
-        background-color: $form-button-background-hover;
+        background-color: $main-button-background-hover;
       }
     }
   }
@@ -1120,34 +1213,11 @@ footer {
         }
         .add-to-cart {
           .addToCart {
-            background: $form-button-background-color;
-            color: $form-button-color;
-            width: 100%;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
             font-size: 18px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            &:hover {
-              background-color: $form-button-background-hover;
-            }
           }
         }
         .addQuoteButton {
-          height: 50px;
-          border: 1px solid $form-button-background-color;
-          line-height: 50px;
-          text-align: center;
           font-size: 18px;
-          border-radius: 3px;
-          color: #000000;
-          &:hover {
-            background: $form-button-background-hover;
-            border-color: $form-button-background-hover;
-            color: #ffffff;
-          }
         }
       }
       .product-description {

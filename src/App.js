@@ -14,6 +14,7 @@ import ProductPage from "./components/ProductPage";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
 import QuotePopup from "./components/quote/QuotePopup";
+import CartPage from "./components/CartPage";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -63,6 +64,9 @@ export default function App() {
           </Route>
           <Route path="/search">
             <SearchPage />
+          </Route>
+          <Route path="/cart">
+            <CartPage />
           </Route>
           <Route path="/product/:slug" children={<ProductPage />} />
           <Route

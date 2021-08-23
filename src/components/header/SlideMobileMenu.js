@@ -1,11 +1,11 @@
 import { Collapse } from "bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, memo } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { AppState } from "../../App";
 
-export default function SlideMobileMenu({ showMenu, setShowMenu }) {
+function SlideMobileMenu({ showMenu, setShowMenu }) {
   const {
     collections,
     searchKey,
@@ -33,7 +33,13 @@ export default function SlideMobileMenu({ showMenu, setShowMenu }) {
         className={"animate__animated slideout-mobile-content" + animateClass}
       >
         <div className="close-navigation">
-          <div className="icon-close" onClick={() => setShowMenu(false)}></div>
+          <div
+            className="icon-close"
+            onClick={() => {
+              document.body.classList.toggle("stopScrolling");
+              setShowMenu(false);
+            }}
+          ></div>
         </div>
         <div className="mobile-menu">
           <ul className="nav flex-column justify-content-center">
@@ -115,3 +121,5 @@ export default function SlideMobileMenu({ showMenu, setShowMenu }) {
     </aside>
   );
 }
+
+export default memo(SlideMobileMenu);

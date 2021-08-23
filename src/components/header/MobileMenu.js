@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useState, memo } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 
 import SlideMobileMenu from "./SlideMobileMenu";
 
 import { AppState } from "../../App";
+import { HeaderState } from "../Header";
 import logo from "../../images/logo.jpg";
 
-export default function MobileMenu() {
+function MobileMenu() {
   const { productsInCart } = useContext(AppState);
-  let [showMenu, setShowMenu] = useState(false);
+  const { setShowAjaxCart } = useContext(HeaderState);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <>
@@ -17,7 +19,10 @@ export default function MobileMenu() {
           <div className="col-2 text-center">
             <a className="text-center mobile-icon">
               <Unicons.UilBars
-                onClick={() => setShowMenu(true)}
+                onClick={() => {
+                  document.body.classList.toggle("stopScrolling");
+                  setShowMenu(true);
+                }}
                 size="24"
                 color="#b79e8c"
                 style={{ cursor: "pointer" }}
@@ -30,7 +35,17 @@ export default function MobileMenu() {
             </a>
           </div>
           <div className="col-2">
-            <span className="cart">
+            <span
+              className="cart"
+              onClick={
+                productsInCart.length > 0
+                  ? () => {
+                      document.body.classList.toggle("stopScrolling");
+                      setShowAjaxCart(true);
+                    }
+                  : undefined
+              }
+            >
               <Unicons.UilShoppingCart
                 className="me-1"
                 size="16"
@@ -48,3 +63,5 @@ export default function MobileMenu() {
     </>
   );
 }
+
+export default memo(MobileMenu);

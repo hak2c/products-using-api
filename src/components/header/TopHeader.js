@@ -1,17 +1,19 @@
 import { Collapse } from "bootstrap";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { AppState } from "../../App";
+import { HeaderState } from "../Header";
 import { useState, useEffect } from "react";
 
-export default function TopHeader() {
+function TopHeader() {
   const {
     searchKey,
     handleChangeSearchInput,
     handleSubmitSearchForm,
     productsInCart,
   } = useContext(AppState);
+  const { setShowAjaxCart } = useContext(HeaderState);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -77,7 +79,17 @@ export default function TopHeader() {
                 </div>
               </form>
 
-              <span className="cart">
+              <span
+                className="cart"
+                onClick={
+                  productsInCart.length > 0
+                    ? () => {
+                        document.body.classList.toggle("stopScrolling");
+                        setShowAjaxCart(true);
+                      }
+                    : undefined
+                }
+              >
                 <Unicons.UilShoppingCart
                   className="me-1"
                   size="16"
@@ -93,3 +105,5 @@ export default function TopHeader() {
     </div>
   );
 }
+
+export default memo(TopHeader);
