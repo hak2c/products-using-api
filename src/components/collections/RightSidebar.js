@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { Pagination } from "react-bootstrap";
 
 import { CollectionState } from "../CollectionsPage";
 
 import ProductContent from "./ProductContent";
 
-export default function RightSidebar() {
+function RightSidebar() {
   const { products, page, totalPages, setPage, spinner, setSpinner } =
     useContext(CollectionState);
   let items = [];
@@ -56,3 +56,4 @@ export default function RightSidebar() {
     </aside>
   );
 }
+export default memo(RightSidebar);

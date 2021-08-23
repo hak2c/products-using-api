@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 import { moneyFormat, API_URL } from "../Utils";
 
-export default function ProductContent({ product, colClass }) {
+function ProductContent({ product, colClass }) {
   return (
     <div className={"product " + colClass}>
       <div className="product-content">
@@ -51,3 +52,4 @@ export default function ProductContent({ product, colClass }) {
     </div>
   );
 }
+export default memo(ProductContent);

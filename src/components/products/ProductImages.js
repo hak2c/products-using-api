@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Slider from "react-slick";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL } from "../Utils";
 
-export default function ProductImages({ images }) {
+function ProductImages({ images }) {
   const [mainSlider, setMainSlider] = useState(null);
   const [navSlider, setNavSlider] = useState(null);
 
@@ -100,3 +100,4 @@ export default function ProductImages({ images }) {
     </div>
   );
 }
+export default memo(ProductImages);

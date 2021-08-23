@@ -2,8 +2,9 @@ import image1 from "../../images/testament__hero-iwto-1.jpg";
 import image2 from "../../images/testament__hero-block-5.jpg";
 import image3 from "../../images/testament__hero-gallery-3.jpg";
 import image4 from "../../images/testament__hero-gallery-4.jpg";
+import { memo } from "react";
 
-export default function ExploreCollections() {
+function ExploreCollections() {
   return (
     <section className="explore__collections">
       <div className="container">
@@ -59,3 +60,4 @@ export default function ExploreCollections() {
     </section>
   );
 }
+export default memo(ExploreCollections);

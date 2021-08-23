@@ -1,4 +1,6 @@
-export default function () {
+import { memo } from "react";
+
+function QuoteForm() {
   return (
     <div className="raq-form">
       <div className="d-flex flex-wrap form-group-row">
@@ -51,3 +53,4 @@ export default function () {
     </div>
   );
 }
+export default memo(QuoteForm);

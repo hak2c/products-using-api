@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import { API_URL } from "../Utils";
 
-export default function CollectionsListItem({ collection }) {
+function CollectionsListItem({ collection }) {
   return (
     <div className="col-md-4 mb-5">
       <div className="item position-relative">
@@ -17,3 +18,5 @@ export default function CollectionsListItem({ collection }) {
     </div>
   );
 }
+
+export default memo(CollectionsListItem);

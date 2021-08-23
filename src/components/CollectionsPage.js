@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState, useContext, createContext, memo } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 
 import { API_URL, LIMIT_PER_PAGE, fetchData } from "./Utils";
@@ -13,7 +13,7 @@ import CollectionsList from "./CollectionsList";
 
 export const CollectionState = createContext();
 
-export default function CollectionsPage() {
+function CollectionsPage() {
   const { collections, productsInCart } = useContext(AppState);
   let { collectionId } = useParams();
 
@@ -97,3 +97,4 @@ export default function CollectionsPage() {
     </CollectionState.Provider>
   );
 }
+export default memo(CollectionsPage);

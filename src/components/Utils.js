@@ -60,7 +60,7 @@ export function addProductToCart(addedProduct) {
 export function getTotalPrice(products) {
   let total = 0;
   products.forEach((item) => (total += Number(item.total)));
-  return total;
+  return Number(total.toFixed(2));
 }
 
 export function getTax(total) {

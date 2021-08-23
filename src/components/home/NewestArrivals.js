@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import Slider from "react-slick";
 import * as Unicons from "@iconscout/react-unicons";
 
@@ -8,7 +8,7 @@ import ProductContent from "../collections/ProductContent";
 
 const LIMIT_PRODUCTS = 8;
 
-export default function NewestArrivals() {
+function NewestArrivals() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function NewestArrivals() {
       <Unicons.UilAngleRight size="45" color="#A7A7A7" />
     </button>
   );
-  let slickOpts = {
+  const slickOpts = {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
@@ -103,3 +103,4 @@ export default function NewestArrivals() {
     </section>
   );
 }
+export default memo(NewestArrivals);

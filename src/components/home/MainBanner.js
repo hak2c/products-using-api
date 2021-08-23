@@ -1,9 +1,10 @@
+import { memo } from "react";
 import { Carousel } from "react-bootstrap";
 
 import image1 from "../../images/slides/slide-1.jpg";
 import image2 from "../../images/slides/slide-2.jpg";
 
-export default function MainBanner() {
+function MainBanner() {
   return (
     <section className="main__banner">
       <Carousel interval={3000} controls={false} indicators={false}>
@@ -35,3 +36,4 @@ export default function MainBanner() {
     </section>
   );
 }
+export default memo(MainBanner);

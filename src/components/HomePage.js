@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { AppState } from "../App";
 
 import Header from "./Header";
@@ -10,7 +10,7 @@ import ContentBanner from "./home/ContentBanner";
 import ExploreCollections from "./home/ExploreCollections";
 import SubcribeEmail from "./home/SubcribeEmail";
 
-export default function HomePage() {
+function HomePage() {
   const { collections } = useContext(AppState);
   return (
     <>
@@ -29,3 +29,4 @@ export default function HomePage() {
     </>
   );
 }
+export default memo(HomePage);

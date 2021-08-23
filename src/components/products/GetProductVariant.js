@@ -2,9 +2,9 @@ import { ProductState } from "../ProductPage";
 
 import RenderSizeSelect from "./RenderSizeSelect";
 import RenderColorSelect from "./RenderColorSelect";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 
-export default function GetProductVariant() {
+function GetProductVariant() {
   const { product } = useContext(ProductState);
   return (
     <>
@@ -19,3 +19,4 @@ export default function GetProductVariant() {
     </>
   );
 }
+export default memo(GetProductVariant);

@@ -1,9 +1,9 @@
 import * as Unicons from "@iconscout/react-unicons";
 
 import { ProductState } from "../ProductPage";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
-export default function AddCartSuccessMessage() {
+function AddCartSuccessMessage() {
   const { setAddProductToCartMessage } = useContext(ProductState);
   return (
     <div className="raq-overlay">
@@ -30,3 +30,5 @@ export default function AddCartSuccessMessage() {
     </div>
   );
 }
+
+export default memo(AddCartSuccessMessage);

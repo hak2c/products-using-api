@@ -196,6 +196,12 @@ input[type="submit"].form-control {
   }
 }
 
+.accordion {
+  .accordion-item {
+    border: none;
+  }
+}
+
 .stopScrolling {
   height: 100%;
   overflow: hidden;
@@ -484,7 +490,7 @@ input[type="submit"].form-control {
     top: 0;
     height: 100vh;
     width: 100%;
-    max-width: 185px;
+    max-width: 285px;
     background: #ffffff;
     z-index: 100;
     overflow-y: scroll;
@@ -1315,21 +1321,21 @@ footer {
   z-index: 9;
 }
 
-.raq-overlay {
+.request__quote {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
   z-index: 100;
-  .raq-bg {
+  .request__quote--overlay {
     height: 100vh;
     width: 100vw;
     background: #1e1e1e;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     opacity: 0.8;
   }
-  .raq-popup {
+  .request__quote--popup {
     width: 95%;
     max-width: 1170px;
     position: fixed;
@@ -1341,7 +1347,7 @@ footer {
     overflow-y: auto;
     max-height: calc(100% - 150px);
     z-index: 100;
-    .close-raq-popup {
+    .request__quote--popup-close {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -1349,7 +1355,7 @@ footer {
       height: 20px;
       cursor: pointer;
     }
-    .raq-popup-content {
+    .request__quote--popup-content {
       .raq-message {
         text-align: center;
         font-size: 18px;
@@ -1401,12 +1407,12 @@ footer {
           }
         }
       }
-      #raq-quote-list-form {
+      #request__quote--list-form {
         max-width: 1170px;
         margin: 0 auto;
         padding-top: 30px;
         clear: both;
-        .raq-table {
+        .request__quote--table {
           width: 100%;
           max-width: 100%;
           margin-bottom: 20px;
@@ -1438,7 +1444,7 @@ footer {
                   border: 1px solid #b7b7b7 !important;
                   text-align: center;
                 }
-                &.raq_product_image {
+                &.request__quote--table-image {
                   width: 80px;
                   @media screen and (max-width: 768px) {
                     width: 100%;
@@ -1632,15 +1638,25 @@ footer {
     .cart-infor__note {
       margin-bottom: 20px;
       .noteBtn {
-        padding: 10px;
-        background-color: $dotted-color;
         width: 100%;
+        .accordion-button {
+          padding: 10px;
+          background-color: $dotted-color;
+          font-size: 16px;
+          color: #000;
+          &:focus {
+            outline: none;
+          }
+          &::after {
+            content: none;
+          }
+        }
         &:hover {
           color: $text-color;
         }
       }
-      #noteTextarea {
-        display: none;
+      .noteTextarea {
+        padding: 0;
       }
     }
     .cart-infor__free-shipping {

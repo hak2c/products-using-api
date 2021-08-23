@@ -1,6 +1,7 @@
+import { memo } from "react";
 import CollectionsListItem from "../collections/CollectionsListItem";
 
-export default function CollectionsList({ collections }) {
+function ListCollections({ collections }) {
   return (
     <section className="top-collections">
       <div className="container">
@@ -18,3 +19,4 @@ export default function CollectionsList({ collections }) {
     </section>
   );
 }
+export default memo(ListCollections);

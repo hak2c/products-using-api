@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ProductState } from "../ProductPage";
 
-export default function RenderSizeSelect() {
+function RenderSizeSelect() {
   const { product, sizeValue, setSizeValue } = useContext(ProductState);
   let sizeLabel = "";
 
@@ -45,3 +45,4 @@ export default function RenderSizeSelect() {
     </>
   );
 }
+export default memo(RenderSizeSelect);

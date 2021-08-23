@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ProductState } from "../ProductPage";
 import { API_URL } from "../Utils";
 
-export default function RenderColorSelect() {
+function RenderColorSelect() {
   const { product, colorValue, setColorValue } = useContext(ProductState);
   let colorLabel = "";
 
@@ -54,3 +54,4 @@ export default function RenderColorSelect() {
     </>
   );
 }
+export default memo(RenderColorSelect);

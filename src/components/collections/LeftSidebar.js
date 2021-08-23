@@ -1,10 +1,10 @@
 import { Collapse } from "bootstrap";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import { API_URL } from "../Utils";
 import { CollectionState } from "../CollectionsPage";
 import * as Unicons from "@iconscout/react-unicons";
 
-export default function LeftSidebar() {
+function LeftSidebar() {
   const { currentCollection, sortCondition, setSortCondition } =
     useContext(CollectionState);
   let [toggle, setToggle] = useState(false);
@@ -61,3 +61,5 @@ export default function LeftSidebar() {
     </aside>
   );
 }
+
+export default memo(LeftSidebar);

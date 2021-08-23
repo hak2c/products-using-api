@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import * as Unicons from "@iconscout/react-unicons";
+import { memo } from "react";
 
-export default function PrimaryMenu({ collections }) {
+function PrimaryMenu({ collections }) {
   return (
     <div className="primary-menu d-none d-lg-block">
       <ul className="nav justify-content-center">
@@ -36,3 +37,4 @@ export default function PrimaryMenu({ collections }) {
     </div>
   );
 }
+export default memo(PrimaryMenu);

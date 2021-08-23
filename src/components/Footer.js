@@ -1,7 +1,9 @@
+import { memo } from "react";
+
 import TopFooter from "./footer/TopFooter";
 import BottomFooter from "./footer/BottomFooter";
 
-export default function Footer({ collections }) {
+function Footer({ collections }) {
   return (
     <div className="container">
       <TopFooter collections={collections} />
@@ -9,3 +11,4 @@ export default function Footer({ collections }) {
     </div>
   );
 }
+export default memo(Footer);

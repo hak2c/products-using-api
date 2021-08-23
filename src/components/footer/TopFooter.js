@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-export default function TopFooter({ collections }) {
+function TopFooter({ collections }) {
   return (
     <div className="row top-footer">
       <div className="col-lg-4 mb-2 mb-lg-0">
@@ -75,3 +76,4 @@ export default function TopFooter({ collections }) {
     </div>
   );
 }
+export default memo(TopFooter);

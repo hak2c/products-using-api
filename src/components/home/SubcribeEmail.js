@@ -1,4 +1,6 @@
-export default function SubcribeEmail() {
+import { memo } from "react";
+
+function SubcribeEmail() {
   return (
     <section className="subcribe__email">
       <div className="container">
@@ -38,3 +40,4 @@ export default function SubcribeEmail() {
     </section>
   );
 }
+export default memo(SubcribeEmail);

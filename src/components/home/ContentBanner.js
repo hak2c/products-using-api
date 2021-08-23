@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Carousel } from "react-bootstrap";
 
 import image3 from "../../images/slides/slide-3.jpg";
 
-export default function ContentBanner() {
+function ContentBanner() {
   return (
     <section className="content__banner d-none d-md-block">
       <Carousel controls={false} indicators={false}>
@@ -25,3 +26,4 @@ export default function ContentBanner() {
     </section>
   );
 }
+export default memo(ContentBanner);

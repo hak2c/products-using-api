@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { moneyFormat } from "../Utils";
 
 import { ProductState } from "../ProductPage";
 
-export default function GetProductPrice() {
+function GetProductPrice() {
   const { product } = useContext(ProductState);
   return (
     <>
@@ -25,3 +25,4 @@ export default function GetProductPrice() {
     </>
   );
 }
+export default memo(GetProductPrice);

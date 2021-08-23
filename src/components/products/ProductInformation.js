@@ -24,6 +24,7 @@ function ProductInformation() {
       id: product.id,
       image: product.images[0],
       title: product.title,
+      slug: product.slug,
       size: sizeValue,
       color: colorValue,
       qty: quantity,

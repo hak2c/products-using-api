@@ -6,8 +6,9 @@ import americanExpress from "../../images/partners/american-express.jpg";
 import paypal from "../../images/partners/paypal.jpg";
 import dinersClub from "../../images/partners/diners-club.jpg";
 import discover from "../../images/partners/discover.jpg";
+import { memo } from "react";
 
-export default function BottomFooter() {
+function BottomFooter() {
   return (
     <div className="row align-items-end bottom-footer">
       <div className="col-md-6 d-block d-md-none footer-right">
@@ -52,3 +53,4 @@ export default function BottomFooter() {
     </div>
   );
 }
+export default memo(BottomFooter);
