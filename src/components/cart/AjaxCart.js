@@ -35,6 +35,7 @@ function AjaxCart() {
             <div className="ajax__cart--buttons">
               <Link
                 className="ajax__cart--view-cart button secondary-button"
+                onClick={() => document.body.classList.toggle("stopScrolling")}
                 to="/cart"
               >
                 View Cart
