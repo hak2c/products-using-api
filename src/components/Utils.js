@@ -1,5 +1,5 @@
 export const CART_KEY = "testament_cart";
-export const STORAGE_KEY = "testament_quote";
+export const QUOTE_KEY = "testament_quote";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
 export const LIMIT_PER_PAGE = 3;
 
@@ -14,26 +14,26 @@ export async function fetchData(url) {
   }
 }
 
-export function checkProductsInCart() {
+export function getProductsInCart() {
   let prodCart = localStorage.getItem(CART_KEY);
-  if (prodCart == null || prodCart == "") {
+  if (prodCart === null || prodCart === "") {
     localStorage.setItem(CART_KEY, "[]");
     prodCart = "[]";
   }
   return JSON.parse(prodCart);
 }
 
-export function checkProductsInQuote() {
-  let productsList = localStorage.getItem(STORAGE_KEY);
-  if (productsList == null || productsList == "") {
-    localStorage.setItem(STORAGE_KEY, "[]");
+export function getProductsInQuote() {
+  let productsList = localStorage.getItem(QUOTE_KEY);
+  if (productsList === null || productsList === "") {
+    localStorage.setItem(QUOTE_KEY, "[]");
     productsList = "[]";
   }
   return JSON.parse(productsList);
 }
 
 export function addProductToCart(addedProduct) {
-  const productsInCart = JSON.parse(localStorage.getItem(CART_KEY));
+  const productsInCart = getProductsInCart();
   if (productsInCart.length == 0) {
     productsInCart.push(addedProduct);
   } else {
@@ -49,6 +49,7 @@ export function addProductToCart(addedProduct) {
         productsInCart[i].total = (
           productsInCart[i].qty * productsInCart[i].price
         ).toFixed(2);
+        break;
       }
     }
     if (!exist) productsInCart.push(addedProduct);

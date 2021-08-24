@@ -76,7 +76,18 @@ function ProductPage() {
       <main>
         <div className="container product__page">
           {typeof product.collection !== "undefined" && (
-            <Breadcrumbs location={product.title} />
+            <Breadcrumbs
+              location={
+                "<a href='collection/" +
+                product.collection.id +
+                "/" +
+                product.collection.slug +
+                "'> " +
+                product.collection.title +
+                "</a> &gt; " +
+                product.title
+              }
+            />
           )}
 
           {!spinner ? (
@@ -107,14 +118,3 @@ function ProductPage() {
 }
 
 export default memo(ProductPage);
-
-// <Breadcrumbs
-// location={
-//   "<a href='collection/id=" +
-//   product.collection.id +
-//   "'>" +
-//   product.collection.title +
-//   "</a> > " +
-//   product.title
-// }
-// />

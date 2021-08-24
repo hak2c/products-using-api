@@ -3,8 +3,8 @@ import { createContext, useState, useEffect } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 
 import {
-  checkProductsInCart,
-  checkProductsInQuote,
+  getProductsInCart,
+  getProductsInQuote,
   API_URL,
   fetchData,
   getTotalPrice,
@@ -26,10 +26,8 @@ export const AppState = createContext();
 
 export default function App() {
   const [collections, setCollections] = useState([]);
-  const [productsInCart, setProductsInCart] = useState(checkProductsInCart());
-  const [productsInQuote, setProductsInQuote] = useState(
-    checkProductsInQuote()
-  );
+  const [productsInCart, setProductsInCart] = useState(getProductsInCart());
+  const [productsInQuote, setProductsInQuote] = useState(getProductsInQuote());
   const [showQuote, setShowQuote] = useState(false);
 
   const [subTotal, setSubTotal] = useState(getTotalPrice(productsInCart));
