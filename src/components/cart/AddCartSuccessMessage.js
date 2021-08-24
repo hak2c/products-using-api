@@ -1,4 +1,5 @@
 import * as Unicons from "@iconscout/react-unicons";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import { ProductState } from "../ProductPage";
 import { memo, useContext } from "react";
@@ -6,24 +7,39 @@ import { memo, useContext } from "react";
 function AddCartSuccessMessage() {
   const { setAddProductToCartMessage } = useContext(ProductState);
   return (
-    <div className="raq-overlay">
-      <div className="raq-bg"></div>
-      <div className="raq-popup">
+    <div className="added__cart">
+      <div className="added__cart--overlay"></div>
+      <div className="added__cart--popup">
         <span
-          className="close-raq-popup"
-          onClick={() => setAddProductToCartMessage(false)}
+          className="added__cart--popup-close"
+          onClick={() => {
+            document.body.classList.toggle("stopScrolling");
+            setAddProductToCartMessage(false);
+          }}
         >
           <Unicons.UilTimes size="20" color="#000000" />
         </span>
-        <div className="raq-popup-content">
-          <div className="raq-message">Add product to cart successfully!</div>
-          <div className="raq-action-button d-flex justify-content-center">
+        <div className="added__cart--content">
+          <div className="added__cart--message">
+            Add product to cart successfully!
+          </div>
+          <div className="added__cart--action-button d-flex justify-content-center">
             <a
-              className="raq-continue-shopping"
-              onClick={() => setAddProductToCartMessage(false)}
+              className="added__cart--continue-shopping"
+              onClick={() => {
+                document.body.classList.toggle("stopScrolling");
+                setAddProductToCartMessage(false);
+              }}
             >
               Continue Shopping
             </a>
+            <Link
+              className="added__cart--view-cart button secondary-button"
+              onClick={() => document.body.classList.toggle("stopScrolling")}
+              to="/cart"
+            >
+              View Cart
+            </Link>
           </div>
         </div>
       </div>

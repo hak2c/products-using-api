@@ -32,6 +32,7 @@ function ProductInformation() {
       total: (quantity * product.price).toFixed(2),
     };
     setProductsInCart(addProductToCart(addedProduct, productsInCart));
+    document.body.classList.toggle("stopScrolling");
     setAddProductToCartMessage(true);
   }
   function productDescription() {

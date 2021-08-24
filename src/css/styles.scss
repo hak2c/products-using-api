@@ -1567,6 +1567,95 @@ footer {
   }
 }
 
+.added__cart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  .added__cart--overlay {
+    height: 100vh;
+    width: 100vw;
+    background: #1e1e1e;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0.8;
+  }
+  .added__cart--popup {
+    width: 95%;
+    max-width: 1170px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: #fff;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: calc(100% - 150px);
+    z-index: 100;
+    .added__cart--popup-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .added__cart--content {
+      .added__cart--message {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 24px;
+      }
+      .added__cart--action-button {
+        gap: 20px;
+        a {
+          height: 40px;
+          line-height: 40px;
+          width: calc((100% - 20px) / 2);
+          max-width: 217px;
+          font-size: 16px;
+          border: 1px solid transparent;
+          border-radius: 3px;
+          display: inline-block;
+          text-align: center;
+          &.added__cart--continue-shopping {
+            border-color: $form-button-background-color;
+          }
+          &.added__cart--view-cart {
+            background-color: $form-button-background-color;
+            color: #ffffff;
+          }
+          @media screen and (min-width: 768px) {
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+          }
+        }
+        input#submitRAQForm {
+          background-color: $form-button-background-color;
+          color: #ffffff;
+          cursor: pointer;
+          &:hover {
+            background-color: $form-button-background-hover;
+          }
+        }
+
+        @media screen and (max-width: 414px) {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        @media screen and (max-width: 414px) {
+          &.raq-continue-shopping,
+          input#submitRAQForm {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
 /* BLOG PAGE */
 
 .blogs-list {
