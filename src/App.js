@@ -7,6 +7,9 @@ import {
   checkProductsInQuote,
   API_URL,
   fetchData,
+  getTotalPrice,
+  getTax,
+  CART_KEY,
 } from "./components/Utils";
 
 import CollectionsPage from "./components/CollectionsPage";
@@ -29,6 +32,9 @@ export default function App() {
   );
   const [showQuote, setShowQuote] = useState(false);
 
+  const [subTotal, setSubTotal] = useState(getTotalPrice(productsInCart));
+  const [tax, setTax] = useState(getTax(subTotal));
+
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
   useEffect(() => {
@@ -37,6 +43,50 @@ export default function App() {
       setCollections(data);
     });
   }, []);
+
+  function handleChangeQuantityButton(index, isDown = false) {
+    let newProducts = [...productsInCart];
+    if (index != -1) {
+      newProducts[index].qty = !isDown
+        ? newProducts[index].qty + 1
+        : isDown && newProducts[index].qty > 1
+        ? newProducts[index].qty - 1
+        : newProducts[index].qty;
+      newProducts[index].total = (
+        newProducts[index].qty * newProducts[index].price
+      ).toFixed(2);
+      setProductsInCart(newProducts);
+      calculateSubTotalAndTax(newProducts);
+      localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+    }
+  }
+
+  function handleChangeQuantityInput(index, e) {
+    if (!isNaN(e.target.value)) {
+      let newProducts = [...productsInCart];
+      newProducts[index].qty = parseInt(e.target.value, 10);
+      newProducts[index].total = (
+        newProducts[index].qty * newProducts[index].price
+      ).toFixed(2);
+      setProductsInCart(newProducts);
+      calculateSubTotalAndTax(newProducts);
+      localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+    }
+  }
+
+  function handleRemoveProduct(index) {
+    let newProducts = [...productsInCart];
+    newProducts.splice(index, 1);
+    setProductsInCart(newProducts);
+    calculateSubTotalAndTax(newProducts);
+    localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+  }
+
+  function calculateSubTotalAndTax(products) {
+    let newSubTotal = getTotalPrice(products);
+    setSubTotal(newSubTotal);
+    setTax(getTax(newSubTotal));
+  }
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
@@ -55,6 +105,13 @@ export default function App() {
         productsInQuote,
         setProductsInCart,
         setShowQuote,
+        subTotal,
+        setSubTotal,
+        tax,
+        setTax,
+        handleChangeQuantityButton,
+        handleChangeQuantityInput,
+        handleRemoveProduct,
       }}
     >
       <Router>

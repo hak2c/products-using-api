@@ -3,9 +3,9 @@ import { Accordion } from "react-bootstrap";
 
 function CartInformation() {
   return (
-    <div className="col-md-6 cart-infor">
-      <div className="cart-infor__note">
-        <Accordion defaultActiveKey="0">
+    <div className="col-md-6 cart__infor">
+      <div className="cart__infor--note">
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header className="noteBtn mb-2">
               Leave a note with your order
@@ -16,7 +16,7 @@ function CartInformation() {
           </Accordion.Item>
         </Accordion>
       </div>
-      <div className="cart-infor__free-shipping mb-4">
+      <div className="cart__infor--free-shipping mb-4">
         <div className="text-center free-shipping">
           <p className="mb-3">
             You are only $124.01 away from Free Domestic Shipping!

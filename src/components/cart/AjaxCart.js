@@ -3,6 +3,9 @@ import { memo, useContext } from "react";
 import { AppState } from "../../App";
 import { HeaderState } from "../Header";
 
+import CartItems from "./CartItems";
+import CartFooter from "./CartFooter";
+
 function AjaxCart() {
   const { productsInCart } = useContext(AppState);
   const { showAjaxCart, setShowAjaxCart } = useContext(HeaderState);
@@ -32,6 +35,10 @@ function AjaxCart() {
         </div>
         <div className="ajax__cart--content-inner">
           <form className="ajax__cart--form">
+            <div className="ajax__cart--items">
+              <CartItems />
+            </div>
+            <CartFooter />
             <div className="ajax__cart--buttons">
               <Link
                 className="ajax__cart--view-cart button secondary-button"

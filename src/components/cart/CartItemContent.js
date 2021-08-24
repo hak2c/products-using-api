@@ -2,27 +2,27 @@ import { memo, useContext } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL, moneyFormat } from "../Utils";
-import { CartState } from "../CartPage";
+import { AppState } from "../../App";
 
 function CartItemContent({ index, product }) {
   const {
     handleChangeQuantityButton,
     handleChangeQuantityInput,
     handleRemoveProduct,
-  } = useContext(CartState);
+  } = useContext(AppState);
   const { id, image, price, qty, color, size, title, slug, total } = product;
   return (
-    <ul className="d-flex flex-wrap align-items-center cart-item">
-      <li className="item-image">
+    <ul className="d-flex flex-wrap align-items-center cart--item">
+      <li className="cart--item-image">
         <img src={API_URL + image} />
       </li>
-      <li className="item-details">
-        <p className="item-details__title mb-3">
+      <li className="cart--item-details">
+        <p className="cart--item-title mb-3">
           <a target="_blank" href={"product/" + slug}>
             {title}
           </a>
         </p>
-        <div className="item-details__variants">
+        <div className="cart--item-variants">
           {size != "" && (
             <p>
               <strong>Size:</strong> {size}
@@ -35,10 +35,10 @@ function CartItemContent({ index, product }) {
           )}
         </div>
       </li>
-      <li className="item-price">
+      <li className="cart--item-price">
         <p>{moneyFormat(price)}</p>
       </li>
-      <li className="item-quantity">
+      <li className="cart--item-quantity">
         <a
           className="qty-product-control qty-product-control-down"
           field={"qty-product-" + index}
@@ -63,10 +63,13 @@ function CartItemContent({ index, product }) {
           &#43;
         </a>
       </li>
-      <li className="item-total">
+      <li className="cart--item-total text-end">
         <p>{moneyFormat(total)}</p>
       </li>
-      <li className="item-remove" onClick={() => handleRemoveProduct(index)}>
+      <li
+        className="cart--item-remove"
+        onClick={() => handleRemoveProduct(index)}
+      >
         <Unicons.UilTimes size="20" color="#000000" />
       </li>
     </ul>
