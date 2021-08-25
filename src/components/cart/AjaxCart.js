@@ -9,8 +9,9 @@ import CartFooter from "./CartFooter";
 
 function AjaxCart() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.cart.products);
-  const showAjaxCart = useSelector((state) => state.cart.showAjaxCart);
+  const { products: productsInCart, showAjaxCart } = useSelector(
+    (state) => state.cart
+  );
   const animateClass = showAjaxCart
     ? " animate__fadeInRight"
     : " animate__fadeOutRight";
@@ -32,7 +33,7 @@ function AjaxCart() {
             <h2>Cart</h2>
           </div>
           <div className="text-end">
-            <p>{products.length} item(s)</p>
+            <p>{productsInCart.length} item(s)</p>
           </div>
         </div>
         <div className="ajax__cart--content-inner">

@@ -1,13 +1,11 @@
 import axios from "axios";
 
 import { moneyFormat } from "../Utils";
-import { AppState } from "../../App";
-import { memo, useContext } from "react";
+import { memo } from "react";
 import { useSelector } from "react-redux";
 
 function CartTotal() {
-  const subTotal = useSelector((state) => state.cart.subTotal);
-  const tax = useSelector((state) => state.cart.tax);
+  const { subTotal, tax } = useSelector((state) => state.cart);
   const total = Number((subTotal + tax).toFixed(2));
 
   function handleCheckout() {

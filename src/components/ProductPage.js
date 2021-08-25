@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import { useContext, useEffect, useState, createContext, memo } from "react";
+import { useSelector } from "react-redux";
 
 import { API_URL, fetchData } from "./Utils";
 import { AppState } from "../App";
@@ -15,7 +16,8 @@ import AddCartSuccessMessage from "./cart/AddCartSuccessMessage";
 export const ProductState = createContext();
 
 function ProductPage() {
-  const { collections, productsInCart } = useContext(AppState);
+  const addedCartSuccess = useSelector((state) => state.cart.addedCartSuccess);
+  const { collections } = useContext(AppState);
 
   let { slug } = useParams();
 
@@ -24,7 +26,6 @@ function ProductPage() {
   const [sizeValue, setSizeValue] = useState("");
   const [colorValue, setColorValue] = useState("");
   const [spinner, setSpinner] = useState(true);
-  const [addProductToCartMessage, setAddProductToCartMessage] = useState(false);
 
   useEffect(() => {
     fetchData(API_URL + "products?slug=" + slug + "&_expand=collection").then(
@@ -69,7 +70,6 @@ function ProductPage() {
         setQuantity,
         setSizeValue,
         setColorValue,
-        setAddProductToCartMessage,
       }}
     >
       <Header />
@@ -112,7 +112,7 @@ function ProductPage() {
       <footer>
         <Footer collections={collections} />
       </footer>
-      {addProductToCartMessage && <AddCartSuccessMessage />}
+      {addedCartSuccess && <AddCartSuccessMessage />}
     </ProductState.Provider>
   );
 }

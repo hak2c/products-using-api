@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css/animate.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 import App from "./App";
 import { store } from "./app/store";

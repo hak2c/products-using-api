@@ -14,7 +14,7 @@ import CollectionsList from "./CollectionsList";
 export const CollectionState = createContext();
 
 function CollectionsPage() {
-  const { collections, productsInCart } = useContext(AppState);
+  const { collections } = useContext(AppState);
   let { collectionId } = useParams();
 
   const [products, setProducts] = useState([]);

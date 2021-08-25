@@ -1,8 +1,8 @@
-import { useContext, memo } from "react";
-import { AppState } from "../../App";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 
 function CartContentHeader() {
-  const { productsInCart } = useContext(AppState);
+  const { products: productsInCart } = useSelector((state) => state.cart);
   return (
     <div className="row cart__content--header align-items-center">
       <div className="col-4">

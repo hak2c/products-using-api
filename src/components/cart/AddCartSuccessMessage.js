@@ -1,11 +1,12 @@
 import * as Unicons from "@iconscout/react-unicons";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { memo } from "react";
+import { useDispatch } from "react-redux";
 
-import { ProductState } from "../ProductPage";
-import { memo, useContext } from "react";
+import { changeStatusAddedCartSuccess } from "../../features/cart/cartSlice";
 
 function AddCartSuccessMessage() {
-  const { setAddProductToCartMessage } = useContext(ProductState);
+  const dispatch = useDispatch();
   return (
     <div className="added__cart">
       <div className="added__cart--overlay"></div>
@@ -14,7 +15,7 @@ function AddCartSuccessMessage() {
           className="added__cart--popup-close"
           onClick={() => {
             document.body.classList.toggle("stopScrolling");
-            setAddProductToCartMessage(false);
+            dispatch(changeStatusAddedCartSuccess(false));
           }}
         >
           <Unicons.UilTimes size="20" color="#000000" />
@@ -28,14 +29,17 @@ function AddCartSuccessMessage() {
               className="added__cart--continue-shopping"
               onClick={() => {
                 document.body.classList.toggle("stopScrolling");
-                setAddProductToCartMessage(false);
+                dispatch(changeStatusAddedCartSuccess(false));
               }}
             >
               Continue Shopping
             </a>
             <Link
               className="added__cart--view-cart button secondary-button"
-              onClick={() => document.body.classList.toggle("stopScrolling")}
+              onClick={() => {
+                document.body.classList.toggle("stopScrolling");
+                dispatch(changeStatusAddedCartSuccess(false));
+              }}
               to="/cart"
             >
               View Cart

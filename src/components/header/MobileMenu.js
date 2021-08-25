@@ -10,7 +10,7 @@ import logo from "../../images/logo.jpg";
 
 function MobileMenu() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.cart.products);
+  const { products: productsInCart } = useSelector((state) => state.cart);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -39,7 +39,7 @@ function MobileMenu() {
             <span
               className="cart"
               onClick={
-                products.length > 0
+                productsInCart.length > 0
                   ? () => {
                       document.body.classList.toggle("stopScrolling");
                       dispatch(setShowAjaxCart(true));
@@ -53,7 +53,7 @@ function MobileMenu() {
                 color="#b79e8c"
                 style={{ cursor: "pointer" }}
               />
-              <span className="cart-count">{products.length}</span>
+              <span className="cart-count">{productsInCart.length}</span>
             </span>
           </div>
         </div>

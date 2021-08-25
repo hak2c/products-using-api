@@ -1,30 +1,35 @@
-import { memo, useContext } from "react";
+import { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL, moneyFormat, CART_KEY } from "../Utils";
 import {
-  setProducts,
-  changeQuantity,
+  setProductsToCart,
+  changeItemCartQuantityWithButton,
+  changeItemCartQuantityWithInput,
   calculateSubTotalAndTax,
 } from "../../features/cart/cartSlice";
-import { AppState } from "../../App";
 
 function CartItemContent({ index, product }) {
-  const products = useSelector((state) => state.cart.products);
+  const { products: productsInCart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { handleChangeQuantityInput } = useContext(AppState);
-  function handleChangeQuantityButton(index, isDown = false) {
-    dispatch(changeQuantity({ index, isDown }));
+  function handleChangeQuantityWithInput(index, e) {
+    let value = Number(e.target.value);
+    if (!isNaN(value)) {
+      dispatch(changeItemCartQuantityWithInput({ index, value }));
+    }
+  }
+  function handleChangeQuantityWithButton(index, isDown = false) {
+    dispatch(changeItemCartQuantityWithButton({ index, isDown }));
   }
   function handleRemoveProduct(index) {
-    let newProducts = [...products];
+    let newProducts = [...productsInCart];
     newProducts.splice(index, 1);
-    dispatch(setProducts(newProducts));
+    dispatch(setProductsToCart(newProducts));
     dispatch(calculateSubTotalAndTax(newProducts));
     localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
   }
-  const { id, image, price, qty, color, size, title, slug, total } = product;
+  const { image, price, qty, color, size, title, slug, total } = product;
   return (
     <ul className="d-flex flex-wrap align-items-center cart--item">
       <li className="cart--item-image">
@@ -56,7 +61,7 @@ function CartItemContent({ index, product }) {
         <a
           className="qty-product-control qty-product-control-down"
           field={"qty-product-" + index}
-          onClick={() => handleChangeQuantityButton(index, true)}
+          onClick={() => handleChangeQuantityWithButton(index, true)}
         >
           &#45;
         </a>
@@ -67,12 +72,12 @@ function CartItemContent({ index, product }) {
           className="quantity"
           id={"updates_" + index}
           value={qty}
-          onChange={(e) => handleChangeQuantityInput(index, e)}
+          onChange={(e) => handleChangeQuantityWithInput(index, e)}
         />
         <a
           className="qty-product-control qty-product-control-up"
           field={"qty-product-" + index}
-          onClick={() => handleChangeQuantityButton(index)}
+          onClick={() => handleChangeQuantityWithButton(index)}
         >
           &#43;
         </a>

@@ -1,8 +1,12 @@
 import { memo, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { AppState } from "../../App";
 import { ProductState } from "../ProductPage";
 import { addProductToCart } from "../Utils";
+import {
+  changeStatusAddedCartSuccess,
+  setProductsToCart,
+} from "../../features/cart/cartSlice";
 
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
@@ -15,9 +19,9 @@ function ProductInformation() {
     setQuantity,
     sizeValue,
     colorValue,
-    setAddProductToCartMessage,
   } = useContext(ProductState);
-  const { productsInCart, setProductsInCart } = useContext(AppState);
+  const { products: productsInCart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   function handleAddProductToCart() {
     const addedProduct = {
@@ -31,9 +35,9 @@ function ProductInformation() {
       price: product.price,
       total: (quantity * product.price).toFixed(2),
     };
-    setProductsInCart(addProductToCart(addedProduct, productsInCart));
+    dispatch(setProductsToCart(addProductToCart(addedProduct, productsInCart)));
     document.body.classList.toggle("stopScrolling");
-    setAddProductToCartMessage(true);
+    dispatch(changeStatusAddedCartSuccess(true));
   }
   function productDescription() {
     return { __html: product.description };

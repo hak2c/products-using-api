@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 function TopHeader() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.cart.products);
+  const { products: productsInCart } = useSelector((state) => state.cart);
   const { searchKey, handleChangeSearchInput, handleSubmitSearchForm } =
     useContext(AppState);
 
@@ -82,7 +82,7 @@ function TopHeader() {
               <span
                 className="cart"
                 onClick={
-                  products.length > 0
+                  productsInCart.length > 0
                     ? () => {
                         document.body.classList.toggle("stopScrolling");
                         dispatch(setShowAjaxCart(true));
@@ -96,7 +96,7 @@ function TopHeader() {
                   color="#ffffff"
                   style={{ cursor: "pointer" }}
                 />
-                <span className="cart-count">{products.length}</span>
+                <span className="cart-count">{productsInCart.length}</span>
               </span>
             </div>
           </div>

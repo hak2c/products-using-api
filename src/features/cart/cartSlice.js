@@ -11,17 +11,20 @@ const initialState = {
   subTotal: getTotalPrice(getProductsInCart()),
   tax: getTax(getTotalPrice(getProductsInCart())),
   showAjaxCart: false,
+  addedCartSuccess: false,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setProducts: (state, action) => {
+    setProductsToCart: (state, action) => {
       const products = action.payload;
       state.products = products;
+      state.subTotal = getTotalPrice(state.products);
+      state.tax = getTax(state.subTotal);
     },
-    changeQuantity: (state, action) => {
+    changeItemCartQuantityWithButton: (state, action) => {
       const { index, isDown } = action.payload;
       let newProducts = [...state.products];
       if (index != -1) {
@@ -39,6 +42,18 @@ export const cartSlice = createSlice({
         localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
       }
     },
+    changeItemCartQuantityWithInput: (state, action) => {
+      const { index, value } = action.payload;
+      let newProducts = [...state.products];
+      newProducts[index].qty = value;
+      newProducts[index].total = (
+        newProducts[index].qty * newProducts[index].price
+      ).toFixed(2);
+      state.products = newProducts;
+      state.subTotal = getTotalPrice(newProducts);
+      state.tax = getTax(state.subTotal);
+      localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+    },
     calculateSubTotalAndTax: (state) => {
       state.subTotal = getTotalPrice(state.products);
       state.tax = getTax(state.subTotal);
@@ -47,14 +62,20 @@ export const cartSlice = createSlice({
       const status = action.payload;
       state.showAjaxCart = status;
     },
+    changeStatusAddedCartSuccess: (state, action) => {
+      const status = action.payload;
+      state.addedCartSuccess = status;
+    },
   },
 });
 
 export const {
-  setProducts,
-  changeQuantity,
+  setProductsToCart,
+  changeItemCartQuantityWithButton,
+  changeItemCartQuantityWithInput,
   calculateSubTotalAndTax,
   setShowAjaxCart,
+  changeStatusAddedCartSuccess,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

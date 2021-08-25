@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import CartItemContent from "./CartItemContent";
 
 function CartItems() {
-  const products = useSelector((state) => state.cart.products);
+  const { products: productsInCart } = useSelector((state) => state.cart);
   return (
     <div className="cart--items">
-      {products.map((product, index) => (
+      {productsInCart.map((product, index) => (
         <CartItemContent key={index} index={index} product={product} />
       ))}
     </div>
