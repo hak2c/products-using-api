@@ -1,13 +1,13 @@
-import { memo, useContext } from "react";
-import { AppState } from "../../App";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 
 import CartItemContent from "./CartItemContent";
 
 function CartItems() {
-  const { productsInCart } = useContext(AppState);
+  const products = useSelector((state) => state.cart.products);
   return (
     <div className="cart--items">
-      {productsInCart.map((product, index) => (
+      {products.map((product, index) => (
         <CartItemContent key={index} index={index} product={product} />
       ))}
     </div>

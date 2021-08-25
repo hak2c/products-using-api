@@ -1,7 +1,7 @@
-import { useContext, memo, useState, createContext } from "react";
+import { useContext, memo } from "react";
+import { useSelector } from "react-redux";
 
 import { AppState } from "../App";
-import { getTotalPrice, getTax, CART_KEY } from "./Utils";
 
 import Header from "./Header";
 import Breadcrumbs from "./Breadcrumbs";
@@ -12,7 +12,8 @@ import CartItems from "./cart/CartItems";
 import CartFooter from "./cart/CartFooter";
 
 function CartPage() {
-  const { collections, productsInCart } = useContext(AppState);
+  const products = useSelector((state) => state.cart.products);
+  const { collections } = useContext(AppState);
 
   return (
     <>
@@ -22,7 +23,7 @@ function CartPage() {
           <Breadcrumbs location="Your Shopping Cart" />
           <div className="cart__content">
             <CartContentHeader />
-            {productsInCart.length > 0 ? (
+            {products.length > 0 ? (
               <form id="cart-infor-form" method="post" name="cart-infor-form">
                 <CartItems />
                 <CartFooter />

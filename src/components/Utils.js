@@ -14,6 +14,15 @@ export async function fetchData(url) {
   }
 }
 
+// export async function fetchPostData(url, data) {
+//   const requestOptions = {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   };
+
+// }
+
 export function getProductsInCart() {
   let prodCart = localStorage.getItem(CART_KEY);
   if (prodCart === null || prodCart === "") {

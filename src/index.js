@@ -7,11 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import App from "./App";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>,
   rootElement
 );

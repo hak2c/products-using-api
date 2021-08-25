@@ -1,15 +1,16 @@
-import { useContext, useState, memo } from "react";
+import { useState, memo } from "react";
 import * as Unicons from "@iconscout/react-unicons";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setShowAjaxCart } from "../../features/cart/cartSlice";
 
 import SlideMobileMenu from "./SlideMobileMenu";
 
-import { AppState } from "../../App";
-import { HeaderState } from "../Header";
 import logo from "../../images/logo.jpg";
 
 function MobileMenu() {
-  const { productsInCart } = useContext(AppState);
-  const { setShowAjaxCart } = useContext(HeaderState);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -38,10 +39,10 @@ function MobileMenu() {
             <span
               className="cart"
               onClick={
-                productsInCart.length > 0
+                products.length > 0
                   ? () => {
                       document.body.classList.toggle("stopScrolling");
-                      setShowAjaxCart(true);
+                      dispatch(setShowAjaxCart(true));
                     }
                   : undefined
               }
@@ -52,7 +53,7 @@ function MobileMenu() {
                 color="#b79e8c"
                 style={{ cursor: "pointer" }}
               />
-              <span className="cart-count">{productsInCart.length}</span>
+              <span className="cart-count">{products.length}</span>
             </span>
           </div>
         </div>

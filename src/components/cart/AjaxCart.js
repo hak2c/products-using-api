@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { memo, useContext } from "react";
-import { AppState } from "../../App";
-import { HeaderState } from "../Header";
+import { memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setShowAjaxCart } from "../../features/cart/cartSlice";
 
 import CartItems from "./CartItems";
 import CartFooter from "./CartFooter";
 
 function AjaxCart() {
-  const { productsInCart } = useContext(AppState);
-  const { showAjaxCart, setShowAjaxCart } = useContext(HeaderState);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
+  const showAjaxCart = useSelector((state) => state.cart.showAjaxCart);
   const animateClass = showAjaxCart
     ? " animate__fadeInRight"
     : " animate__fadeOutRight";
@@ -22,7 +24,7 @@ function AjaxCart() {
               className="icon-close"
               onClick={() => {
                 document.body.classList.toggle("stopScrolling");
-                setShowAjaxCart(false);
+                dispatch(setShowAjaxCart(false));
               }}
             ></div>
           </div>
@@ -30,7 +32,7 @@ function AjaxCart() {
             <h2>Cart</h2>
           </div>
           <div className="text-end">
-            <p>{productsInCart.length} item(s)</p>
+            <p>{products.length} item(s)</p>
           </div>
         </div>
         <div className="ajax__cart--content-inner">

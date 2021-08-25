@@ -1,10 +1,29 @@
+import axios from "axios";
+
 import { moneyFormat } from "../Utils";
 import { AppState } from "../../App";
 import { memo, useContext } from "react";
+import { useSelector } from "react-redux";
 
 function CartTotal() {
-  const { subTotal, tax } = useContext(AppState);
+  const subTotal = useSelector((state) => state.cart.subTotal);
+  const tax = useSelector((state) => state.cart.tax);
   const total = Number((subTotal + tax).toFixed(2));
+
+  function handleCheckout() {
+    axios
+      .post("/checkout", {
+        subTotal: subTotal,
+        tax: tax,
+        total: total,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <div className="col-md-6 cart_total">
       <div className="cart__total--details">
@@ -33,6 +52,7 @@ function CartTotal() {
           id="submitCart"
           name="submitCart"
           value="Check Out"
+          onClick={handleCheckout}
         />
       </div>
     </div>

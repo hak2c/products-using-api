@@ -1,19 +1,19 @@
 import { Collapse } from "bootstrap";
 import { memo, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
+import { setShowAjaxCart } from "../../features/cart/cartSlice";
+
 import { AppState } from "../../App";
-import { HeaderState } from "../Header";
 import { useState, useEffect } from "react";
 
 function TopHeader() {
-  const {
-    searchKey,
-    handleChangeSearchInput,
-    handleSubmitSearchForm,
-    productsInCart,
-  } = useContext(AppState);
-  const { setShowAjaxCart } = useContext(HeaderState);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
+  const { searchKey, handleChangeSearchInput, handleSubmitSearchForm } =
+    useContext(AppState);
+
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -82,10 +82,10 @@ function TopHeader() {
               <span
                 className="cart"
                 onClick={
-                  productsInCart.length > 0
+                  products.length > 0
                     ? () => {
                         document.body.classList.toggle("stopScrolling");
-                        setShowAjaxCart(true);
+                        dispatch(setShowAjaxCart(true));
                       }
                     : undefined
                 }
@@ -96,7 +96,7 @@ function TopHeader() {
                   color="#ffffff"
                   style={{ cursor: "pointer" }}
                 />
-                <span className="cart-count">{productsInCart.length}</span>
+                <span className="cart-count">{products.length}</span>
               </span>
             </div>
           </div>

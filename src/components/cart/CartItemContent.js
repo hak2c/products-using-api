@@ -1,15 +1,29 @@
 import { memo, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { API_URL, moneyFormat } from "../Utils";
+import { API_URL, moneyFormat, CART_KEY } from "../Utils";
+import {
+  setProducts,
+  changeQuantity,
+  calculateSubTotalAndTax,
+} from "../../features/cart/cartSlice";
 import { AppState } from "../../App";
 
 function CartItemContent({ index, product }) {
-  const {
-    handleChangeQuantityButton,
-    handleChangeQuantityInput,
-    handleRemoveProduct,
-  } = useContext(AppState);
+  const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
+  const { handleChangeQuantityInput } = useContext(AppState);
+  function handleChangeQuantityButton(index, isDown = false) {
+    dispatch(changeQuantity({ index, isDown }));
+  }
+  function handleRemoveProduct(index) {
+    let newProducts = [...products];
+    newProducts.splice(index, 1);
+    dispatch(setProducts(newProducts));
+    dispatch(calculateSubTotalAndTax(newProducts));
+    localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+  }
   const { id, image, price, qty, color, size, title, slug, total } = product;
   return (
     <ul className="d-flex flex-wrap align-items-center cart--item">
