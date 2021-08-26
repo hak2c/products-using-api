@@ -2,11 +2,16 @@ import { memo, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ProductState } from "../ProductPage";
-import { addProductToCart } from "../Utils";
+import { addProductToCart, addProductToQuote } from "../Utils";
 import {
   changeStatusAddedCartSuccess,
   setProductsInCart,
 } from "../../features/cart/cartSlice";
+
+import {
+  setProductsInQuote,
+  changeStatusAddedQuoteSuccess,
+} from "../../features/quote/quoteSlice";
 
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";
@@ -21,32 +26,52 @@ function ProductInformation() {
     colorValue,
   } = useContext(ProductState);
   const { products: productsInCart } = useSelector((state) => state.cart);
+  const { products: productsInQuote } = useSelector((state) => state.quote);
   const dispatch = useDispatch();
+  const { id, images, title, slug, price, description } = product;
 
   function handleAddProductToCart() {
     const addedProduct = {
-      id: product.id,
-      image: product.images[0],
-      title: product.title,
-      slug: product.slug,
+      id: id,
+      image: images[0],
+      title: title,
+      slug: slug,
       size: sizeValue,
       color: colorValue,
       qty: quantity,
-      price: product.price,
-      total: (quantity * product.price).toFixed(2),
+      price: price,
+      total: Number((quantity * price).toFixed(2)),
     };
-    dispatch(setProductsInCart(addProductToCart(addedProduct, productsInCart)));
+    dispatch(setProductsInCart(addProductToCart(addedProduct)));
     document.body.classList.toggle("stopScrolling");
     dispatch(changeStatusAddedCartSuccess(true));
   }
+
+  function handleAddProductToQuote() {
+    const addedProduct = {
+      id: id,
+      image: images[0],
+      title: title,
+      slug: slug,
+      size: sizeValue,
+      color: colorValue,
+      qty: quantity,
+      price: price,
+      total: Number((quantity * price).toFixed(2)),
+    };
+    dispatch(setProductsInQuote(addProductToQuote(addedProduct)));
+    document.body.classList.toggle("stopScrolling");
+    dispatch(changeStatusAddedQuoteSuccess(true));
+  }
+
   function productDescription() {
-    return { __html: product.description };
+    return { __html: description };
   }
   return (
     <div className="col-lg-6 col-md-5 product__information">
       <div className="product__information--content">
         <h1 className="product__information--content-section product-title">
-          {product.title}
+          {title}
         </h1>
         <GetProductPrice />
         <form
@@ -90,7 +115,10 @@ function ProductInformation() {
           </div>
           <p className="mt-4 text-center text-uppercase bold">Or</p>
           <div className="mt-4">
-            <a className="addQuoteButton button secondary-button">
+            <a
+              className="addQuoteButton button secondary-button"
+              onClick={handleAddProductToQuote}
+            >
               Request a Quote
             </a>
           </div>

@@ -3,7 +3,11 @@ import { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { API_URL, moneyFormat } from "../Utils";
-import { setProductsInQuote } from "../../features/quote/quoteSlice";
+import {
+  changeQuoteItemQuantityWithButton,
+  changeQuoteItemQuantityWithInput,
+  setProductsInQuote,
+} from "../../features/quote/quoteSlice";
 
 function QuoteItem({ product, index }) {
   const dispatch = useDispatch();
@@ -15,6 +19,18 @@ function QuoteItem({ product, index }) {
     products.splice(index, 1);
     dispatch(setProductsInQuote(products));
   }
+
+  function handleChangeQuantityWithButton(index, isDown = false) {
+    dispatch(changeQuoteItemQuantityWithButton({ index, isDown }));
+  }
+
+  function handleChangeQuantityWithInput(index, e) {
+    let value = Number(e.target.value);
+    if (!isNaN(value)) {
+      dispatch(changeQuoteItemQuantityWithInput({ index, value }));
+    }
+  }
+
   return (
     <tr className="request__quote--table-row">
       <td className="request__quote--item-image">
@@ -39,6 +55,11 @@ function QuoteItem({ product, index }) {
         <a
           className="request__quote--item-qty-control request__quote--item-qty-down"
           field={"qty-product-idx" + index}
+          onClick={
+            qty > 1
+              ? () => handleChangeQuantityWithButton(index, true)
+              : undefined
+          }
         >
           &#45;
         </a>
@@ -48,10 +69,12 @@ function QuoteItem({ product, index }) {
           className="quantity"
           id={"updates_" + index}
           value={qty}
+          onChange={(e) => handleChangeQuantityWithInput(index, e)}
         />
         <a
           className="request__quote--item-qty-control request__quote--item-qty-up"
           field={"qty-product-idx" + index}
+          onClick={() => handleChangeQuantityWithButton(index)}
         >
           &#43;
         </a>

@@ -55,15 +55,40 @@ export function addProductToCart(addedProduct) {
       ) {
         exist = true;
         productsInCart[i].qty += addedProduct.qty;
-        productsInCart[i].total = (
-          productsInCart[i].qty * productsInCart[i].price
-        ).toFixed(2);
+        productsInCart[i].total = Number(
+          (productsInCart[i].qty * productsInCart[i].price).toFixed(2)
+        );
         break;
       }
     }
     if (!exist) productsInCart.push(addedProduct);
   }
   return productsInCart;
+}
+
+export function addProductToQuote(addedProduct) {
+  const productsInQuote = getProductsInQuote();
+  if (productsInQuote.length == 0) {
+    productsInQuote.push(addedProduct);
+  } else {
+    let exist = false;
+    for (let i = 0; i < productsInQuote.length; i++) {
+      if (
+        productsInQuote[i].id === addedProduct.id &&
+        productsInQuote[i].size === addedProduct.size &&
+        productsInQuote[i].color === addedProduct.color
+      ) {
+        exist = true;
+        productsInQuote[i].qty += addedProduct.qty;
+        productsInQuote[i].total = Number(
+          (productsInQuote[i].qty * productsInQuote[i].price).toFixed(2)
+        );
+        break;
+      }
+    }
+    if (!exist) productsInQuote.push(addedProduct);
+  }
+  return productsInQuote;
 }
 
 export function getTotalPrice(products) {

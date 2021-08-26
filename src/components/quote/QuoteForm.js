@@ -6,15 +6,15 @@ import { setShowQuote } from "../../features/quote/quoteSlice";
 function QuoteForm() {
   const dispatch = useDispatch();
   return (
-    <div className="raq-form">
+    <div className="request__quote--infor">
       <div className="d-flex flex-wrap form-group-row">
         <div className="form-group">
           <label className="control-label">Name</label>
-          <div className="raq-input">
+          <div className="request__quote--infor-input">
             <input
               type="text"
-              id="raq-form_name"
-              name="raq-form_name"
+              id="request__quote--infor-name"
+              name="request__quote--infor-name"
               required
               className="form-control"
             />
@@ -22,12 +22,12 @@ function QuoteForm() {
         </div>
         <div className="form-group">
           <label className="control-label">Email</label>
-          <div className="raq-input">
+          <div className="request__quote--infor-input">
             <input
               type="email"
               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-              id="raq-form_email"
-              name="raq-form_email"
+              id="request__quote--infor-email"
+              name="request__quote--infor-email"
               required
               className="form-control"
             />
@@ -36,11 +36,11 @@ function QuoteForm() {
       </div>
       <div className="form-group">
         <label className="control-label">Message</label>
-        <div className="raq-input">
+        <div className="request__quote--infor-input">
           <textarea
             className="form-control"
-            id="raq-form_message"
-            name="raq-form_message"
+            id="request__quote--infor-message"
+            name="request__quote--infor-message"
             required
           ></textarea>
         </div>
@@ -54,8 +54,8 @@ function QuoteForm() {
         </a>
         <input
           type="submit"
-          id="submitRAQForm"
-          name="submitRAQForm"
+          id="request__quote--form-submit"
+          name="request__quote--form-submit"
           value="Send Message"
         />
       </div>

@@ -10,7 +10,9 @@ import QuoteItem from "./QuoteItem";
 function QuotePopup() {
   const dispatch = useDispatch();
   const { products: productsInQuote } = useSelector((state) => state.quote);
-
+  function createNewQuote() {
+    console.log("xxx");
+  }
   return (
     <div className="request__quote">
       <div className="request__quote--overlay"></div>
@@ -25,7 +27,11 @@ function QuotePopup() {
           {productsInQuote.length > 0 ? (
             <div className="request__quote--list">
               <div className="request__quote--list-content">
-                <form id="request__quote--form" name="request__quote--form">
+                <form
+                  id="request__quote--form"
+                  name="request__quote--form"
+                  onSubmit={createNewQuote}
+                >
                   <table className="table request__quote--table">
                     <thead>
                       <tr>
@@ -48,7 +54,7 @@ function QuotePopup() {
                     <tbody>
                       {productsInQuote.map((product, index) => (
                         <QuoteItem
-                          key={product.id}
+                          key={index}
                           product={product}
                           index={index}
                         />

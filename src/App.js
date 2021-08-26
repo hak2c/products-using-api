@@ -13,6 +13,7 @@ import SearchPage from "./components/SearchPage";
 import QuotePopup from "./components/quote/QuotePopup";
 import CartPage from "./components/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
+import AddedQuoteSuccess from "./components/quote/AddedQuoteSuccess";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -22,9 +23,11 @@ export const AppState = createContext();
 export default function App() {
   const dispatch = useDispatch();
   const [collections, setCollections] = useState([]);
-  const { products: productsInQuote, showQuote } = useSelector(
-    (state) => state.quote
-  );
+  const {
+    products: productsInQuote,
+    showQuote,
+    addedQuoteSuccess,
+  } = useSelector((state) => state.quote);
 
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
@@ -78,6 +81,7 @@ export default function App() {
           </div>
         )}
         {showQuote && <QuotePopup />}
+        {addedQuoteSuccess && <AddedQuoteSuccess />}
       </Router>
     </AppState.Provider>
   );

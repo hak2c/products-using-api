@@ -1419,7 +1419,7 @@ footer {
       .request__quote--action-button {
         gap: 20px;
         a,
-        input#submitRAQForm {
+        input#request__quote--form-submit {
           height: 40px;
           line-height: 40px;
           width: calc((100% - 20px) / 2);
@@ -1432,7 +1432,7 @@ footer {
           &.request__quote--continue-shopping {
             border-color: $form-button-background-color;
           }
-          &.raq-dialog-view {
+          &.request__quote--view {
             background-color: $form-button-background-color;
             color: #ffffff;
           }
@@ -1442,7 +1442,7 @@ footer {
             font-size: 18px;
           }
         }
-        input#submitRAQForm {
+        input#request__quote--form-submit {
           background-color: $form-button-background-color;
           color: #ffffff;
           cursor: pointer;
@@ -1457,7 +1457,7 @@ footer {
         }
         @media screen and (max-width: 414px) {
           &.request__quote--continue-shopping,
-          input#submitRAQForm {
+          input#request__quote--form-submit {
             width: 100%;
           }
         }
@@ -1548,7 +1548,7 @@ footer {
             }
           }
         }
-        .raq-form {
+        .request__quote--infor {
           .form-group-row {
             justify-content: space-between;
             .form-group {
@@ -1633,22 +1633,13 @@ footer {
             font-size: 18px;
           }
         }
-        input#submitRAQForm {
-          background-color: $form-button-background-color;
-          color: #ffffff;
-          cursor: pointer;
-          &:hover {
-            background-color: $form-button-background-hover;
-          }
-        }
 
         @media screen and (max-width: 414px) {
           flex-wrap: wrap;
           gap: 10px;
         }
         @media screen and (max-width: 414px) {
-          &.request__quote--continue-shopping,
-          input#submitRAQForm {
+          &.added__cart--continue-shopping {
             width: 100%;
           }
         }

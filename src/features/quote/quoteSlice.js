@@ -19,6 +19,30 @@ export const quoteSlice = createSlice({
         localStorage.setItem(QUOTE_KEY, JSON.stringify(products));
       else localStorage.setItem(QUOTE_KEY, "[]");
     },
+    changeQuoteItemQuantityWithButton: (state, action) => {
+      const { index, isDown } = action.payload;
+      let newProducts = [...state.products];
+      if (index != -1) {
+        newProducts[index].qty = !isDown
+          ? newProducts[index].qty + 1
+          : newProducts[index].qty - 1;
+        newProducts[index].total = (
+          newProducts[index].qty * newProducts[index].price
+        ).toFixed(2);
+        state.products = newProducts;
+        localStorage.setItem(QUOTE_KEY, JSON.stringify(newProducts));
+      }
+    },
+    changeQuoteItemQuantityWithInput: (state, action) => {
+      const { index, value } = action.payload;
+      let newProducts = [...state.products];
+      newProducts[index].qty = value;
+      newProducts[index].total = (
+        newProducts[index].qty * newProducts[index].price
+      ).toFixed(2);
+      state.products = newProducts;
+      localStorage.setItem(QUOTE_KEY, JSON.stringify(newProducts));
+    },
     setShowQuote: (state, action) => {
       const status = action.payload;
       state.showQuote = status;
@@ -32,6 +56,8 @@ export const quoteSlice = createSlice({
 
 export const {
   setProductsInQuote,
+  changeQuoteItemQuantityWithButton,
+  changeQuoteItemQuantityWithInput,
   setShowQuote,
   changeStatusAddedQuoteSuccess,
 } = quoteSlice.actions;

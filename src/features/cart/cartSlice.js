@@ -34,9 +34,7 @@ export const cartSlice = createSlice({
       if (index != -1) {
         newProducts[index].qty = !isDown
           ? newProducts[index].qty + 1
-          : isDown && newProducts[index].qty > 1
-          ? newProducts[index].qty - 1
-          : newProducts[index].qty;
+          : newProducts[index].qty - 1;
         newProducts[index].total = (
           newProducts[index].qty * newProducts[index].price
         ).toFixed(2);

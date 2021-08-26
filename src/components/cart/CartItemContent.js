@@ -58,7 +58,11 @@ function CartItemContent({ index, product }) {
         <a
           className="cart--item-qty-control cart--item-qty-down"
           field={"qty-product-" + index}
-          onClick={() => handleChangeQuantityWithButton(index, true)}
+          onClick={
+            qty > 1
+              ? () => handleChangeQuantityWithButton(index, true)
+              : undefined
+          }
         >
           &#45;
         </a>

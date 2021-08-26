@@ -4,25 +4,13 @@ import { API_URL } from "../Utils";
 
 function RenderColorSelect() {
   const { product, colorValue, setColorValue } = useContext(ProductState);
-  let colorLabel = "";
 
-  for (let i = 0; i < product.color.length; i++) {
-    if (product.color[i].available) {
-      colorLabel = (
-        <div className="form-group variant-label color-label">
-          <label>Color:</label>
-          <span>{product.color[i].name}</span>
-        </div>
-      );
-      break;
-    }
-  }
-  function handleOnChange(e) {
-    setColorValue(e.target.value);
-  }
   return (
     <>
-      {colorLabel}
+      <div className="form-group variant-label color-label">
+        <label>Color:</label>
+        <span>{colorValue}</span>
+      </div>
       <div className="color-select d-flex align-items-center">
         {product.color.map((color, index) => (
           <div key={index} className="form-group">
@@ -32,7 +20,11 @@ function RenderColorSelect() {
               name="color-variant"
               value={color.name}
               id={"color" + color.name}
-              onChange={color.available ? (e) => handleOnChange(e) : undefined}
+              onChange={
+                color.available
+                  ? (e) => setColorValue(e.target.value)
+                  : undefined
+              }
             />
             <label
               className={
