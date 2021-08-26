@@ -4,10 +4,9 @@ import * as Unicons from "@iconscout/react-unicons";
 
 import { API_URL, moneyFormat, CART_KEY } from "../Utils";
 import {
-  setProductsToCart,
+  setProductsInCart,
   changeItemCartQuantityWithButton,
   changeItemCartQuantityWithInput,
-  calculateSubTotalAndTax,
 } from "../../features/cart/cartSlice";
 
 function CartItemContent({ index, product }) {
@@ -25,9 +24,7 @@ function CartItemContent({ index, product }) {
   function handleRemoveProduct(index) {
     let newProducts = [...productsInCart];
     newProducts.splice(index, 1);
-    dispatch(setProductsToCart(newProducts));
-    dispatch(calculateSubTotalAndTax(newProducts));
-    localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+    dispatch(setProductsInCart(newProducts));
   }
   const { image, price, qty, color, size, title, slug, total } = product;
   return (
@@ -59,7 +56,7 @@ function CartItemContent({ index, product }) {
       </li>
       <li className="cart--item-quantity">
         <a
-          className="qty-product-control qty-product-control-down"
+          className="cart--item-qty-control cart--item-qty-down"
           field={"qty-product-" + index}
           onClick={() => handleChangeQuantityWithButton(index, true)}
         >
@@ -75,7 +72,7 @@ function CartItemContent({ index, product }) {
           onChange={(e) => handleChangeQuantityWithInput(index, e)}
         />
         <a
-          className="qty-product-control qty-product-control-up"
+          className="cart--item-qty-control cart--item-qty-up"
           field={"qty-product-" + index}
           onClick={() => handleChangeQuantityWithButton(index)}
         >

@@ -1,28 +1,63 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { API_URL } from "../Utils";
-import { AppState } from "../../App";
-import { memo, useContext } from "react";
+import { API_URL, moneyFormat } from "../Utils";
+import { setProductsInQuote } from "../../features/quote/quoteSlice";
 
 function QuoteItem({ product, index }) {
-  const { productsInQuote } = useContext(AppState);
-  function handleRemoveItem() {
-    productsInQuote.splice(index, 1);
+  const dispatch = useDispatch();
+  const { products: productsInQuote } = useSelector((state) => state.quote);
+  const { slug, image, title, size, color, qty, total } = product;
+
+  function handleRemoveItem(index) {
+    let products = [...productsInQuote];
+    products.splice(index, 1);
+    dispatch(setProductsInQuote(products));
   }
   return (
     <tr className="request__quote--table-row">
-      <td className="request__quote--table-image">
-        <Link to={"/product/" + product.slug}>
-          <img src={API_URL + product.image} alt={product.title} />
+      <td className="request__quote--item-image">
+        <Link to={"/product/" + slug}>
+          <img src={API_URL + image} alt={title} />
         </Link>
       </td>
-      <td class="raq_product_title d-flex flex-column">
-        <Link to={"/product/" + product.slug}>{product.title}</Link>
+      <td className="request__quote--item-title d-flex flex-column">
+        <Link to={"/product/" + slug}>{title}</Link>
         <p>
-          <a class="raq_remove_product" onClick={handleRemoveItem}>
+          <a
+            className="request__quote--item-remove"
+            onClick={() => handleRemoveItem(index)}
+          >
             Remove
           </a>
         </p>
+      </td>
+      <td className="text-center">{size}</td>
+      <td className="text-center">{color}</td>
+      <td className="text-center raq_product_qty">
+        <a
+          className="request__quote--item-qty-control request__quote--item-qty-down"
+          field={"qty-product-idx" + index}
+        >
+          &#45;
+        </a>
+        <input
+          type="text"
+          name={"qty-product-idx" + index}
+          className="quantity"
+          id={"updates_" + index}
+          value={qty}
+        />
+        <a
+          className="request__quote--item-qty-control request__quote--item-qty-up"
+          field={"qty-product-idx" + index}
+        >
+          &#43;
+        </a>
+      </td>
+      <td className="text-center request__quote--item-price">
+        <span>{moneyFormat(total)}</span>
       </td>
     </tr>
   );

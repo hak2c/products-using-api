@@ -1,6 +1,10 @@
 import { memo } from "react";
+import { useDispatch } from "react-redux";
+
+import { setShowQuote } from "../../features/quote/quoteSlice";
 
 function QuoteForm() {
+  const dispatch = useDispatch();
   return (
     <div className="raq-form">
       <div className="d-flex flex-wrap form-group-row">
@@ -41,8 +45,13 @@ function QuoteForm() {
           ></textarea>
         </div>
       </div>
-      <div className="raq-action-button d-flex justify-content-center">
-        <a className="raq-continue-shopping">Continue Shopping</a>
+      <div className="request__quote--action-button d-flex justify-content-center">
+        <a
+          className="request__quote--continue-shopping"
+          onClick={() => dispatch(setShowQuote(false))}
+        >
+          Continue Shopping
+        </a>
         <input
           type="submit"
           id="submitRAQForm"

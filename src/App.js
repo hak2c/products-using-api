@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { getProductsInQuote, API_URL, fetchData } from "./components/Utils";
+import { API_URL, fetchData } from "./components/Utils";
+import { setShowQuote } from "./features/quote/quoteSlice";
 
 import CollectionsPage from "./components/CollectionsPage";
 import ProductPage from "./components/ProductPage";
@@ -18,9 +20,11 @@ import "./css/styles.scss";
 export const AppState = createContext();
 
 export default function App() {
+  const dispatch = useDispatch();
   const [collections, setCollections] = useState([]);
-  const [productsInQuote, setProductsInQuote] = useState(getProductsInQuote());
-  const [showQuote, setShowQuote] = useState(false);
+  const { products: productsInQuote, showQuote } = useSelector(
+    (state) => state.quote
+  );
 
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
@@ -41,13 +45,7 @@ export default function App() {
     setSearchkey(e.target.value);
   }
   return (
-    <AppState.Provider
-      value={{
-        collections,
-        productsInQuote,
-        setShowQuote,
-      }}
-    >
+    <AppState.Provider value={{ collections }}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -73,7 +71,7 @@ export default function App() {
             <a
               className="view_quote"
               title="View quote"
-              onClick={() => setShowQuote(true)}
+              onClick={() => dispatch(setShowQuote(true))}
             >
               <Unicons.UilReceiptAlt size="45" color="#b79e8c" />
             </a>

@@ -538,7 +538,7 @@ input[type="submit"].form-control {
                 width: calc((100% - 20px) / 3);
               }
               .cart--item-quantity {
-                .qty-product-control {
+                .request__quote--item-qty-control {
                   line-height: 40px;
                   width: calc(100% / 3);
                 }
@@ -1402,7 +1402,7 @@ footer {
     overflow-y: auto;
     max-height: calc(100% - 150px);
     z-index: 100;
-    .request__quote--popup-close {
+    .request__quote--close {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -1410,13 +1410,13 @@ footer {
       height: 20px;
       cursor: pointer;
     }
-    .request__quote--popup-content {
-      .raq-message {
+    .request__quote--content {
+      .request__quote--message {
         text-align: center;
         font-size: 18px;
         margin-bottom: 24px;
       }
-      .raq-action-button {
+      .request__quote--action-button {
         gap: 20px;
         a,
         input#submitRAQForm {
@@ -1429,7 +1429,7 @@ footer {
           border-radius: 3px;
           display: inline-block;
           text-align: center;
-          &.raq-continue-shopping {
+          &.request__quote--continue-shopping {
             border-color: $form-button-background-color;
           }
           &.raq-dialog-view {
@@ -1456,13 +1456,13 @@ footer {
           gap: 10px;
         }
         @media screen and (max-width: 414px) {
-          &.raq-continue-shopping,
+          &.request__quote--continue-shopping,
           input#submitRAQForm {
             width: 100%;
           }
         }
       }
-      #request__quote--list-form {
+      #request__quote--form {
         max-width: 1170px;
         margin: 0 auto;
         padding-top: 30px;
@@ -1493,13 +1493,14 @@ footer {
               td {
                 padding: 8px;
                 vertical-align: top;
+                border-bottom: none;
                 @media screen and (max-width: 768px) {
                   display: block;
                   width: 100%;
                   border: 1px solid #b7b7b7 !important;
                   text-align: center;
                 }
-                &.request__quote--table-image {
+                &.request__quote--item-image {
                   width: 80px;
                   @media screen and (max-width: 768px) {
                     width: 100%;
@@ -1510,14 +1511,14 @@ footer {
                     }
                   }
                 }
-                .raq_remove_product {
+                .request__quote--item-remove {
                   font-size: $text-size;
                   padding: 5px 10px;
                   border: 1px solid #b7b7b7;
                   display: inline-block;
                   cursor: pointer;
                 }
-                .qty-product-control {
+                .request__quote--item-qty-control {
                   display: inline-block;
                   vertical-align: top;
                   line-height: 44px;
@@ -1539,7 +1540,7 @@ footer {
                   }
                 }
                 &.raq_product_qty:hover {
-                  .qty-product-control {
+                  .request__quote--item-qty-control {
                     border-color: $dotted-color;
                   }
                 }
@@ -1646,7 +1647,7 @@ footer {
           gap: 10px;
         }
         @media screen and (max-width: 414px) {
-          &.raq-continue-shopping,
+          &.request__quote--continue-shopping,
           input#submitRAQForm {
             width: 100%;
           }
@@ -1736,7 +1737,7 @@ footer {
       }
     }
     .cart--item-quantity {
-      .qty-product-control {
+      .cart--item-qty-control {
         display: inline-block;
         line-height: 40px;
         width: calc(100% / 3);
@@ -1756,7 +1757,7 @@ footer {
         }
       }
       @media screen and (min-width: 768px) {
-        .qty-product-control {
+        .cart--item-qty-control {
           line-height: 48px;
           width: 30px;
         }
@@ -1769,7 +1770,7 @@ footer {
         input[type="text"].quantity {
           border-color: $dotted-color;
         }
-        .qty-product-control {
+        .cart--item-qty-control {
           border-color: $dotted-color;
           background-color: $dotted-color;
         }

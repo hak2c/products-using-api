@@ -5,7 +5,7 @@ import { ProductState } from "../ProductPage";
 import { addProductToCart } from "../Utils";
 import {
   changeStatusAddedCartSuccess,
-  setProductsToCart,
+  setProductsInCart,
 } from "../../features/cart/cartSlice";
 
 import GetProductPrice from "./GetProductPrice";
@@ -35,7 +35,7 @@ function ProductInformation() {
       price: product.price,
       total: (quantity * product.price).toFixed(2),
     };
-    dispatch(setProductsToCart(addProductToCart(addedProduct, productsInCart)));
+    dispatch(setProductsInCart(addProductToCart(addedProduct, productsInCart)));
     document.body.classList.toggle("stopScrolling");
     dispatch(changeStatusAddedCartSuccess(true));
   }

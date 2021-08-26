@@ -63,7 +63,6 @@ export function addProductToCart(addedProduct) {
     }
     if (!exist) productsInCart.push(addedProduct);
   }
-  localStorage.setItem(CART_KEY, JSON.stringify(productsInCart));
   return productsInCart;
 }
 

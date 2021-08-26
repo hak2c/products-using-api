@@ -18,8 +18,12 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setProductsToCart: (state, action) => {
+    setProductsInCart: (state, action) => {
       const products = action.payload;
+      if (products.length > 0)
+        localStorage.setItem(CART_KEY, JSON.stringify(products));
+      else localStorage.setItem(CART_KEY, "[]");
+
       state.products = products;
       state.subTotal = getTotalPrice(state.products);
       state.tax = getTax(state.subTotal);
@@ -70,7 +74,7 @@ export const cartSlice = createSlice({
 });
 
 export const {
-  setProductsToCart,
+  setProductsInCart,
   changeItemCartQuantityWithButton,
   changeItemCartQuantityWithInput,
   calculateSubTotalAndTax,
