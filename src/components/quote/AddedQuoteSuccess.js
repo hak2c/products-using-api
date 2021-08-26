@@ -15,7 +15,10 @@ function AddedQuoteSuccess() {
       <div className="request__quote--popup">
         <span
           className="request__quote--close"
-          onClick={() => dispatch(changeStatusAddedQuoteSuccess(false))}
+          onClick={() => {
+            document.body.classList.toggle("stopScrolling");
+            dispatch(changeStatusAddedQuoteSuccess(false));
+          }}
         >
           <Unicons.UilTimes size="20" color="#000000" />
         </span>
@@ -26,7 +29,10 @@ function AddedQuoteSuccess() {
           <div className="request__quote--action-button d-flex justify-content-center">
             <a
               className="request__quote--continue-shopping"
-              onClick={() => dispatch(changeStatusAddedQuoteSuccess(false))}
+              onClick={() => {
+                document.body.classList.toggle("stopScrolling");
+                dispatch(changeStatusAddedQuoteSuccess(false));
+              }}
             >
               Continue Shopping
             </a>

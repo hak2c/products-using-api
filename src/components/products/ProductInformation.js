@@ -1,5 +1,5 @@
 import { memo, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ProductState } from "../ProductPage";
 import { addProductToCart, addProductToQuote } from "../Utils";
@@ -25,8 +25,6 @@ function ProductInformation() {
     sizeValue,
     colorValue,
   } = useContext(ProductState);
-  const { products: productsInCart } = useSelector((state) => state.cart);
-  const { products: productsInQuote } = useSelector((state) => state.quote);
   const dispatch = useDispatch();
   const { id, images, title, slug, price, description } = product;
 

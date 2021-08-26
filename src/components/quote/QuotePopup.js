@@ -19,7 +19,10 @@ function QuotePopup() {
       <div className="request__quote--popup">
         <span
           className="request__quote--close"
-          onClick={() => dispatch(setShowQuote(false))}
+          onClick={() => {
+            document.body.classList.toggle("stopScrolling");
+            dispatch(setShowQuote(false));
+          }}
         >
           <Unicons.UilTimes size="20" color="#000000" />
         </span>
@@ -73,7 +76,10 @@ function QuotePopup() {
               <div className="request__quote--action-button d-flex justify-content-center">
                 <a
                   className="request__quote--continue-shopping"
-                  onClick={() => dispatch(setShowQuote(false))}
+                  onClick={() => {
+                    document.body.classList.toggle("stopScrolling");
+                    dispatch(setShowQuote(false));
+                  }}
                 >
                   Continue Shopping
                 </a>
