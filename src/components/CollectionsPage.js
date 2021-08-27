@@ -1,8 +1,9 @@
-import { useEffect, useState, useContext, createContext, memo } from "react";
+import { useEffect, useState, createContext, memo } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { API_URL, LIMIT_PER_PAGE, fetchData } from "./Utils";
-import { AppState } from "../App";
+import { API_URL, LIMIT_PER_PAGE } from "./Utils";
+import { fetchProductsByCollectionId } from "../features/collections/collectionsSlice";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -14,17 +15,14 @@ import CollectionsList from "./CollectionsList";
 export const CollectionState = createContext();
 
 function CollectionsPage() {
-  const { collections } = useContext(AppState);
+  const dispath = useDispatch();
+  const { collections, currentCollection } = useSelector(
+    (state) => state.collections
+  );
   let { collectionId } = useParams();
-
-  const [products, setProducts] = useState([]);
-  const [currentCollection, setCurrentCollection] = useState({});
 
   const [sortCondition, setSortCondition] = useState("featured");
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const [spinner, setSpinner] = useState(true);
 
   const limit = LIMIT_PER_PAGE;
 
@@ -39,24 +37,19 @@ function CollectionsPage() {
         : sortCondition === "price-descending"
         ? "&_sort=price&_order=desc"
         : "";
-    fetchData(
-      API_URL +
-        "products?collectionId=" +
-        collectionId +
-        "&_expand=collection" +
-        condition +
-        "&_limit=" +
-        limit +
-        "&_page=" +
-        page
-    ).then((response) => {
-      const { data, total } = response;
-      setProducts(data);
-      setCurrentCollection(data[0].collection);
-      document.title = data[0].collection.title;
-      setTotalPages(Math.ceil(Number(total) / limit));
-      setSpinner(false);
-    });
+    dispath(
+      fetchProductsByCollectionId(
+        API_URL +
+          "products?collectionId=" +
+          collectionId +
+          "&_expand=collection" +
+          condition +
+          "&_limit=" +
+          limit +
+          "&_page=" +
+          page
+      )
+    );
   }, [sortCondition, page, collectionId]);
 
   useEffect(() => {
@@ -66,21 +59,19 @@ function CollectionsPage() {
   return (
     <CollectionState.Provider
       value={{
-        products,
-        currentCollection,
         sortCondition,
         setSortCondition,
         page,
-        totalPages,
         setPage,
-        spinner,
-        setSpinner,
       }}
     >
       <Header />
+
       <main>
         <div className="container">
-          <Breadcrumbs location={currentCollection.title} />
+          {typeof currentCollection.title !== "undefined" && (
+            <Breadcrumbs location={currentCollection.title} />
+          )}
           <div className="page-title">
             <h3>{currentCollection.title}</h3>
           </div>

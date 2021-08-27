@@ -2,7 +2,10 @@ import { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { setShowQuote } from "../../features/quote/quoteSlice";
+import {
+  setShowQuote,
+  changeStatusCreateQuoteSuccess,
+} from "../../features/quote/quoteSlice";
 
 import QuoteForm from "./QuoteForm";
 import QuoteItem from "./QuoteItem";
@@ -10,8 +13,10 @@ import QuoteItem from "./QuoteItem";
 function QuotePopup() {
   const dispatch = useDispatch();
   const { products: productsInQuote } = useSelector((state) => state.quote);
-  function createNewQuote() {
-    console.log("xxx");
+  function createNewQuote(e) {
+    e.preventDefault();
+    dispatch(setShowQuote(false));
+    dispatch(changeStatusCreateQuoteSuccess(true));
   }
   return (
     <div className="request__quote">
@@ -33,7 +38,7 @@ function QuotePopup() {
                 <form
                   id="request__quote--form"
                   name="request__quote--form"
-                  onSubmit={createNewQuote}
+                  onSubmit={(e) => createNewQuote(e)}
                 >
                   <table className="table request__quote--table">
                     <thead>

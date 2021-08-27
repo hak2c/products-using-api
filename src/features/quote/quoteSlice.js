@@ -6,6 +6,7 @@ const initialState = {
   products: getProductsInQuote(),
   showQuote: false,
   addedQuoteSuccess: false,
+  createQuoteSuccess: false,
 };
 
 export const quoteSlice = createSlice({
@@ -51,6 +52,10 @@ export const quoteSlice = createSlice({
       const status = action.payload;
       state.addedQuoteSuccess = status;
     },
+    changeStatusCreateQuoteSuccess: (state, action) => {
+      const status = action.payload;
+      state.createQuoteSuccess = status;
+    },
   },
 });
 
@@ -60,6 +65,7 @@ export const {
   changeQuoteItemQuantityWithInput,
   setShowQuote,
   changeStatusAddedQuoteSuccess,
+  changeStatusCreateQuoteSuccess,
 } = quoteSlice.actions;
 
 export default quoteSlice.reducer;

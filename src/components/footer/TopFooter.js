@@ -1,7 +1,10 @@
 import { memo } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-function TopFooter({ collections }) {
+function TopFooter() {
+  const { collections } = useSelector((state) => state.collections);
+
   return (
     <div className="row top-footer">
       <div className="col-lg-4 mb-2 mb-lg-0">

@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, useParams } from "react-router-dom";
-import { useContext, useEffect, useState, createContext, memo } from "react";
+import { useEffect, useState, createContext, memo } from "react";
 import { useSelector } from "react-redux";
 
 import { API_URL, fetchData } from "./Utils";
-import { AppState } from "../App";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -17,7 +16,6 @@ export const ProductState = createContext();
 
 function ProductPage() {
   const addedCartSuccess = useSelector((state) => state.cart.addedCartSuccess);
-  const { collections } = useContext(AppState);
 
   let { slug } = useParams();
 
@@ -108,9 +106,9 @@ function ProductPage() {
           )}
         </div>
       </main>
-      <CollectionsList collections={collections} />
+      <CollectionsList />
       <footer>
-        <Footer collections={collections} />
+        <Footer />
       </footer>
       {addedCartSuccess && <AddCartSuccessMessage />}
     </ProductState.Provider>

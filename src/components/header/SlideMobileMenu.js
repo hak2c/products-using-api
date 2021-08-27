@@ -1,17 +1,15 @@
 import { Collapse } from "bootstrap";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useContext, useState, useEffect, memo } from "react";
+import { useSelector } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { AppState } from "../../App";
 
 function SlideMobileMenu({ showMenu, setShowMenu }) {
-  const {
-    collections,
-    searchKey,
-    handleChangeSearchInput,
-    handleSubmitSearchForm,
-  } = useContext(AppState);
+  const { collections } = useSelector((state) => state.collections);
+  const { searchKey, handleChangeSearchInput, handleSubmitSearchForm } =
+    useContext(AppState);
   let [toggleSubMenu, setToggleSubMenu] = useState(false);
   useEffect(() => {
     let collapseSubMenu = document.getElementById("sub-menu-1");

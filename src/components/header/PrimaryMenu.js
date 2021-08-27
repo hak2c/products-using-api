@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import * as Unicons from "@iconscout/react-unicons";
 import { memo } from "react";
+import { useSelector } from "react-redux";
 
-function PrimaryMenu({ collections }) {
+function PrimaryMenu() {
+  const { collections } = useSelector((state) => state.collections);
   return (
     <div className="primary-menu d-none d-lg-block">
       <ul className="nav justify-content-center">

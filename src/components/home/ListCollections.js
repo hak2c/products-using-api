@@ -1,7 +1,9 @@
 import { memo } from "react";
+import { useSelector } from "react-redux";
 import CollectionsListItem from "../collections/CollectionsListItem";
 
-function ListCollections({ collections }) {
+function ListCollections() {
+  const { collections } = useSelector((state) => state.collections);
   return (
     <section className="top-collections">
       <div className="container">

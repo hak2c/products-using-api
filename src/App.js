@@ -3,8 +3,9 @@ import { createContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { API_URL, fetchData } from "./components/Utils";
 import { setShowQuote } from "./features/quote/quoteSlice";
+import { fetchAllCollections } from "./features/collections/collectionsSlice";
+import { API_URL } from "./components/Utils";
 
 import CollectionsPage from "./components/CollectionsPage";
 import ProductPage from "./components/ProductPage";
@@ -14,6 +15,7 @@ import QuotePopup from "./components/quote/QuotePopup";
 import CartPage from "./components/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import AddedQuoteSuccess from "./components/quote/AddedQuoteSuccess";
+import CreateQuoteSuccessMessage from "./components/quote/CreateQuoteSuccessMessage";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -22,20 +24,17 @@ export const AppState = createContext();
 
 export default function App() {
   const dispatch = useDispatch();
-  const [collections, setCollections] = useState([]);
   const {
     products: productsInQuote,
     showQuote,
     addedQuoteSuccess,
+    createQuoteSuccess,
   } = useSelector((state) => state.quote);
 
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
   useEffect(() => {
-    fetchData(API_URL + "collections").then((res) => {
-      const { data } = res;
-      setCollections(data);
-    });
+    dispatch(fetchAllCollections(API_URL + "collections"));
   }, []);
 
   function handleSubmitSearchForm(e) {
@@ -48,7 +47,7 @@ export default function App() {
     setSearchkey(e.target.value);
   }
   return (
-    <AppState.Provider value={{ collections }}>
+    <AppState.Provider value={{}}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -74,7 +73,10 @@ export default function App() {
             <a
               className="view_quote"
               title="View quote"
-              onClick={() => dispatch(setShowQuote(true))}
+              onClick={() => {
+                document.body.classList.toggle("stopScrolling");
+                dispatch(setShowQuote(true));
+              }}
             >
               <Unicons.UilReceiptAlt size="45" color="#b79e8c" />
             </a>
@@ -82,6 +84,7 @@ export default function App() {
         )}
         {showQuote && <QuotePopup />}
         {addedQuoteSuccess && <AddedQuoteSuccess />}
+        {createQuoteSuccess && <CreateQuoteSuccessMessage />}
       </Router>
     </AppState.Provider>
   );

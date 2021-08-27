@@ -1,5 +1,4 @@
-import { useContext, memo } from "react";
-import { AppState } from "../App";
+import { memo } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -11,20 +10,19 @@ import ExploreCollections from "./home/ExploreCollections";
 import SubcribeEmail from "./home/SubcribeEmail";
 
 function HomePage() {
-  const { collections } = useContext(AppState);
   return (
     <>
       <Header />
       <main>
         <MainBanner />
-        <ListCollections collections={collections} />
+        <ListCollections />
         <NewestArrivals />
         <ContentBanner />
         <ExploreCollections />
         <SubcribeEmail />
       </main>
       <footer>
-        <Footer collections={collections} />
+        <Footer />
       </footer>
     </>
   );

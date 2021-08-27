@@ -1,13 +1,18 @@
 import { memo, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "react-bootstrap";
 
 import { CollectionState } from "../CollectionsPage";
+import { setSpinner } from "../../features/collections/collectionsSlice";
 
 import ProductContent from "./ProductContent";
 
 function RightSidebar() {
-  const { products, page, totalPages, setPage, spinner, setSpinner } =
-    useContext(CollectionState);
+  const dispatch = useDispatch();
+  const { products, totalPages, spinner } = useSelector(
+    (state) => state.collections
+  );
+  const { page, setPage } = useContext(CollectionState);
   let items = [];
   for (let number = 1; number <= totalPages; number++) {
     items.push(
@@ -24,7 +29,7 @@ function RightSidebar() {
   }
   function handleClickPagination(number) {
     setPage(number);
-    setSpinner(true);
+    dispatch(setSpinner(true));
   }
   return (
     <aside className="col-lg-9 collection-products">

@@ -1,12 +1,14 @@
 import { Collapse } from "bootstrap";
 import { useState, useEffect, useContext, memo } from "react";
+import { useSelector } from "react-redux";
+
 import { API_URL } from "../Utils";
 import { CollectionState } from "../CollectionsPage";
 import * as Unicons from "@iconscout/react-unicons";
 
 function LeftSidebar() {
-  const { currentCollection, sortCondition, setSortCondition } =
-    useContext(CollectionState);
+  const { currentCollection } = useSelector((state) => state.collections);
+  const { sortCondition, setSortCondition } = useContext(CollectionState);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {
