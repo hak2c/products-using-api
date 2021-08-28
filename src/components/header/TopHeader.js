@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { setShowAjaxCart } from "../../features/cart/cartSlice";
+import { setShowLoginForm } from "../../features/users/usersSlice";
+import { LOGGED_KEY } from "../Utils";
 
 import { AppState } from "../../App";
 import { useState, useEffect } from "react";
@@ -11,10 +13,11 @@ import { useState, useEffect } from "react";
 function TopHeader() {
   const dispatch = useDispatch();
   const { products: productsInCart } = useSelector((state) => state.cart);
+  const { loggedUser, user } = useSelector((state) => state.users);
   const { searchKey, handleChangeSearchInput, handleSubmitSearchForm } =
     useContext(AppState);
 
-  let [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     let myCollapse = document.getElementById("search-form-1");
@@ -63,7 +66,7 @@ function TopHeader() {
                 />
               </span>
               <form
-                className="search-form form-inline"
+                className="search-form form-inline collapse"
                 id="search-form-1"
                 onSubmit={(e) => handleSearchForm(e)}
               >
@@ -78,6 +81,38 @@ function TopHeader() {
                   />
                 </div>
               </form>
+              {loggedUser ? (
+                <span className="logged-user-avatar">
+                  <img src={user.avatar} />
+                  <ul
+                    className="logged-user-action text-center"
+                    id="logged-user-action"
+                  >
+                    <li>
+                      <a
+                        onClick={() => {
+                          localStorage.setItem(LOGGED_KEY, "");
+                          window.location.reload();
+                        }}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </span>
+              ) : (
+                <span className="login-icon">
+                  <Unicons.UilUser
+                    size="16"
+                    color="#ffffff"
+                    onClick={() => {
+                      document.body.classList.toggle("stopScrolling");
+                      dispatch(setShowLoginForm(true));
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                </span>
+              )}
 
               <span
                 className="cart"

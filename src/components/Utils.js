@@ -1,6 +1,8 @@
 export const CART_KEY = "testament_cart";
 export const QUOTE_KEY = "testament_quote";
+export const LOGGED_KEY = "testament_login";
 export const API_URL = "https://fake-server-products-api.herokuapp.com/";
+export const USER_API = "https://fake-rest-api-nodejs.herokuapp.com/";
 export const LIMIT_PER_PAGE = 3;
 
 export async function fetchData(url) {
@@ -30,6 +32,15 @@ export function getProductsInQuote() {
     productsList = "[]";
   }
   return JSON.parse(productsList);
+}
+
+export function getLoggedUser() {
+  let user = localStorage.getItem(LOGGED_KEY);
+  if (user === null || user === "") {
+    return null;
+  } else {
+    return JSON.parse(user);
+  }
 }
 
 export function addProductToCart(addedProduct) {

@@ -5,7 +5,8 @@ import * as Unicons from "@iconscout/react-unicons";
 
 import { setShowQuote } from "./features/quote/quoteSlice";
 import { fetchAllCollections } from "./features/collections/collectionsSlice";
-import { API_URL } from "./components/Utils";
+import { checkLoggegUser } from "./features/users/usersSlice";
+import { API_URL, LOGGED_KEY } from "./components/Utils";
 
 import CollectionsPage from "./components/CollectionsPage";
 import ProductPage from "./components/ProductPage";
@@ -16,6 +17,7 @@ import CartPage from "./components/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import AddedQuoteSuccess from "./components/quote/AddedQuoteSuccess";
 import CreateQuoteSuccessMessage from "./components/quote/CreateQuoteSuccessMessage";
+import LoginForm from "./components/login/LoginForm";
 
 import "./styles.css";
 import "./css/styles.scss";
@@ -30,13 +32,21 @@ export default function App() {
     addedQuoteSuccess,
     createQuoteSuccess,
   } = useSelector((state) => state.quote);
+  const { user, showLoginForm } = useSelector((state) => state.users);
 
   const [searchKey, setSearchkey] = useState("");
   const [submitSearch, setSubmitSearch] = useState(false);
+
   useEffect(() => {
     dispatch(fetchAllCollections(API_URL + "collections"));
   }, []);
 
+  useEffect(() => {
+    if (user !== null) {
+      dispatch(checkLoggegUser(user.token));
+    }
+  }, [user]);
+  console.log(window.location);
   function handleSubmitSearchForm(e) {
     e.preventDefault();
     setSubmitSearch(true);
@@ -85,6 +95,7 @@ export default function App() {
         {showQuote && <QuotePopup />}
         {addedQuoteSuccess && <AddedQuoteSuccess />}
         {createQuoteSuccess && <CreateQuoteSuccessMessage />}
+        {showLoginForm && <LoginForm />}
       </Router>
     </AppState.Provider>
   );

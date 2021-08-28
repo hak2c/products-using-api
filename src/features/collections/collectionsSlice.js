@@ -1,22 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_URL, LIMIT_PER_PAGE, fetchData } from "../../components/Utils";
+import { LIMIT_PER_PAGE } from "../../components/Utils";
 
 export const fetchProductsByCollectionId = createAsyncThunk(
-  API_URL + "products",
+  "fetchCollectionById",
   async (url, thunkParams) => {
     const response = await fetch(url);
-    if (response.status === 200) {
-      const data = await response.json();
-      const total = response.headers.get("X-Total-Count");
-      return { data, total };
-    } else {
-      return response.status + ":" + response.statusText;
-    }
+    const data = await response.json();
+    const total = response.headers.get("X-Total-Count");
+    return { data, total };
   }
 );
 
 export const fetchAllCollections = createAsyncThunk(
-  API_URL + "collections",
+  "fetchAllCollections",
   async (url, thunkParams) => {
     const response = await fetch(url);
     if (response.status === 200) {
@@ -46,30 +42,30 @@ export const collectionsSlice = createSlice({
       state.spinner = status;
     },
   },
-  extraReducers: {
-    [fetchProductsByCollectionId.fulfilled]: (state, action) => {
-      const { data, total } = action.payload;
-      if (typeof data !== "undefined") {
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProductsByCollectionId.fulfilled, (state, action) => {
+        const { data, total } = action.payload;
         state.products = data;
         state.totalPages = Math.ceil(Number(total) / LIMIT_PER_PAGE);
         state.currentCollection = data[0].collection;
         document.title = data[0].collection.title;
         state.spinner = false;
-      }
-    },
-    [fetchProductsByCollectionId.rejected]: (state, action) => {
-      state.products = [];
-      state.spinner = false;
-      state.error = action.payload;
-    },
-    [fetchAllCollections.fulfilled]: (state, action) => {
-      const data = action.payload;
-      if (Array.isArray(data)) state.collections = data;
-    },
-    [fetchAllCollections.rejected]: (state, action) => {
-      state.collections = [];
-      state.error = action.payload;
-    },
+      })
+      .addCase(fetchProductsByCollectionId.rejected, (state, action) => {
+        state.products = [];
+        state.spinner = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(fetchAllCollections.fulfilled, (state, action) => {
+        const data = action.payload;
+        if (Array.isArray(data)) state.collections = data;
+      })
+      .addCase(fetchAllCollections.rejected, (state, action) => {
+        const data = action.payload;
+        if (Array.isArray(data)) state.collections = data;
+      });
   },
 });
 
