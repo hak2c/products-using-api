@@ -2,7 +2,6 @@ import { useEffect, useState, createContext, memo } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { API_URL, LIMIT_PER_PAGE } from "../Utils";
 import { fetchProductsByCollectionId } from "../../features/collections/collectionsSlice";
 
 import Breadcrumbs from "../Breadcrumbs";
@@ -11,6 +10,8 @@ import RightSidebar from "./RightSidebar";
 import CollectionsList from "./CollectionsList";
 
 export const CollectionState = createContext();
+
+const { REACT_APP_LIMIT_PER_PAGE } = process.env;
 
 function CollectionsPage() {
   const dispath = useDispatch();
@@ -22,7 +23,7 @@ function CollectionsPage() {
   const [sortCondition, setSortCondition] = useState("featured");
   const [page, setPage] = useState(1);
 
-  const limit = LIMIT_PER_PAGE;
+  const limit = REACT_APP_LIMIT_PER_PAGE;
 
   useEffect(() => {
     let params = {

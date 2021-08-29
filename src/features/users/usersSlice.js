@@ -1,17 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { USER_API, LOGGED_KEY, getLoggedUser } from "../../components/Utils";
+
+const { REACT_APP_LOGGED_KEY, REACT_APP_USER_API } = process.env;
+
+import userApi from "../../api/userApi";
 
 const initialState = {
   showLoginForm: false,
   loggedUser: false,
   status: "",
-  user: getLoggedUser(),
+  user: userApi.getLoggedUser(),
 };
 
 export const submitLoginForm = createAsyncThunk(
   "loginWithUsername",
   async (data, thunkParams) => {
-    const response = await fetch(USER_API + "login", {
+    const response = await fetch(REACT_APP_USER_API + "login", {
       body: data,
       method: "POST",
       headers: {
@@ -30,7 +33,7 @@ export const submitLoginForm = createAsyncThunk(
 export const checkLoggegUser = createAsyncThunk(
   "checkLoggegUser",
   async (token, thunkParams) => {
-    const response = await fetch(USER_API + "users", {
+    const response = await fetch(REACT_APP_USER_API + "users", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -59,7 +62,7 @@ export const usersSlice = createSlice({
       state.loggedUser = status;
     },
     userLogout: (state) => {
-      localStorage.setItem(LOGGED_KEY, "");
+      localStorage.setItem(REACT_APP_LOGGED_KEY, "");
       window.location.reload();
     },
   },
@@ -67,8 +70,8 @@ export const usersSlice = createSlice({
     builder
       .addCase(submitLoginForm.fulfilled, (state, action) => {
         const user = action.payload;
-        localStorage.setItem(LOGGED_KEY, JSON.stringify(user));
-        state.user = getLoggedUser();
+        localStorage.setItem(REACT_APP_LOGGED_KEY, JSON.stringify(user));
+        state.user = userApi.getLoggedUser();
         state.showLoginForm = false;
       })
       .addCase(submitLoginForm.rejected, (state, action) => {
@@ -81,7 +84,7 @@ export const usersSlice = createSlice({
       .addCase(checkLoggegUser.rejected, (state, action) => {
         const status = action.payload;
         state.loggedUser = status;
-        localStorage.setItem(LOGGED_KEY, "");
+        localStorage.setItem(REACT_APP_LOGGED_KEY, "");
       });
   },
 });

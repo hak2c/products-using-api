@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import collectionApi from "../../api/collectionApi";
 import productApi from "../../api/productApi";
 
-import { LIMIT_PER_PAGE } from "../../components/Utils";
+const { REACT_APP_LIMIT_PER_PAGE } = process.env;
 
 export const fetchProductsByCollectionId = createAsyncThunk(
   "fetchProductsByCollectionId",
@@ -18,7 +18,7 @@ export const fetchProductsByCollectionId = createAsyncThunk(
         throw response.status + ":" + response.statusText;
       }
     } catch (error) {
-      throw error;
+      throw error.message;
     }
   }
 );
@@ -34,7 +34,7 @@ export const fetchAllCollections = createAsyncThunk(
         throw response.status + ":" + response.statusText;
       }
     } catch (error) {
-      throw error;
+      throw error.message;
     }
   }
 );
@@ -62,7 +62,7 @@ export const collectionsSlice = createSlice({
       .addCase(fetchProductsByCollectionId.fulfilled, (state, action) => {
         const { products, total } = action.payload;
         state.products = products;
-        state.totalPages = Math.ceil(Number(total) / LIMIT_PER_PAGE);
+        state.totalPages = Math.ceil(Number(total) / REACT_APP_LIMIT_PER_PAGE);
         state.currentCollection = products[0].collection;
         document.title = products[0].collection.title;
         state.spinner = false;

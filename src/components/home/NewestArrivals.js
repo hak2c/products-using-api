@@ -2,7 +2,7 @@ import { useState, useEffect, memo } from "react";
 import Slider from "react-slick";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { API_URL, fetchData } from "../Utils";
+import productApi from "../../api/productApi";
 
 import ProductContent from "../collections/ProductContent";
 
@@ -12,14 +12,25 @@ function NewestArrivals() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetchData(
-      API_URL +
-        "products?_limit=" +
-        LIMIT_PRODUCTS +
-        "&_sort=id&_order=desc&available=true"
-    ).then((res) => {
-      setProducts(res.data);
-    });
+    async function getNewestArrivals() {
+      const params = {
+        _limit: LIMIT_PRODUCTS,
+        _sort: "id",
+        _order: "desc",
+        available: "true",
+      };
+      try {
+        const response = await productApi.getProducts(params);
+        if (response.status === 200) {
+          setProducts(response.data);
+        } else {
+          throw response.status + ":" + response.statusText;
+        }
+      } catch (error) {
+        throw error.message;
+      }
+    }
+    getNewestArrivals();
   }, []);
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
     <button

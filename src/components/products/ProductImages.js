@@ -2,7 +2,7 @@ import { memo, useState } from "react";
 import Slider from "react-slick";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { API_URL } from "../Utils";
+const { REACT_APP_API_URL } = process.env;
 
 function ProductImages({ images }) {
   const [mainSlider, setMainSlider] = useState(null);
@@ -78,7 +78,7 @@ function ProductImages({ images }) {
           >
             {images.map((img, index) => (
               <div key={index} className="img-item">
-                <img src={API_URL + img} />
+                <img src={REACT_APP_API_URL + img} />
               </div>
             ))}
           </Slider>
@@ -91,7 +91,7 @@ function ProductImages({ images }) {
           >
             {images.map((img, index) => (
               <div key={index} className="img-item">
-                <img src={API_URL + img} />
+                <img src={REACT_APP_API_URL + img} />
               </div>
             ))}
           </Slider>

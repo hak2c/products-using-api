@@ -5,7 +5,6 @@ import * as Unicons from "@iconscout/react-unicons";
 
 import { setShowAjaxCart } from "../../features/cart/cartSlice";
 import { setShowLoginForm, userLogout } from "../../features/users/usersSlice";
-import { LOGGED_KEY } from "../Utils";
 
 import { AppState } from "../../App";
 import { useState, useEffect } from "react";

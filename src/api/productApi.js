@@ -17,6 +17,31 @@ class ProductApi {
     return JSON.parse(prodCart);
   };
 
+  addProductToCart = (addedProduct) => {
+    const productsInCart = this.getProductsInCart();
+    if (productsInCart.length == 0) {
+      productsInCart.push(addedProduct);
+    } else {
+      let exist = false;
+      for (let i = 0; i < productsInCart.length; i++) {
+        if (
+          productsInCart[i].id === addedProduct.id &&
+          productsInCart[i].size === addedProduct.size &&
+          productsInCart[i].color === addedProduct.color
+        ) {
+          exist = true;
+          productsInCart[i].qty += addedProduct.qty;
+          productsInCart[i].total = Number(
+            (productsInCart[i].qty * productsInCart[i].price).toFixed(2)
+          );
+          break;
+        }
+      }
+      if (!exist) productsInCart.push(addedProduct);
+    }
+    return productsInCart;
+  };
+
   getProductsInQuote = () => {
     let productsList = localStorage.getItem(REACT_APP_QUOTE_KEY);
     if (productsList === null || productsList === "") {
@@ -24,6 +49,31 @@ class ProductApi {
       productsList = "[]";
     }
     return JSON.parse(productsList);
+  };
+
+  addProductToQuote = (addedProduct) => {
+    const productsInQuote = this.getProductsInQuote();
+    if (productsInQuote.length == 0) {
+      productsInQuote.push(addedProduct);
+    } else {
+      let exist = false;
+      for (let i = 0; i < productsInQuote.length; i++) {
+        if (
+          productsInQuote[i].id === addedProduct.id &&
+          productsInQuote[i].size === addedProduct.size &&
+          productsInQuote[i].color === addedProduct.color
+        ) {
+          exist = true;
+          productsInQuote[i].qty += addedProduct.qty;
+          productsInQuote[i].total = Number(
+            (productsInQuote[i].qty * productsInQuote[i].price).toFixed(2)
+          );
+          break;
+        }
+      }
+      if (!exist) productsInQuote.push(addedProduct);
+    }
+    return productsInQuote;
   };
 
   getTotalPrice = () => {

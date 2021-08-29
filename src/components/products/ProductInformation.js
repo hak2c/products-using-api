@@ -2,7 +2,7 @@ import { memo, useContext } from "react";
 import { useDispatch } from "react-redux";
 
 import { ProductState } from "./ProductPage";
-import { addProductToCart, addProductToQuote } from "../Utils";
+import productApi from "../../api/productApi";
 import {
   changeStatusAddedCartSuccess,
   setProductsInCart,
@@ -40,7 +40,7 @@ function ProductInformation() {
       price: price,
       total: Number((quantity * price).toFixed(2)),
     };
-    dispatch(setProductsInCart(addProductToCart(addedProduct)));
+    dispatch(setProductsInCart(productApi.addProductToCart(addedProduct)));
     document.body.classList.toggle("stopScrolling");
     dispatch(changeStatusAddedCartSuccess(true));
   }
@@ -57,7 +57,7 @@ function ProductInformation() {
       price: price,
       total: Number((quantity * price).toFixed(2)),
     };
-    dispatch(setProductsInQuote(addProductToQuote(addedProduct)));
+    dispatch(setProductsInQuote(productApi.addProductToQuote(addedProduct)));
     document.body.classList.toggle("stopScrolling");
     dispatch(changeStatusAddedQuoteSuccess(true));
   }
