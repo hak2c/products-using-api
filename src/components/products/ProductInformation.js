@@ -1,7 +1,7 @@
 import { memo, useContext } from "react";
 import { useDispatch } from "react-redux";
 
-import { ProductState } from "../ProductPage";
+import { ProductState } from "./ProductPage";
 import { addProductToCart, addProductToQuote } from "../Utils";
 import {
   changeStatusAddedCartSuccess,

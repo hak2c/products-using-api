@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
 
-import CollectionsListItem from "./collections/CollectionsListItem";
+import CollectionsListItem from "./CollectionsListItem";
 function CollectionsList() {
   const { collections } = useSelector((state) => state.collections);
   return (

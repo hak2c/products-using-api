@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
 import { setShowAjaxCart } from "../../features/cart/cartSlice";
-import { setShowLoginForm } from "../../features/users/usersSlice";
+import { setShowLoginForm, userLogout } from "../../features/users/usersSlice";
 import { LOGGED_KEY } from "../Utils";
 
 import { AppState } from "../../App";
@@ -91,8 +91,7 @@ function TopHeader() {
                     <li>
                       <a
                         onClick={() => {
-                          localStorage.setItem(LOGGED_KEY, "");
-                          window.location.reload();
+                          dispatch(userLogout());
                         }}
                       >
                         Logout

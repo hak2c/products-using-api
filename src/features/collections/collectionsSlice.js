@@ -1,25 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+import collectionApi from "../../api/collectionApi";
+import productApi from "../../api/productApi";
+
 import { LIMIT_PER_PAGE } from "../../components/Utils";
 
 export const fetchProductsByCollectionId = createAsyncThunk(
-  "fetchCollectionById",
-  async (url, thunkParams) => {
-    const response = await fetch(url);
-    const data = await response.json();
-    const total = response.headers.get("X-Total-Count");
-    return { data, total };
+  "fetchProductsByCollectionId",
+  async (params, thunkParams) => {
+    try {
+      const response = await productApi.getProducts(params);
+      if (response.status === 200) {
+        const products = response.data;
+        const total = response.headers["x-total-count"];
+        return { products, total };
+      } else {
+        throw response.status + ":" + response.statusText;
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
 export const fetchAllCollections = createAsyncThunk(
   "fetchAllCollections",
-  async (url, thunkParams) => {
-    const response = await fetch(url);
-    if (response.status === 200) {
-      const data = await response.json();
-      return data;
-    } else {
-      return response.status + ":" + response.statusText;
+  async (thunkParams) => {
+    try {
+      const response = await collectionApi.getAll();
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw response.status + ":" + response.statusText;
+      }
+    } catch (error) {
+      throw error;
     }
   }
 );
@@ -45,11 +60,11 @@ export const collectionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsByCollectionId.fulfilled, (state, action) => {
-        const { data, total } = action.payload;
-        state.products = data;
+        const { products, total } = action.payload;
+        state.products = products;
         state.totalPages = Math.ceil(Number(total) / LIMIT_PER_PAGE);
-        state.currentCollection = data[0].collection;
-        document.title = data[0].collection.title;
+        state.currentCollection = products[0].collection;
+        document.title = products[0].collection.title;
         state.spinner = false;
       })
       .addCase(fetchProductsByCollectionId.rejected, (state, action) => {
@@ -59,8 +74,8 @@ export const collectionsSlice = createSlice({
       });
     builder
       .addCase(fetchAllCollections.fulfilled, (state, action) => {
-        const data = action.payload;
-        if (Array.isArray(data)) state.collections = data;
+        const collections = action.payload;
+        state.collections = collections;
       })
       .addCase(fetchAllCollections.rejected, (state, action) => {
         const data = action.payload;

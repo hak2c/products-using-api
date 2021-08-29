@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getProductsInQuote, QUOTE_KEY } from "../../components/Utils";
+import productApi from "../../api/productApi";
 
 const initialState = {
-  products: getProductsInQuote(),
+  products: productApi.getProductsInQuote(),
   showQuote: false,
   addedQuoteSuccess: false,
   createQuoteSuccess: false,
 };
+
+const { REACT_APP_QUOTE_KEY } = process.env;
 
 export const quoteSlice = createSlice({
   name: "quote",
@@ -17,8 +19,8 @@ export const quoteSlice = createSlice({
       const products = action.payload;
       state.products = products;
       if (products.length > 0)
-        localStorage.setItem(QUOTE_KEY, JSON.stringify(products));
-      else localStorage.setItem(QUOTE_KEY, "[]");
+        localStorage.setItem(REACT_APP_QUOTE_KEY, JSON.stringify(products));
+      else localStorage.setItem(REACT_APP_QUOTE_KEY, "[]");
     },
     changeQuoteItemQuantityWithButton: (state, action) => {
       const { index, isDown } = action.payload;
@@ -31,7 +33,7 @@ export const quoteSlice = createSlice({
           newProducts[index].qty * newProducts[index].price
         ).toFixed(2);
         state.products = newProducts;
-        localStorage.setItem(QUOTE_KEY, JSON.stringify(newProducts));
+        localStorage.setItem(REACT_APP_QUOTE_KEY, JSON.stringify(newProducts));
       }
     },
     changeQuoteItemQuantityWithInput: (state, action) => {
@@ -42,7 +44,7 @@ export const quoteSlice = createSlice({
         newProducts[index].qty * newProducts[index].price
       ).toFixed(2);
       state.products = newProducts;
-      localStorage.setItem(QUOTE_KEY, JSON.stringify(newProducts));
+      localStorage.setItem(REACT_APP_QUOTE_KEY, JSON.stringify(newProducts));
     },
     setShowQuote: (state, action) => {
       const status = action.payload;

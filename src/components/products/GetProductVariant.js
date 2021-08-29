@@ -1,4 +1,4 @@
-import { ProductState } from "../ProductPage";
+import { ProductState } from "./ProductPage";
 
 import RenderSizeSelect from "./RenderSizeSelect";
 import RenderColorSelect from "./RenderColorSelect";

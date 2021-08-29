@@ -16,24 +16,6 @@ export async function fetchData(url) {
   }
 }
 
-export function getProductsInCart() {
-  let prodCart = localStorage.getItem(CART_KEY);
-  if (prodCart === null || prodCart === "") {
-    localStorage.setItem(CART_KEY, "[]");
-    prodCart = "[]";
-  }
-  return JSON.parse(prodCart);
-}
-
-export function getProductsInQuote() {
-  let productsList = localStorage.getItem(QUOTE_KEY);
-  if (productsList === null || productsList === "") {
-    localStorage.setItem(QUOTE_KEY, "[]");
-    productsList = "[]";
-  }
-  return JSON.parse(productsList);
-}
-
 export function getLoggedUser() {
   let user = localStorage.getItem(LOGGED_KEY);
   if (user === null || user === "") {
@@ -92,23 +74,3 @@ export function addProductToQuote(addedProduct) {
   }
   return productsInQuote;
 }
-
-export function getTotalPrice(products) {
-  let total = 0;
-  products.forEach((item) => (total += Number(item.total)));
-  return Number(total.toFixed(2));
-}
-
-export function getTax(total) {
-  return Number((total * 0.1).toFixed(2));
-}
-
-export const moneyFormat = (money) => {
-  if (typeof money !== "undefined") {
-    let parts = money.toString().split("."),
-      dollars = parts[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,"),
-      cents = parts[1] ? "." + parts[1] : "";
-    return "$" + dollars + cents;
-  }
-  return "0";
-};

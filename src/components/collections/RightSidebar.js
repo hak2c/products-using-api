@@ -2,7 +2,7 @@ import { memo, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "react-bootstrap";
 
-import { CollectionState } from "../CollectionsPage";
+import { CollectionState } from "./CollectionsPage";
 import { setSpinner } from "../../features/collections/collectionsSlice";
 
 import ProductContent from "./ProductContent";

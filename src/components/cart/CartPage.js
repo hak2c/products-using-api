@@ -1,15 +1,13 @@
 import { useContext, memo } from "react";
 import { useSelector } from "react-redux";
 
-import { AppState } from "../App";
+import { AppState } from "../../App";
 
-import Header from "./Header";
-import Breadcrumbs from "./Breadcrumbs";
-import Footer from "./Footer";
-import CollectionsList from "./CollectionsList";
-import CartContentHeader from "./cart/CartContentHeader";
-import CartItems from "./cart/CartItems";
-import CartFooter from "./cart/CartFooter";
+import Breadcrumbs from "../Breadcrumbs";
+import CollectionsList from "../collections/CollectionsList";
+import CartContentHeader from "./CartContentHeader";
+import CartItems from "./CartItems";
+import CartFooter from "./CartFooter";
 
 function CartPage() {
   const products = useSelector((state) => state.cart.products);
@@ -17,7 +15,6 @@ function CartPage() {
 
   return (
     <>
-      <Header />
       <main>
         <div className="container">
           <Breadcrumbs location="Your Shopping Cart" />
@@ -37,9 +34,6 @@ function CartPage() {
         </div>
       </main>
       <CollectionsList collections={collections} />
-      <footer>
-        <Footer collections={collections} />
-      </footer>
     </>
   );
 }

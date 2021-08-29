@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getProductsInCart,
-  getTotalPrice,
-  getTax,
-  CART_KEY,
-} from "../../components/Utils";
+
+import productApi from "../../api/productApi";
+
+const { REACT_APP_CART_KEY } = process.env;
 
 const initialState = {
-  products: getProductsInCart(),
-  subTotal: getTotalPrice(getProductsInCart()),
-  tax: getTax(getTotalPrice(getProductsInCart())),
+  products: productApi.getProductsInCart(),
+  subTotal: productApi.getTotalPrice(productApi.getProductsInCart()),
+  tax: productApi.getTax(
+    productApi.getTotalPrice(productApi.getProductsInCart())
+  ),
   showAjaxCart: false,
   addedCartSuccess: false,
 };
@@ -21,12 +21,12 @@ export const cartSlice = createSlice({
     setProductsInCart: (state, action) => {
       const products = action.payload;
       if (products.length > 0)
-        localStorage.setItem(CART_KEY, JSON.stringify(products));
-      else localStorage.setItem(CART_KEY, "[]");
+        localStorage.setItem(REACT_APP_CART_KEY, JSON.stringify(products));
+      else localStorage.setItem(REACT_APP_CART_KEY, "[]");
 
       state.products = products;
-      state.subTotal = getTotalPrice(state.products);
-      state.tax = getTax(state.subTotal);
+      state.subTotal = productApi.getTotalPrice(state.products);
+      state.tax = productApi.getTax(state.subTotal);
     },
     changeItemCartQuantityWithButton: (state, action) => {
       const { index, isDown } = action.payload;
@@ -40,8 +40,8 @@ export const cartSlice = createSlice({
         ).toFixed(2);
         state.products = newProducts;
         state.subTotal = getTotalPrice(newProducts);
-        state.tax = getTax(state.subTotal);
-        localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+        state.tax = productApi.getTax(state.subTotal);
+        localStorage.setItem(REACT_APP_CART_KEY, JSON.stringify(newProducts));
       }
     },
     changeItemCartQuantityWithInput: (state, action) => {
@@ -52,13 +52,13 @@ export const cartSlice = createSlice({
         newProducts[index].qty * newProducts[index].price
       ).toFixed(2);
       state.products = newProducts;
-      state.subTotal = getTotalPrice(newProducts);
-      state.tax = getTax(state.subTotal);
-      localStorage.setItem(CART_KEY, JSON.stringify(newProducts));
+      state.subTotal = productApi.getTotalPrice(newProducts);
+      state.tax = productApi.getTax(state.subTotal);
+      localStorage.setItem(REACT_APP_CART_KEY, JSON.stringify(newProducts));
     },
     calculateSubTotalAndTax: (state) => {
-      state.subTotal = getTotalPrice(state.products);
-      state.tax = getTax(state.subTotal);
+      state.subTotal = productApi.getTotalPrice(state.products);
+      state.tax = productApi.getTax(state.subTotal);
     },
     setShowAjaxCart: (state, action) => {
       const status = action.payload;

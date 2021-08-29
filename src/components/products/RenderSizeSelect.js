@@ -1,5 +1,5 @@
 import { useContext, memo } from "react";
-import { ProductState } from "../ProductPage";
+import { ProductState } from "./ProductPage";
 
 function RenderSizeSelect() {
   const { product, sizeValue, setSizeValue } = useContext(ProductState);

@@ -1,7 +1,7 @@
 import { memo } from "react";
 
-import TopFooter from "./footer/TopFooter";
-import BottomFooter from "./footer/BottomFooter";
+import TopFooter from "./TopFooter";
+import BottomFooter from "./BottomFooter";
 
 function Footer() {
   return (

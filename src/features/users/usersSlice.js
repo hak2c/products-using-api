@@ -58,6 +58,10 @@ export const usersSlice = createSlice({
       const status = action.payload;
       state.loggedUser = status;
     },
+    userLogout: (state) => {
+      localStorage.setItem(LOGGED_KEY, "");
+      window.location.reload();
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -65,9 +69,7 @@ export const usersSlice = createSlice({
         const user = action.payload;
         localStorage.setItem(LOGGED_KEY, JSON.stringify(user));
         state.user = getLoggedUser();
-        setTimeout(() => {
-          window.location.reload();
-        }, 700);
+        state.showLoginForm = false;
       })
       .addCase(submitLoginForm.rejected, (state, action) => {
         state.status = action.error.message;
@@ -84,6 +86,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setShowLoginForm, setLoggedUser } = usersSlice.actions;
+export const { setShowLoginForm, setLoggedUser, userLogout } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -2,15 +2,13 @@ import { BrowserRouter as Router, useParams } from "react-router-dom";
 import { useEffect, useState, createContext, memo } from "react";
 import { useSelector } from "react-redux";
 
-import { API_URL, fetchData } from "./Utils";
+import productApi from "../../api/productApi";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import CollectionsList from "./CollectionsList";
-import Breadcrumbs from "./Breadcrumbs";
-import ProductImages from "./products/ProductImages";
-import ProductInformation from "./products/ProductInformation";
-import AddCartSuccessMessage from "./cart/AddCartSuccessMessage";
+import CollectionsList from "../collections/CollectionsList";
+import Breadcrumbs from "../Breadcrumbs";
+import ProductImages from "./ProductImages";
+import ProductInformation from "./ProductInformation";
+import AddCartSuccessMessage from "../cart/AddCartSuccessMessage";
 
 export const ProductState = createContext();
 
@@ -26,28 +24,36 @@ function ProductPage() {
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
-    fetchData(API_URL + "products?slug=" + slug + "&_expand=collection").then(
-      (res) => {
-        const { data } = res;
-        setProduct(data[0]);
-        document.title = data[0].title;
+    const fetchProducts = async () => {
+      try {
+        const params = {
+          slug: slug,
+          _expand: "collection",
+        };
+        const response = await productApi.getProducts(params);
+        const resProduct = response.data[0];
+        setProduct(resProduct);
+        document.title = resProduct.title;
         setSpinner(false);
-        for (let i = 0; i < data[0].size.length; i++) {
-          if (data[0].size[i].available) {
-            setSizeValue(data[0].size[i].name);
+        for (let i = 0; i < resProduct.size.length; i++) {
+          if (resProduct.size[i].available) {
+            setSizeValue(resProduct.size[i].name);
             break;
           }
         }
-        if (typeof data[0].color !== "undefined") {
-          for (let i = 0; i < data[0].color.length; i++) {
-            if (data[0].color[i].available) {
-              setColorValue(data[0].color[i].name);
+        if (typeof resProduct.color !== "undefined") {
+          for (let i = 0; i < resProduct.color.length; i++) {
+            if (resProduct.color[i].available) {
+              setColorValue(resProduct.color[i].name);
               break;
             }
           }
         }
+      } catch (error) {
+        console.log("Fail ", error);
       }
-    );
+    };
+    fetchProducts();
   }, []);
 
   function handleChangeQuantityInput(e) {
@@ -70,7 +76,6 @@ function ProductPage() {
         setColorValue,
       }}
     >
-      <Header />
       <main>
         <div className="container product__page">
           {typeof product.collection !== "undefined" && (
@@ -107,9 +112,6 @@ function ProductPage() {
         </div>
       </main>
       <CollectionsList />
-      <footer>
-        <Footer />
-      </footer>
       {addedCartSuccess && <AddCartSuccessMessage />}
     </ProductState.Provider>
   );

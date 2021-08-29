@@ -1,8 +1,8 @@
 import axios from "axios";
-
-import { moneyFormat } from "../Utils";
 import { memo } from "react";
 import { useSelector } from "react-redux";
+
+import productApi from "../../api/productApi";
 
 function CartTotal() {
   const { subTotal, tax } = useSelector((state) => state.cart);
@@ -28,18 +28,20 @@ function CartTotal() {
         <div className="subtotal d-flex">
           <p className="text-start mb-0">Subtotal</p>
           <p className="subtotal-price text-end mb-0">
-            <span className="cart-price">{moneyFormat(subTotal)}</span>
+            <span className="cart-price">
+              {productApi.moneyFormat(subTotal)}
+            </span>
           </p>
         </div>
         <div className="shipping d-flex">
           <p className="text-start mb-0">VAT tax</p>
-          <p className="text-end mb-0">{moneyFormat(tax)}</p>
+          <p className="text-end mb-0">{productApi.moneyFormat(tax)}</p>
         </div>
         <hr></hr>
         <div className="total d-flex">
           <p className="text-start mb-3">Total</p>
           <p className="subtotal-price text-end mb-3">
-            <span className="cart-price">{moneyFormat(total)}</span>
+            <span className="cart-price">{productApi.moneyFormat(total)}</span>
           </p>
         </div>
       </div>

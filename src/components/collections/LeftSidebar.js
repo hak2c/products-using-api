@@ -2,8 +2,7 @@ import { Collapse } from "bootstrap";
 import { useState, useEffect, useContext, memo } from "react";
 import { useSelector } from "react-redux";
 
-import { API_URL } from "../Utils";
-import { CollectionState } from "../CollectionsPage";
+import { CollectionState } from "./CollectionsPage";
 import * as Unicons from "@iconscout/react-unicons";
 
 function LeftSidebar() {
@@ -30,7 +29,10 @@ function LeftSidebar() {
       <div id="left-sidebar-content">
         <div className="sidebar-module collection-second-image">
           {typeof currentCollection.images != "undefined" && (
-            <img src={API_URL + currentCollection.images[1]} alt="" />
+            <img
+              src={process.env.REACT_APP_API_URL + currentCollection.images[1]}
+              alt=""
+            />
           )}
         </div>
         <div className="sidebar-module sort-product">

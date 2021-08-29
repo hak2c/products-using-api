@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { API_URL, moneyFormat } from "../Utils";
+import productApi from "../../api/productApi";
 import {
   changeQuoteItemQuantityWithButton,
   changeQuoteItemQuantityWithInput,
@@ -35,7 +35,7 @@ function QuoteItem({ product, index }) {
     <tr className="request__quote--table-row">
       <td className="request__quote--item-image">
         <Link to={"/product/" + slug}>
-          <img src={API_URL + image} alt={title} />
+          <img src={process.env.REACT_APP_API_URL + image} alt={title} />
         </Link>
       </td>
       <td className="request__quote--item-title d-flex flex-column">
@@ -80,7 +80,7 @@ function QuoteItem({ product, index }) {
         </a>
       </td>
       <td className="text-center request__quote--item-price">
-        <span>{moneyFormat(total)}</span>
+        <span>{productApi.moneyFormat(total)}</span>
       </td>
     </tr>
   );

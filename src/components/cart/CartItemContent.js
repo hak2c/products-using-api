@@ -2,7 +2,8 @@ import { memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { API_URL, moneyFormat, CART_KEY } from "../Utils";
+import productApi from "../../api/productApi";
+
 import {
   setProductsInCart,
   changeItemCartQuantityWithButton,
@@ -12,6 +13,7 @@ import {
 function CartItemContent({ index, product }) {
   const { products: productsInCart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
   function handleChangeQuantityWithInput(index, e) {
     let value = Number(e.target.value);
     if (!isNaN(value)) {
@@ -30,7 +32,7 @@ function CartItemContent({ index, product }) {
   return (
     <ul className="d-flex flex-wrap align-items-center cart--item">
       <li className="cart--item-image">
-        <img src={API_URL + image} />
+        <img src={process.env.REACT_APP_API_URL + image} />
       </li>
       <li className="cart--item-details">
         <p className="cart--item-title mb-3">
@@ -52,7 +54,7 @@ function CartItemContent({ index, product }) {
         </div>
       </li>
       <li className="cart--item-price">
-        <p>{moneyFormat(price)}</p>
+        <p>{productApi.moneyFormat(price)}</p>
       </li>
       <li className="cart--item-quantity">
         <a
@@ -84,7 +86,7 @@ function CartItemContent({ index, product }) {
         </a>
       </li>
       <li className="cart--item-total text-end">
-        <p>{moneyFormat(total)}</p>
+        <p>{productApi.moneyFormat(total)}</p>
       </li>
       <li
         className="cart--item-remove"

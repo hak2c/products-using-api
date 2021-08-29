@@ -1,6 +1,5 @@
 import { useContext, memo } from "react";
-import { ProductState } from "../ProductPage";
-import { API_URL } from "../Utils";
+import { ProductState } from "./ProductPage";
 
 function RenderColorSelect() {
   const { product, colorValue, setColorValue } = useContext(ProductState);
@@ -36,7 +35,8 @@ function RenderColorSelect() {
             >
               <span
                 style={{
-                  backgroundImage: "url(" + API_URL + color.thumb + ")",
+                  backgroundImage:
+                    "url(" + process.env.REACT_APP_API_URL + color.thumb + ")",
                 }}
               ></span>
             </label>

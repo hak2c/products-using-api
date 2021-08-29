@@ -6,14 +6,16 @@ import * as Unicons from "@iconscout/react-unicons";
 import { setShowQuote } from "./features/quote/quoteSlice";
 import { fetchAllCollections } from "./features/collections/collectionsSlice";
 import { checkLoggegUser } from "./features/users/usersSlice";
-import { API_URL, LOGGED_KEY } from "./components/Utils";
 
-import CollectionsPage from "./components/CollectionsPage";
-import ProductPage from "./components/ProductPage";
-import HomePage from "./components/HomePage";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+
+import CollectionsPage from "./components/collections/CollectionsPage";
+import ProductPage from "./components/products/ProductPage";
+import HomePage from "./components/home/HomePage";
 import SearchPage from "./components/SearchPage";
 import QuotePopup from "./components/quote/QuotePopup";
-import CartPage from "./components/CartPage";
+import CartPage from "./components/cart/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import AddedQuoteSuccess from "./components/quote/AddedQuoteSuccess";
 import CreateQuoteSuccessMessage from "./components/quote/CreateQuoteSuccessMessage";
@@ -38,7 +40,7 @@ export default function App() {
   const [submitSearch, setSubmitSearch] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchAllCollections(API_URL + "collections"));
+    dispatch(fetchAllCollections());
   }, []);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function App() {
       dispatch(checkLoggegUser(user.token));
     }
   }, [user]);
-  console.log(window.location);
+
   function handleSubmitSearchForm(e) {
     e.preventDefault();
     setSubmitSearch(true);
@@ -59,6 +61,7 @@ export default function App() {
   return (
     <AppState.Provider value={{}}>
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -78,6 +81,9 @@ export default function App() {
             children={<CollectionsPage />}
           />
         </Switch>
+        <footer>
+          <Footer />
+        </footer>
         {productsInQuote.length > 0 && (
           <div className="action-button">
             <a

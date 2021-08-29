@@ -1,12 +1,12 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
 
-import TopHeader from "./header/TopHeader";
-import PrimaryMenu from "./header/PrimaryMenu";
-import MobileMenu from "./header/MobileMenu";
-import AjaxCart from "./cart/AjaxCart";
+import TopHeader from "./TopHeader";
+import PrimaryMenu from "./PrimaryMenu";
+import MobileMenu from "./MobileMenu";
+import AjaxCart from "../cart/AjaxCart";
 
-import logo from "../images/logo.jpg";
+import logo from "../../images/logo.jpg";
 
 function Header() {
   const showAjaxCart = useSelector((state) => state.cart.showAjaxCart);
