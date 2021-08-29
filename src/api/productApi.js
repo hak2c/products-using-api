@@ -4,8 +4,11 @@ const { REACT_APP_CART_KEY, REACT_APP_QUOTE_KEY } = process.env;
 
 class ProductApi {
   getProducts = (params) => {
-    const url = "products";
-    return axiosClient.get(url, { params });
+    const url = process.env.REACT_APP_API_URL + "products";
+    const headers = {
+      "content-type": "application/json",
+    };
+    return axiosClient.get(url, headers, { params });
   };
 
   getProductsInCart = () => {
@@ -19,7 +22,7 @@ class ProductApi {
 
   addProductToCart = (addedProduct) => {
     const productsInCart = this.getProductsInCart();
-    if (productsInCart.length == 0) {
+    if (productsInCart.length === 0) {
       productsInCart.push(addedProduct);
     } else {
       let exist = false;
@@ -53,7 +56,7 @@ class ProductApi {
 
   addProductToQuote = (addedProduct) => {
     const productsInQuote = this.getProductsInQuote();
-    if (productsInQuote.length == 0) {
+    if (productsInQuote.length === 0) {
       productsInQuote.push(addedProduct);
     } else {
       let exist = false;
