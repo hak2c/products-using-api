@@ -26,12 +26,16 @@ class ProductApi {
     return JSON.parse(productsList);
   };
 
-  getTotalPrice = (products) => {
-    let total = 0;
-    products.forEach((item) => (total += Number(item.total)));
-    return Number(total.toFixed(2));
+  getTotalPrice = () => {
+    const products = this.getProductsInCart();
+    return Number(
+      products.reduce((sum, item) => sum + Number(item.total), 0).toFixed(2)
+    );
   };
-  getTax = (total) => Number((total * 0.1).toFixed(2));
+  getTax = () => {
+    const total = this.getTotalPrice();
+    return Number((total * 0.1).toFixed(2));
+  };
   moneyFormat = (money) => {
     if (typeof money !== "undefined") {
       let parts = money.toString().split("."),
