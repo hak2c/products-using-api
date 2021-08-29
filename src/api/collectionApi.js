@@ -1,7 +1,7 @@
 import axiosClient from "./axiosClient";
 
 class CollectionApi {
-  getAll = (params) => {
+  getAll = (params = {}) => {
     const url = process.env.REACT_APP_API_URL + "collections";
     const headers = {
       "content-type": "application/json",

@@ -1,28 +1,28 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { setShowQuote } from "./features/quote/quoteSlice";
-import { fetchAllCollections } from "./features/collections/collectionsSlice";
-import { checkLoggegUser } from "./features/users/usersSlice";
+import { setShowQuote } from "./features/Quote/quoteSlice";
+import { fetchAllCollections } from "./features/Collection/collectionsSlice";
+import { checkLogged } from "./features/User/usersSlice";
 
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-import CollectionsPage from "./components/collections/CollectionsPage";
-import ProductPage from "./components/products/ProductPage";
-import HomePage from "./components/home/HomePage";
+import CollectionsPage from "./features/Collection/pages/CollectionsPage";
+import ProductPage from "./features/Product/pages/ProductPage";
+import HomePage from "./features/Home/pages/HomePage";
 import SearchPage from "./components/SearchPage";
-import QuotePopup from "./components/quote/QuotePopup";
-import CartPage from "./components/cart/CartPage";
+import QuotePopup from "./features/Quote/components/QuotePopup";
+import CartPage from "./features/Cart/pages/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
-import AddedQuoteSuccess from "./components/quote/AddedQuoteSuccess";
-import CreateQuoteSuccessMessage from "./components/quote/CreateQuoteSuccessMessage";
-import LoginForm from "./components/login/LoginForm";
+import AddedQuoteSuccess from "./features/Quote/components/AddedQuoteSuccess";
+import CreateQuoteSuccessMessage from "./features/Quote/components/CreateQuoteSuccessMessage";
+import LoginForm from "./features/User/components/LoginForm";
 
 import "./styles.css";
-import "./css/styles.scss";
+import "./assets/css/styles.scss";
 
 export const AppState = createContext();
 
@@ -45,7 +45,7 @@ export default function App() {
 
   useEffect(() => {
     if (user !== null) {
-      dispatch(checkLoggegUser(user.token));
+      dispatch(checkLogged(user.token));
     }
   }, [user]);
 
@@ -60,7 +60,7 @@ export default function App() {
   }
   return (
     <AppState.Provider value={{}}>
-      <Router>
+      <BrowserRouter>
         <Header />
         <Switch>
           <Route exact path="/">
@@ -102,7 +102,7 @@ export default function App() {
         {addedQuoteSuccess && <AddedQuoteSuccess />}
         {createQuoteSuccess && <CreateQuoteSuccessMessage />}
         {showLoginForm && <LoginForm />}
-      </Router>
+      </BrowserRouter>
     </AppState.Provider>
   );
 }
