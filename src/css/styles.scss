@@ -1,51 +1,51 @@
-$main-family: "Karla", sans-serif;
+:root {
+  --main-family: "Karla", sans-serif;
+  --main-background: #b79e8c;
+
+  --text-color: #000000;
+  --link-color: #000000;
+  --link-hover-color: #b79e8c;
+  --dotted-color: #cccccc;
+  --direction-color: #a4a4a4;
+
+  --nav-color: #ffffff;
+  --nav-hover-color: #000000;
+  --nav-background-color: #000000;
+  --nav-hover-link-color: #ffffff;
+  --nav-border-color: #000000;
+
+  --dropdown-background-color: #ffffff;
+  --dropdown-link-color: #000000;
+  --dropdown-link-hover-color: #796b62;
+  --dropdown-min-width: 220px;
+
+  --form-input-border: #cccccc;
+  --form-button-background-color: #b79e8c;
+  --form-button-background-hover: #836957;
+  --form-button-color: #ffffff;
+
+  --main-button-background-color: #b79e8c;
+  --main-button-background-hover: #836957;
+  --main-button-color: #ffffff;
+
+  --secondary-button-background-hover: #b79e8c;
+  --secondary-button-background-color: #836957;
+  --secondary-button-color: #ffffff;
+
+  --footer-background-color: #000;
+  --footer-color: #ffffff;
+  --footer-title-size: 20px;
+  --footer-form-button-background-color: #000;
+  --footer-form-button-hover-border: #b79e8c;
+  --footer-form-button-hover-color: #b79e8c;
+}
+
 $text-size: 16px;
 $text-weight: 500;
 $heading-weight: 400;
-$text-color: #000000;
-$link-color: #000000;
-$link-hover-color: #b79e8c;
-$dotted-color: #cccccc;
-$direction-color: #a4a4a4;
 
 $h1-size: 26px;
 $h2-size: 24px;
-
-$main-background: #b79e8c;
-
-$nav-color: #fff;
-$nav-hover-color: #000;
-$nav-background-color: #000000;
-$nav-hover-link-color: #ffffff;
-$nav-border-color: #000;
-$dropdown-background-color: #ffffff;
-$dropdown-link-color: #000000;
-$dropdown-link-hover-color: #796b62;
-$dropdown-min-width: 220px;
-
-$form-input-border: #cccccc;
-$form-button-background-color: #b79e8c;
-$form-button-background-hover: #836957;
-$form-button-color: #ffffff;
-
-$main-button-background-color: #b79e8c;
-$main-button-background-hover: #836957;
-$main-button-color: #ffffff;
-
-$secondary-button-background-hover: #b79e8c;
-$secondary-button-background-color: #836957;
-$secondary-button-color: #ffffff;
-
-$free-shipping-background: #b79e8c;
-$free-shipping-text: #ffffff;
-
-$footer-background-color: #000;
-$footer-color: #ffffff;
-$footer-title-size: 20px;
-$footer-link-hover-color: #796b62;
-$footer-form-button-background-color: #000;
-$footer-form-button-hover-border: #b79e8c;
-$footer-form-button-hover-color: #b79e8c;
 
 $page-title-size: 28px;
 $sale-color: #c60808;
@@ -70,12 +70,12 @@ html {
 }
 body {
   font: {
-    family: $main-family;
+    family: var(--main-family);
     size: $text-size;
     weight: $text-weight;
   }
   background: #fff;
-  color: $text-color;
+  color: var(--text-color);
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -116,11 +116,11 @@ ol {
 a {
   cursor: pointer;
   text-decoration: none;
-  color: $link-color;
+  color: var(--link-color);
 }
 a:hover {
   text-decoration: none;
-  color: $link-hover-color;
+  color: var(--link-hover-color);
 }
 img {
   max-width: 100%;
@@ -131,8 +131,8 @@ img {
 }
 
 hr {
-  background-color: $dotted-color;
-  color: $dotted-color;
+  background-color: var(--dotted-color);
+  color: var(--dotted-color);
   height: 1px;
   display: block;
   width: 100%;
@@ -141,13 +141,13 @@ hr {
 
 input.form-control {
   height: 50px;
-  border: 1px solid $form-input-border;
+  border: 1px solid var(--form-input-border);
   padding-left: 15px;
   font-size: $text-size;
 }
 
 textarea.form-control {
-  border: 1px solid $form-input-border;
+  border: 1px solid var(--form-input-border);
   padding-left: 15px;
   font-size: $text-size;
 }
@@ -162,18 +162,18 @@ select.form-control {
 }
 
 input[type="submit"].form-control {
-  background: $form-button-background-color;
-  color: $form-button-color;
+  background: var(--form-button-background-color);
+  color: var(--form-button-color);
   cursor: pointer;
 
   &:hover {
-    background: $form-button-background-hover;
+    background: var(--form-button-background-hover);
   }
 }
 
 .button {
-  background-color: $main-button-background-color;
-  color: $main-button-color;
+  background-color: var(--main-button-background-color);
+  color: var(--main-button-color);
   font-size: 16px;
   width: 100%;
   height: 50px;
@@ -184,15 +184,15 @@ input[type="submit"].form-control {
   cursor: pointer;
   display: block;
   &.secondary-button {
-    background-color: $secondary-button-background-color;
-    color: $secondary-button-color;
+    background-color: var(--secondary-button-background-color);
+    color: var(--secondary-button-color);
   }
   &:hover {
-    background-color: $main-button-background-hover;
-    color: $main-button-color;
+    background-color: var(--main-button-background-hover);
+    color: var(--main-button-color);
   }
   &.secondary-button:hover {
-    background-color: $secondary-button-background-hover;
+    background-color: var(--secondary-button-background-hover);
   }
 }
 
@@ -262,7 +262,7 @@ input[type="submit"].form-control {
 .price-badge {
   display: inline-block;
   padding: 2px 5px;
-  border: 1px solid $text-color;
+  border: 1px solid var(--text-color);
   font-size: 9px;
   text-transform: uppercase;
   font-weight: bold;
@@ -282,7 +282,7 @@ input[type="submit"].form-control {
 }
 /* HEADER */
 .top-header {
-  background-color: $main-background;
+  background-color: var(--main-background);
   color: #fff;
   line-height: 48px;
   @media screen and (max-width: 992px) {
@@ -313,10 +313,10 @@ input[type="submit"].form-control {
         display: block;
         line-height: normal;
         padding: 10px 0;
-        background-color: $main-button-background-color;
-        color: $main-button-color;
+        background-color: var(--main-button-background-color);
+        color: var(--main-button-color);
         &:hover {
-          background-color: $main-button-background-hover;
+          background-color: var(--main-button-background-hover);
         }
       }
     }
@@ -354,12 +354,12 @@ input[type="submit"].form-control {
   top: 48px;
   z-index: 99;
   .cart-count {
-    color: $main-background;
+    color: var(--main-background);
     font-size: 14px;
   }
 }
 .primary-menu {
-  background-color: $nav-background-color;
+  background-color: var(--nav-background-color);
   position: sticky;
   top: 0;
   z-index: 99;
@@ -369,7 +369,7 @@ input[type="submit"].form-control {
       position: relative;
       cursor: pointer;
       & > a {
-        color: $nav-color;
+        color: var(--nav-color);
         display: inline-block;
         line-height: 60px;
       }
@@ -378,17 +378,17 @@ input[type="submit"].form-control {
         position: absolute;
         left: 0;
         top: 60px;
-        min-width: $dropdown-min-width;
+        min-width: var(--dropdown-min-width);
         z-index: 99;
         padding: 10px;
-        background-color: $dropdown-background-color;
+        background-color: var(--dropdown-background-color);
         ul li {
           a {
             line-height: 34px;
             display: block;
-            color: $dropdown-link-color;
+            color: var(--dropdown-link-color);
             &:hover {
-              color: $dropdown-link-hover-color;
+              color: var(--dropdown-link-hover-color);
             }
           }
         }
@@ -398,10 +398,10 @@ input[type="submit"].form-control {
           display: block;
         }
         & > a {
-          color: $dropdown-link-hover-color;
+          color: var(--dropdown-link-hover-color);
         }
         & > svg {
-          fill: $dropdown-link-hover-color;
+          fill: var(--dropdown-link-hover-color);
         }
       }
     }
@@ -553,7 +553,7 @@ input[type="submit"].form-control {
             .cart--item {
               padding: 10px;
               position: relative;
-              border-top: 1px solid $dotted-color;
+              border-top: 1px solid var(--dotted-color);
               gap: 10px;
               .cart--item-image {
                 width: calc((100% - 10px) / 3);
@@ -587,7 +587,7 @@ input[type="submit"].form-control {
                 width: 11px;
               }
               &:last-child {
-                border-bottom: 1px solid $dotted-color;
+                border-bottom: 1px solid var(--dotted-color);
               }
             }
           }
@@ -606,7 +606,7 @@ input[type="submit"].form-control {
           .ajax__cart--view-cart {
             border-radius: 3px;
             &:hover {
-              background-color: $secondary-button-background-hover;
+              background-color: var(--secondary-button-background-hover);
             }
           }
         }
@@ -679,7 +679,7 @@ main {
     @media screen and (max-width: 767px) {
       position: unset;
       max-width: 100%;
-      background: $main-background;
+      background: var(--main-background);
       text-align: center;
       padding: 20px;
     }
@@ -940,8 +940,8 @@ main {
     #subcribe__email--button {
       text-align: center;
       width: 120px;
-      color: $form-button-color;
-      background-color: $main-button-background-color;
+      color: var(--form-button-color);
+      background-color: var(--main-button-background-color);
       height: 50px;
       border: none;
       font-size: 16px;
@@ -952,7 +952,7 @@ main {
         width: 180px;
       }
       &:hover {
-        background-color: $main-button-background-hover;
+        background-color: var(--main-button-background-hover);
       }
     }
   }
@@ -963,22 +963,22 @@ main {
 
 /* FOOTER */
 footer {
-  background-color: $footer-background-color;
-  color: $footer-color;
+  background-color: var(--footer-background-color);
+  color: var(--footer-color);
   padding-top: 60px;
   padding-bottom: 30px;
   .footer-title h3 {
-    font-size: $footer-title-size;
+    font-size: var(--footer-title-size);
     margin-bottom: 10px;
   }
   .top-footer {
     .footer-menu {
       li {
         a {
-          color: $footer-color;
+          color: var(--footer-color);
           line-height: 32px;
           &:hover {
-            color: $footer-link-hover-color;
+            color: var(--dropdown-link-hover-color);
           }
         }
       }
@@ -990,8 +990,8 @@ footer {
       #connect-email-button {
         text-align: center;
         width: 150px;
-        color: $form-button-color;
-        background-color: $footer-form-button-background-color;
+        color: var(--form-button-color);
+        background-color: var(--footer-form-button-background-color);
         border: 1px solid transparent;
         height: 50px;
         font-size: 16px;
@@ -999,8 +999,8 @@ footer {
           width: 90px;
         }
         &:hover {
-          // border-color: $footer-form-button-hover-border;
-          color: $footer-form-button-hover-color;
+          // border-color: var(--footer-form-button-hover-border);
+          color: var(--footer-form-button-hover-color);
         }
       }
     }
@@ -1064,13 +1064,13 @@ footer {
       .module-title {
         padding-bottom: 5px;
         margin-bottom: 10px;
-        border-bottom: 1px solid $dotted-color;
+        border-bottom: 1px solid var(--dotted-color);
       }
     }
   }
   .mobile-refine {
     padding: 8px 0;
-    border: 1px solid $dotted-color;
+    border: 1px solid var(--dotted-color);
     margin-bottom: 20px;
   }
 }
@@ -1255,7 +1255,7 @@ footer {
       }
       .product-price {
         padding-bottom: 17px;
-        border-bottom: 1px solid $dotted-color;
+        border-bottom: 1px solid var(--dotted-color);
         gap: 10px;
         .price-item {
           font-size: $product-price-size;
@@ -1274,7 +1274,7 @@ footer {
       }
       .add-product-form {
         padding-bottom: 17px;
-        border-bottom: 1px solid $dotted-color;
+        border-bottom: 1px solid var(--dotted-color);
         .variant-label {
           label {
             font-weight: bold;
@@ -1288,8 +1288,8 @@ footer {
             line-height: 44px;
             padding: 0;
             width: 44px;
-            color: $text-color;
-            border: 1px solid $dotted-color;
+            color: var(--text-color);
+            border: 1px solid var(--dotted-color);
             text-align: center;
             background: #fff;
           }
@@ -1297,10 +1297,10 @@ footer {
             width: 50px;
             height: 46px;
             text-indent: 0;
-            border: 1px solid $dotted-color;
+            border: 1px solid var(--dotted-color);
             text-align: center;
             &:focus {
-              border-color: $dotted-color;
+              border-color: var(--dotted-color);
             }
           }
         }
@@ -1462,10 +1462,10 @@ footer {
           display: inline-block;
           text-align: center;
           &.request__quote--continue-shopping {
-            border-color: $form-button-background-color;
+            border-color: var(--form-button-background-color);
           }
           &.request__quote--view {
-            background-color: $form-button-background-color;
+            background-color: var(--form-button-background-color);
             color: #ffffff;
           }
           @media screen and (min-width: 768px) {
@@ -1475,11 +1475,11 @@ footer {
           }
         }
         input#request__quote--form-submit {
-          background-color: $form-button-background-color;
+          background-color: var(--form-button-background-color);
           color: #ffffff;
           cursor: pointer;
           &:hover {
-            background-color: $form-button-background-hover;
+            background-color: var(--form-button-background-hover);
           }
         }
 
@@ -1556,7 +1556,7 @@ footer {
                   line-height: 44px;
                   padding: 0;
                   width: 44px;
-                  color: $text-color;
+                  color: var(--text-color);
                   border: 1px solid transparent;
                   text-align: center;
                   background: #fff;
@@ -1565,15 +1565,15 @@ footer {
                   width: 50px;
                   height: 46px;
                   text-indent: 0;
-                  border: 1px solid $dotted-color;
+                  border: 1px solid var(--dotted-color);
                   text-align: center;
                   &:focus {
-                    border-color: $dotted-color;
+                    border-color: var(--dotted-color);
                   }
                 }
                 &.raq_product_qty:hover {
                   .request__quote--item-qty-control {
-                    border-color: $dotted-color;
+                    border-color: var(--dotted-color);
                   }
                 }
               }
@@ -1653,10 +1653,10 @@ footer {
           display: inline-block;
           text-align: center;
           &.added__cart--continue-shopping {
-            border-color: $form-button-background-color;
+            border-color: var(--form-button-background-color);
           }
           &.added__cart--view-cart {
-            background-color: $form-button-background-color;
+            background-color: var(--form-button-background-color);
             color: #ffffff;
           }
           @media screen and (min-width: 768px) {
@@ -1729,11 +1729,11 @@ footer {
           border: 1px solid transparent;
           border-radius: 3px;
           text-align: center;
-          background-color: $form-button-background-color;
+          background-color: var(--form-button-background-color);
           color: #ffffff;
           cursor: pointer;
           &:hover {
-            background-color: $form-button-background-hover;
+            background-color: var(--form-button-background-hover);
           }
         }
       }
@@ -1771,7 +1771,7 @@ footer {
 /* POST PAGE */
 .post-container {
   .post-details {
-    border-bottom: 1px solid $dotted-color;
+    border-bottom: 1px solid var(--dotted-color);
   }
 }
 
@@ -1792,7 +1792,7 @@ footer {
   .cart--item {
     padding: 10px;
     position: relative;
-    border-top: 1px solid $dotted-color;
+    border-top: 1px solid var(--dotted-color);
     gap: 10px;
     .cart--item-image {
       width: calc((100% - 10px) / 3);
@@ -1826,7 +1826,7 @@ footer {
         line-height: 40px;
         width: calc(100% / 3);
         padding: 0;
-        color: $text-color;
+        color: var(--text-color);
         border: 1px solid transparent;
         text-align: center;
       }
@@ -1837,7 +1837,7 @@ footer {
         border: 1px solid transparent;
         text-align: center;
         &:focus {
-          border-color: $dotted-color;
+          border-color: var(--dotted-color);
         }
       }
       @media screen and (min-width: 768px) {
@@ -1852,11 +1852,11 @@ footer {
       }
       &:hover {
         input[type="text"].quantity {
-          border-color: $dotted-color;
+          border-color: var(--dotted-color);
         }
         .cart--item-qty-control {
-          border-color: $dotted-color;
-          background-color: $dotted-color;
+          border-color: var(--dotted-color);
+          background-color: var(--dotted-color);
         }
       }
     }
@@ -1868,7 +1868,7 @@ footer {
       width: 11px;
     }
     &:last-child {
-      border-bottom: 1px solid $dotted-color;
+      border-bottom: 1px solid var(--dotted-color);
     }
   }
 }
@@ -1880,7 +1880,7 @@ footer {
         width: 100%;
         .accordion-button {
           padding: 10px;
-          background-color: $dotted-color;
+          background-color: var(--dotted-color);
           font-size: 16px;
           color: #000;
           &:focus {
@@ -1891,7 +1891,7 @@ footer {
           }
         }
         &:hover {
-          color: $text-color;
+          color: var(--text-color);
         }
       }
       .noteTextarea {
@@ -1900,8 +1900,8 @@ footer {
     }
     .cart__infor--free-shipping {
       .free-shipping {
-        color: $free-shipping-text;
-        background-color: $free-shipping-background;
+        color: var(--main-button-color);
+        background-color: var(--main-button-background-color);
         padding: 20px;
       }
     }
@@ -1923,11 +1923,11 @@ footer {
       border-radius: 3px;
       display: inline-block;
       text-align: center;
-      background-color: $form-button-background-color;
+      background-color: var(--form-button-background-color);
       color: #ffffff;
       cursor: pointer;
       &:hover {
-        background-color: $form-button-background-hover;
+        background-color: var(--form-button-background-hover);
       }
       @media screen and (min-width: 768px) {
         height: 50px;
