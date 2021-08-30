@@ -7,12 +7,12 @@ import productApi from "../../../api/productApi";
 import {
   changeStatusAddedCartSuccess,
   setProductsInCart,
-} from "../../Cart/cartSlice";
+} from "../../Carts/cartSlice";
 
 import {
   setProductsInQuote,
   changeStatusAddedQuoteSuccess,
-} from "../../Quote/quoteSlice";
+} from "../../Quotes/quoteSlice";
 
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";

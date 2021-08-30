@@ -13,21 +13,18 @@ const initialState = {
 
 export const submitLoginForm = createAsyncThunk(
   "loginWithUsername",
-  async (params, thunkParams) => {
-    // const response = await userApi.userLogin(params);
-    // console.log(response);
-    const response = await fetch(REACT_APP_USER_API + "login", {
-      body: params,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const res = await response.json();
-    if (response.status === 200) {
-      return res;
-    } else {
-      throw res.message;
+  async (data, thunkParams) => {
+    try {
+      const response = await userApi.userLogin(data);
+      if (response.status === 200) {
+        return response.data;
+      } else if (response.status === 400) {
+        throw "Username or password is incorrect!";
+      } else {
+        throw response.message;
+      }
+    } catch (error) {
+      throw "Username or password is incorrect!";
     }
   }
 );
@@ -35,20 +32,15 @@ export const submitLoginForm = createAsyncThunk(
 export const checkLogged = createAsyncThunk(
   "checkLoggedUser",
   async (token, thunkParams) => {
-    const response = await fetch(REACT_APP_USER_API + "users", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    });
-    // const response = await userApi.checkLoggedUser(token, {});
-    // console.log(response);
-    if (response.status === 200) {
-      return true;
-    } else {
-      throw false;
+    try {
+      const response = await userApi.checkLoggedUser(token, {});
+      if (response.status === 200) {
+        return true;
+      } else {
+        throw false;
+      }
+    } catch (error) {
+      throw error;
     }
   }
 );

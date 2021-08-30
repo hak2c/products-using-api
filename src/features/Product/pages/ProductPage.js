@@ -8,7 +8,7 @@ import CollectionsList from "../../../components/CollectionsList";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductImages from "../components/ProductImages";
 import ProductInformation from "../components/ProductInformation";
-import AddCartSuccessMessage from "../../Cart/components/AddCartSuccessMessage";
+import AddCartSuccessMessage from "../../Carts/components/AddCartSuccessMessage";
 
 export const ProductState = createContext();
 

@@ -11,11 +11,11 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    const params = {
+    const data = {
       username: username,
       password: password,
     };
-    dispatch(submitLoginForm(JSON.stringify(params)));
+    dispatch(submitLoginForm(data));
   }
   return (
     <div className="loginForm">

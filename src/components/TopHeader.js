@@ -3,7 +3,7 @@ import { memo, useContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { setShowAjaxCart } from "../features/Cart/cartSlice";
+import { setShowAjaxCart } from "../features/Carts/cartSlice";
 import { setShowLoginForm, userLogout } from "../features/User/usersSlice";
 
 import { AppState } from "../App";

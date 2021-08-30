@@ -4,7 +4,7 @@ const { REACT_APP_CART_KEY, REACT_APP_QUOTE_KEY } = process.env;
 
 class ProductApi {
   getProducts = (params) => {
-    const url = process.env.REACT_APP_API_URL + "products";
+    const url = "products";
     return axiosClient.get(url, { params });
   };
 
