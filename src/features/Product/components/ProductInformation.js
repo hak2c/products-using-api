@@ -7,7 +7,7 @@ import productApi from "../../../api/productApi";
 import {
   changeStatusAddedCartSuccess,
   setProductsInCart,
-} from "../../Carts/cartSlice";
+} from "../../Cart/cartSlice";
 
 import {
   setProductsInQuote,
