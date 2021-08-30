@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const { REACT_APP_LOGGED_KEY, REACT_APP_USER_API } = process.env;
+const { REACT_APP_LOGGED_KEY } = process.env;
 
 import userApi from "../../api/userApi";
 

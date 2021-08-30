@@ -3,21 +3,24 @@ import axiosClient from "./axiosClient";
 const { REACT_APP_LOGGED_KEY } = process.env;
 
 class UserApi {
-  userLogin = (params) => {
-    const url = process.env.REACT_APP_USER_API + "login";
-    const headers = {
-      "content-type": "application/json",
-    };
-    return axiosClient.post(url, headers, { params });
+  userLogin = (data) => {
+    const url = "login";
+    return axiosClient.post(url, data, {
+      baseURL: process.env.REACT_APP_USER_API,
+    });
   };
   checkLoggedUser = (token, params) => {
-    const url = process.env.REACT_APP_USER_API + "users";
+    const url = "users";
     const headers = {
       "content-type": "application/json",
       Accept: "application/json",
       Authorization: "Bearer " + token,
     };
-    return axiosClient.get(url, headers, { params });
+    return axiosClient.get(url, {
+      params,
+      headers,
+      baseURL: process.env.REACT_APP_USER_API,
+    });
   };
   getLoggedUser = () => {
     let user = localStorage.getItem(REACT_APP_LOGGED_KEY);
