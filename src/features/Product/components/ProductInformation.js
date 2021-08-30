@@ -12,7 +12,7 @@ import {
 import {
   setProductsInQuote,
   changeStatusAddedQuoteSuccess,
-} from "../../Quotes/quoteSlice";
+} from "../../Quote/quoteSlice";
 
 import GetProductPrice from "./GetProductPrice";
 import GetProductVariant from "./GetProductVariant";

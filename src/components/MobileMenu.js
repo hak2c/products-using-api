@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import * as Unicons from "@iconscout/react-unicons";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setShowAjaxCart } from "../features/Carts/cartSlice";
+import { setShowAjaxCart } from "../features/Cart/cartSlice";
 import SlideMobileMenu from "./SlideMobileMenu";
 
 import logo from "../assets/images/logo.jpg";

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import TopHeader from "./TopHeader";
 import PrimaryMenu from "./PrimaryMenu";
 import MobileMenu from "./MobileMenu";
-import AjaxCart from "../features/Carts/components/AjaxCart";
+import AjaxCart from "../features/Cart/components/AjaxCart";
 
 import logo from "../assets/images/logo.jpg";
 

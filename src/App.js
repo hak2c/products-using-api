@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as Unicons from "@iconscout/react-unicons";
 
-import { setShowQuote } from "./features/Quotes/quoteSlice";
+import { setShowQuote } from "./features/Quote/quoteSlice";
 import { fetchAllCollections } from "./features/Collection/collectionsSlice";
 import { checkLogged } from "./features/User/usersSlice";
 
@@ -14,11 +14,11 @@ import CollectionsPage from "./features/Collection/pages/CollectionsPage";
 import ProductPage from "./features/Product/pages/ProductPage";
 import HomePage from "./features/Home/pages/HomePage";
 import SearchPage from "./components/SearchPage";
-import QuotePopup from "./features/Quotes/components/QuotePopup";
-import CartPage from "./features/Carts/pages/CartPage";
+import QuotePopup from "./features/Quote/components/QuotePopup";
+import CartPage from "./features/Cart/pages/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
-import AddedQuoteSuccess from "./features/Quotes/components/AddedQuoteSuccess";
-import CreateQuoteSuccessMessage from "./features/Quotes/components/CreateQuoteSuccessMessage";
+import AddedQuoteSuccess from "./features/Quote/components/AddedQuoteSuccess";
+import CreateQuoteSuccessMessage from "./features/Quote/components/CreateQuoteSuccessMessage";
 import LoginForm from "./features/User/components/LoginForm";
 
 import "./styles.css";
