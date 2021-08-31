@@ -45,7 +45,7 @@ function SlideMobileMenu({ showMenu, setShowMenu }) {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Shop</a>
+              <Link to="/collections/">Shop</Link>
               <div
                 className="d-inline-block arrow"
                 onClick={() => setToggleSubMenu(!toggleSubMenu)}

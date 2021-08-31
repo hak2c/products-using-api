@@ -10,7 +10,8 @@ import { checkLogged } from "./features/User/usersSlice";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import CollectionsPage from "./features/Collection/pages/CollectionsPage";
+import AllCollectionsPage from "./features/Collection/pages/AllCollectionsPage";
+import CollectionsPage from "./features/Collection/pages/SubCollectionPage";
 import ProductPage from "./features/Product/pages/ProductPage";
 import HomePage from "./features/Home/pages/HomePage";
 import SearchPage from "./components/SearchPage";
@@ -75,11 +76,10 @@ export default function App() {
           <Route path="/checkout">
             <CheckoutPage />
           </Route>
+          <Route path="/collections">
+            <AllCollectionsPage />
+          </Route>
           <Route path="/product/:slug" children={<ProductPage />} />
-          <Route
-            path="/collection/:collectionId/:slug"
-            children={<CollectionsPage />}
-          />
         </Switch>
         <footer>
           <Footer />

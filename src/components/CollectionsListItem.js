@@ -13,7 +13,7 @@ function CollectionsListItem({ collection }) {
           alt={collection.title}
         />
         <h3 className="item-title position-absolute">
-          <Link to={"/collection/" + collection.id + "/" + collection.slug}>
+          <Link to={"/collections/" + collection.id + "/" + collection.slug}>
             {collection.title}
           </Link>
         </h3>

@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 class CollectionApi {
-  getAll = (params) => {
+  getCollections = (params) => {
     const url = "collections";
     return axiosClient.get(url, { params });
   };

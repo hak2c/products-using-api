@@ -5,29 +5,11 @@ import productApi from "../../api/productApi";
 
 const { REACT_APP_LIMIT_PER_PAGE } = process.env;
 
-export const fetchProductsByCollectionId = createAsyncThunk(
-  "fetchProductsByCollectionId",
-  async (params, thunkParams) => {
-    try {
-      const response = await productApi.getProducts(params);
-      if (response.status === 200) {
-        const products = response.data;
-        const total = response.headers["x-total-count"];
-        return { products, total };
-      } else {
-        throw response.status + ":" + response.statusText;
-      }
-    } catch (error) {
-      throw error.message;
-    }
-  }
-);
-
 export const fetchAllCollections = createAsyncThunk(
   "fetchAllCollections",
   async (thunkParams) => {
     try {
-      const response = await collectionApi.getAll();
+      const response = await collectionApi.getCollections();
       if (response.status === 200) {
         return response.data;
       } else {
@@ -41,37 +23,13 @@ export const fetchAllCollections = createAsyncThunk(
 
 const initialState = {
   collections: [],
-  products: [],
-  totalPages: 0,
-  currentCollection: {},
-  spinner: true,
-  error: {},
 };
 
 export const collectionsSlice = createSlice({
   name: "collections",
   initialState,
-  reducers: {
-    setSpinner: (state, action) => {
-      const status = action.payload;
-      state.spinner = status;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchProductsByCollectionId.fulfilled, (state, action) => {
-        const { products, total } = action.payload;
-        state.products = products;
-        state.totalPages = Math.ceil(Number(total) / REACT_APP_LIMIT_PER_PAGE);
-        state.currentCollection = products[0].collection;
-        document.title = products[0].collection.title;
-        state.spinner = false;
-      })
-      .addCase(fetchProductsByCollectionId.rejected, (state, action) => {
-        state.products = [];
-        state.spinner = false;
-        state.error = action.payload;
-      });
     builder
       .addCase(fetchAllCollections.fulfilled, (state, action) => {
         const collections = action.payload;
@@ -83,7 +41,5 @@ export const collectionsSlice = createSlice({
       });
   },
 });
-
-export const { setSpinner } = collectionsSlice.actions;
 
 export default collectionsSlice.reducer;

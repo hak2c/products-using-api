@@ -1,13 +1,11 @@
 import { Collapse } from "bootstrap";
-import { useState, useEffect, useContext, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { useSelector } from "react-redux";
 
-import { CollectionState } from "../pages/CollectionsPage";
 import * as Unicons from "@iconscout/react-unicons";
 
-function LeftSidebar() {
-  const { currentCollection } = useSelector((state) => state.collections);
-  const { sortCondition, setSortCondition } = useContext(CollectionState);
+function LeftSidebar({ sortCondition, setSortCondition }) {
+  const { collections } = useSelector((state) => state.collections);
   let [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -27,14 +25,14 @@ function LeftSidebar() {
         </a>
       </div>
       <div id="left-sidebar-content">
-        <div className="sidebar-module collection-second-image">
+        {/*<div className="sidebar-module collection-second-image">
           {typeof currentCollection.images != "undefined" && (
             <img
               src={process.env.REACT_APP_API_URL + currentCollection.images[1]}
               alt=""
             />
           )}
-        </div>
+          </div>*/}
         <div className="sidebar-module sort-product">
           <select
             name="sort-select"

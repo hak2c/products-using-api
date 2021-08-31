@@ -12,13 +12,13 @@ function PrimaryMenu() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Shop</a>
+          <Link to="/collections/">Shop</Link>
           <Unicons.UilAngleDown size="21" color="#ffffff" />
           <div className="sub-menu">
             <ul>
               {collections.map((item) => (
                 <li key={item.id}>
-                  <Link to={"/collection/" + item.id + "/" + item.slug}>
+                  <Link to={"/collections/" + item.id + "/" + item.slug}>
                     {item.title}
                   </Link>
                 </li>
