@@ -5,6 +5,7 @@ import ListCollections from "../components/ListCollections";
 import NewestArrivals from "../components/NewestArrivals";
 import ContentBanner from "../components/ContentBanner";
 import ExploreCollections from "../components/ExploreCollections";
+import LatestBlogs from "../components/LatestBlogs";
 import SubcribeEmail from "../components/SubcribeEmail";
 
 function HomePage() {
@@ -15,6 +16,7 @@ function HomePage() {
       <NewestArrivals />
       <ContentBanner />
       <ExploreCollections />
+      <LatestBlogs />
       <SubcribeEmail />
     </main>
   );
