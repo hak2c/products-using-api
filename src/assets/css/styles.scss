@@ -1059,23 +1059,33 @@ footer {
     width: 100%;
   }
 }
-.left-sidebar {
-  #left-sidebar-content {
+.left__sidebar {
+  #left__sidebar--content {
     display: none;
     margin-bottom: 20px;
     @media screen and (min-width: 992px) {
       display: block;
     }
-    .sidebar-module {
+    .left__sidebar--module {
       margin-bottom: 30px;
-      .module-title {
+      .left__sidebar--module-title {
         padding-bottom: 5px;
         margin-bottom: 10px;
         border-bottom: 1px solid var(--dotted-color);
       }
+      &.choose-collections {
+        ul {
+          li {
+            margin: 5px 0;
+            a.active {
+              color: var(--link-hover-color);
+            }
+          }
+        }
+      }
     }
   }
-  .mobile-refine {
+  .left__sidebar--mobile-refine {
     padding: 8px 0;
     border: 1px solid var(--dotted-color);
     margin-bottom: 20px;
