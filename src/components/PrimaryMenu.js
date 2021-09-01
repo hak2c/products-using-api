@@ -12,7 +12,7 @@ function PrimaryMenu() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/collections/">Shop</Link>
+          <Link to="/collections">Shop</Link>
           <Unicons.UilAngleDown size="21" color="#ffffff" />
           <div className="sub-menu">
             <ul>
@@ -27,13 +27,13 @@ function PrimaryMenu() {
           </div>
         </li>
         <li>
-          <a href="contact.html">Contact</a>
+          <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <a href="blogs.html">Blog</a>
+          <Link to="/blogs">Blogs</Link>
         </li>
         <li>
-          <a href="about.html">About</a>
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </div>

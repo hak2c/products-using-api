@@ -11,7 +11,6 @@ import MainContent from "../components/MainContent";
 const { REACT_APP_LIMIT_PER_PAGE } = process.env;
 
 function MainPage() {
-  const { collections } = useSelector((state) => state.collections);
   const [products, setProducts] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [sortCondition, setSortCondition] = useState("featured");
@@ -80,7 +79,7 @@ function MainPage() {
           </div>
         </div>
       </main>
-      <CollectionsList collections={collections} />
+      <CollectionsList />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState, memo } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 import productApi from "../../../api/productApi";
 import collectionApi from "../../../api/collectionApi";
@@ -13,7 +12,6 @@ import MainContent from "../components/MainContent";
 const { REACT_APP_LIMIT_PER_PAGE } = process.env;
 
 function SubCollectionPage() {
-  const { collections } = useSelector((state) => state.collections);
   const [currentCollection, setCurrentCollection] = useState({});
   let { collectionId } = useParams();
 
@@ -111,7 +109,7 @@ function SubCollectionPage() {
           </div>
         </div>
       </main>
-      <CollectionsList collections={collections} />
+      <CollectionsList />
     </>
   );
 }

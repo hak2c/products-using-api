@@ -281,7 +281,7 @@ input[type="submit"].form-control {
 }
 
 @media screen and (min-width: 768px) {
-  .container .post-container {
+  .container .post--container {
     width: 60%;
     max-width: 720px;
   }
@@ -914,13 +914,13 @@ main {
       gap: 50px;
     }
   }
-  .blog-item {
-    .blog-info {
+  .blogs--item {
+    .blog--info {
       margin-top: 30px;
       @media screen and (min-width: 768px) {
         margin-top: 50px;
       }
-      .blog-title {
+      .blog--title {
         font-size: 18px;
         line-height: 22px;
         margin-bottom: 20px;
@@ -1749,10 +1749,10 @@ footer {
 
 /* BLOG PAGE */
 
-.blogs-list {
-  .blog-item {
-    .blog-info {
-      .blog-title {
+.blogs {
+  .blogs--item {
+    .blog--info {
+      .blog--title {
         font-size: 18px;
         margin-bottom: 20px;
         font-weight: 400;
@@ -1760,7 +1760,7 @@ footer {
       p {
         line-height: 24px;
       }
-      .item-tags {
+      .blog--tags {
         li {
           display: inline-block;
           margin-right: 10px;
@@ -1775,8 +1775,8 @@ footer {
 }
 
 /* POST PAGE */
-.post-container {
-  .post-details {
+.post--container {
+  .post--details {
     border-bottom: 1px solid var(--dotted-color);
   }
 }

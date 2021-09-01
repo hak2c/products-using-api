@@ -11,7 +11,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import AllCollectionsPage from "./features/Collection/pages/AllCollectionsPage";
-import CollectionsPage from "./features/Collection/pages/SubCollectionPage";
 import ProductPage from "./features/Product/pages/ProductPage";
 import HomePage from "./features/Home/pages/HomePage";
 import SearchPage from "./components/SearchPage";
@@ -21,6 +20,9 @@ import CheckoutPage from "./components/checkout/CheckoutPage";
 import AddedQuoteSuccess from "./features/Quote/components/AddedQuoteSuccess";
 import CreateQuoteSuccessMessage from "./features/Quote/components/CreateQuoteSuccessMessage";
 import LoginForm from "./features/User/components/LoginForm";
+import BlogsPage from "./features/Blog/pages/BlogsPage";
+import ContactPage from "./components/singlePages/ContactPage";
+import AboutPage from "./components/singlePages/aboutPage";
 
 import "./styles.css";
 import "./assets/css/styles.scss";
@@ -80,6 +82,15 @@ export default function App() {
             <AllCollectionsPage />
           </Route>
           <Route path="/product/:slug" children={<ProductPage />} />
+          <Route path="/blogs">
+            <BlogsPage />
+          </Route>
+          <Route path="/contact">
+            <ContactPage />
+          </Route>
+          <Route path="/about">
+            <AboutPage />
+          </Route>
         </Switch>
         <footer>
           <Footer />

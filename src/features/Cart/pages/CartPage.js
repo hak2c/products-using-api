@@ -33,7 +33,7 @@ function CartPage() {
           </div>
         </div>
       </main>
-      <CollectionsList collections={collections} />
+      <CollectionsList />
     </>
   );
 }

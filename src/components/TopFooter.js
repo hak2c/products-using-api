@@ -25,9 +25,14 @@ function TopFooter() {
         </div>
         <div className="footer-content">
           <ul className="footer-menu">
+            <li>
+              <Link to="/collections">All products</Link>
+            </li>
             {collections.map((item) => (
               <li key={item.id}>
-                <Link to={"/collection/" + item.id}>{item.title}</Link>
+                <Link to={"/collections/" + item.id + "/item.slug"}>
+                  {item.title}
+                </Link>
               </li>
             ))}
           </ul>
@@ -40,7 +45,7 @@ function TopFooter() {
         <div className="footer-content">
           <ul className="footer-menu">
             <li>
-              <a href="#">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
               <a href="#">Features</a>

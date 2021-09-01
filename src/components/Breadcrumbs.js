@@ -2,7 +2,7 @@ import { memo } from "react";
 
 function Breadcrumbs({ location }) {
   function breadcrumbHtml() {
-    return { __html: '<a href="index.html">Home</a> &gt; ' + location };
+    return { __html: '<a href="/">Home</a> &gt; ' + location };
   }
   return (
     <section className="ot-breadcrumb">
