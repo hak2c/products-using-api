@@ -1,7 +1,9 @@
 import { Collapse } from "bootstrap";
 import { memo, useContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import * as Unicons from "@iconscout/react-unicons";
+import { Redirect, useHistory } from "react-router-dom";
 
 import { setShowAjaxCart } from "../features/Cart/cartSlice";
 import { setShowLoginForm, userLogout } from "../features/User/usersSlice";
@@ -10,6 +12,8 @@ import { AppState } from "../App";
 
 function TopHeader() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { register, handleSubmit } = useForm();
   const { products: productsInCart } = useSelector((state) => state.cart);
   const { loggedUser, user } = useSelector((state) => state.users);
   const { searchKey, handleChangeSearchInput, handleSubmitSearchForm } =
@@ -22,6 +26,13 @@ function TopHeader() {
     let bsCollapse = new Collapse(myCollapse, { toggle: false });
     toggle ? bsCollapse.show() : bsCollapse.hide();
   });
+
+  const onSubmit = (data) => {
+    let key = data.key;
+    console.log(key);
+    history.push(`/search?key=${key}`);
+    // <Redirect push to={{pathname: '/forcast', state: { data: redirectData }}} />
+  };
 
   function handleSearchForm(e) {
     handleSubmitSearchForm(e);
@@ -66,7 +77,7 @@ function TopHeader() {
               <form
                 className="search-form form-inline collapse"
                 id="search-form-1"
-                onSubmit={(e) => handleSearchForm(e)}
+                onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="form-group">
                   <input
@@ -74,8 +85,7 @@ function TopHeader() {
                     id="search"
                     type="text"
                     placeholder="Search"
-                    onChange={(e) => handleChangeSearchInput(e)}
-                    value={searchKey}
+                    {...register("key")}
                   />
                 </div>
               </form>

@@ -13,7 +13,6 @@ import Footer from "./components/Footer";
 import AllCollectionsPage from "./features/Collection/pages/AllCollectionsPage";
 import ProductPage from "./features/Product/pages/ProductPage";
 import HomePage from "./features/Home/pages/HomePage";
-import SearchPage from "./components/SearchPage";
 import QuotePopup from "./features/Quote/components/QuotePopup";
 import CartPage from "./features/Cart/pages/CartPage";
 import CheckoutPage from "./components/checkout/CheckoutPage";
@@ -23,6 +22,7 @@ import LoginForm from "./features/User/components/LoginForm";
 import BlogsPage from "./features/Blog/pages/BlogsPage";
 import ContactPage from "./components/singlePages/ContactPage";
 import AboutPage from "./components/singlePages/aboutPage";
+import SearchPage from "./features/Search/pages/SearchPage";
 
 import "./styles.css";
 import "./assets/css/styles.scss";
@@ -69,9 +69,7 @@ export default function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path="/search">
-            <SearchPage />
-          </Route>
+
           <Route path="/cart">
             <CartPage />
           </Route>
@@ -90,6 +88,9 @@ export default function App() {
           </Route>
           <Route path="/about">
             <AboutPage />
+          </Route>
+          <Route path="/search">
+            <SearchPage />
           </Route>
         </Switch>
         <footer>

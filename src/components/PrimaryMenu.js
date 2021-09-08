@@ -16,7 +16,7 @@ function PrimaryMenu() {
           <Unicons.UilAngleDown size="21" color="#ffffff" />
           <div className="sub-menu">
             <ul>
-              {collections.map((item) => (
+              {collections?.map((item) => (
                 <li key={item.id}>
                   <Link to={"/collections/" + item.id + "/" + item.slug}>
                     {item.title}

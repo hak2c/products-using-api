@@ -28,7 +28,7 @@ function TopFooter() {
             <li>
               <Link to="/collections">All products</Link>
             </li>
-            {collections.map((item) => (
+            {collections?.map((item) => (
               <li key={item.id}>
                 <Link to={"/collections/" + item.id + "/item.slug"}>
                   {item.title}

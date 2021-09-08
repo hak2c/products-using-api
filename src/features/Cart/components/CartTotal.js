@@ -52,7 +52,6 @@ function CartTotal() {
           id="submitCart"
           name="submitCart"
           value="Check Out"
-          onClick={handleCheckout}
         />
       </div>
     </div>

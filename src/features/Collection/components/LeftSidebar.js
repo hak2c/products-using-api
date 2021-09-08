@@ -43,7 +43,7 @@ function LeftSidebar({ sortCondition, setSortCondition }) {
                 All Products
               </Link>
             </li>
-            {collections.map((item) => (
+            {collections?.map((item) => (
               <li key={item.id}>
                 <Link
                   className={active == item.id ? "active" : ""}

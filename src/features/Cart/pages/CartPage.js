@@ -1,7 +1,6 @@
-import { useContext, memo } from "react";
+import { memo } from "react";
 import { useSelector } from "react-redux";
-
-import { AppState } from "../../../App";
+import { useForm } from "react-hook-form";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import CollectionsList from "../../../components/CollectionsList";
@@ -11,8 +10,11 @@ import CartFooter from "../components/CartFooter";
 
 function CartPage() {
   const products = useSelector((state) => state.cart.products);
-  const { collections } = useContext(AppState);
+  const { handleSubmit } = useForm();
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <>
       <main>
@@ -21,7 +23,7 @@ function CartPage() {
           <div className="cart__content">
             <CartContentHeader />
             {products.length > 0 ? (
-              <form id="cart-infor-form" method="post" name="cart-infor-form">
+              <form id="cart-infor-form" onSubmit={handleSubmit(onSubmit)}>
                 <CartItems />
                 <CartFooter />
               </form>

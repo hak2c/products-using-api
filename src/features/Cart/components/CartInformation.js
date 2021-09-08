@@ -1,7 +1,9 @@
 import { memo } from "react";
 import { Accordion } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 function CartInformation() {
+  const { register } = useForm();
   return (
     <div className="col-md-6 cart__infor">
       <div className="cart__infor--note">
@@ -11,7 +13,11 @@ function CartInformation() {
               Leave a note with your order
             </Accordion.Header>
             <Accordion.Body className="noteTextarea">
-              <textarea className="form-control" rows="5"></textarea>
+              <textarea
+                className="form-control"
+                rows="5"
+                {...register("orderNote")}
+              ></textarea>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
